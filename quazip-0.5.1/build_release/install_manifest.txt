@@ -1,0 +1,19 @@
+C:/Program Files (x86)/CMake 2.8/share/cmake-2.8/Modules/FindQuaZip.cmake
+C:/projects/faocas_qc_w/exaro-package/quazip/release/include/quazip/crypt.h
+C:/projects/faocas_qc_w/exaro-package/quazip/release/include/quazip/ioapi.h
+C:/projects/faocas_qc_w/exaro-package/quazip/release/include/quazip/JlCompress.h
+C:/projects/faocas_qc_w/exaro-package/quazip/release/include/quazip/quaadler32.h
+C:/projects/faocas_qc_w/exaro-package/quazip/release/include/quazip/quachecksum32.h
+C:/projects/faocas_qc_w/exaro-package/quazip/release/include/quazip/quacrc32.h
+C:/projects/faocas_qc_w/exaro-package/quazip/release/include/quazip/quagzipfile.h
+C:/projects/faocas_qc_w/exaro-package/quazip/release/include/quazip/quaziodevice.h
+C:/projects/faocas_qc_w/exaro-package/quazip/release/include/quazip/quazip.h
+C:/projects/faocas_qc_w/exaro-package/quazip/release/include/quazip/quazipdir.h
+C:/projects/faocas_qc_w/exaro-package/quazip/release/include/quazip/quazipfile.h
+C:/projects/faocas_qc_w/exaro-package/quazip/release/include/quazip/quazipfileinfo.h
+C:/projects/faocas_qc_w/exaro-package/quazip/release/include/quazip/quazipnewinfo.h
+C:/projects/faocas_qc_w/exaro-package/quazip/release/include/quazip/quazip_global.h
+C:/projects/faocas_qc_w/exaro-package/quazip/release/include/quazip/unzip.h
+C:/projects/faocas_qc_w/exaro-package/quazip/release/include/quazip/zip.h
+C:/projects/faocas_qc_w/exaro-package/quazip/release/lib/quazip.lib
+C:/projects/faocas_qc_w/exaro-package/quazip/release/lib/quazip.dll

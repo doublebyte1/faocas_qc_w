@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/projects/faocas_qc_w/zlib-1.2.8/win32/zlib1.rc
+winver.h
+-
+../zlib.h
+C:/projects/faocas_qc_w/zlib-1.2.8/zlib.h
+
+C:/projects/faocas_qc_w/zlib-1.2.8/zlib.h
+zconf.h
+C:/projects/faocas_qc_w/zlib-1.2.8/zconf.h
+

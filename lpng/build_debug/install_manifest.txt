@@ -1,0 +1,14 @@
+C:/projects/faocas_qc_w/exaro-package/libpng/debug/lib/libpng16d.lib
+C:/projects/faocas_qc_w/exaro-package/libpng/debug/bin/libpng16d.dll
+C:/projects/faocas_qc_w/exaro-package/libpng/debug/lib/libpng16_staticd.lib
+C:/projects/faocas_qc_w/exaro-package/libpng/debug/include/png.h
+C:/projects/faocas_qc_w/exaro-package/libpng/debug/include/pngconf.h
+C:/projects/faocas_qc_w/exaro-package/libpng/debug/include/pnglibconf.h
+C:/projects/faocas_qc_w/exaro-package/libpng/debug/include/libpng16/png.h
+C:/projects/faocas_qc_w/exaro-package/libpng/debug/include/libpng16/pngconf.h
+C:/projects/faocas_qc_w/exaro-package/libpng/debug/include/libpng16/pnglibconf.h
+C:/projects/faocas_qc_w/exaro-package/libpng/debug/share/man/man3/libpng.3
+C:/projects/faocas_qc_w/exaro-package/libpng/debug/share/man/man3/libpngpf.3
+C:/projects/faocas_qc_w/exaro-package/libpng/debug/share/man/man5/png.5
+C:/projects/faocas_qc_w/exaro-package/libpng/debug/lib/libpng/libpng16.cmake
+C:/projects/faocas_qc_w/exaro-package/libpng/debug/lib/libpng/libpng16-debug.cmake

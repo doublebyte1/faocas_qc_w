@@ -1,0 +1,1 @@
+2 /* CREATEPROCESS_MANIFEST_RESOURCE_ID */ 24 /* RT_MANIFEST */ "C:/projects/faocas_qc_w/exaro_2.0.0/build_debug/plugins/report/items/charts/legend/Legend.dll.embed.manifest"

@@ -1,0 +1,1 @@
+1 /* CREATEPROCESS_MANIFEST_RESOURCE_ID */ 24 /* RT_MANIFEST */ "C:/projects/faocas_qc_w/zlib-1.2.8/build_debug/minigzip.exe.embed.manifest"

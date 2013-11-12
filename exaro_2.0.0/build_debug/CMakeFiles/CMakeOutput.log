@@ -1,0 +1,128 @@
+The system is: Windows - 6.1 - AMD64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: C:/Program Files (x86)/Microsoft Visual Studio 9.0/VC/bin/cl.exe 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 15.00.30729.01 for 80x86
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+CMakeCCompilerId.c
+Microsoft (R) Incremental Linker Version 9.00.30729.01
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/out:CMakeCCompilerId.exe 
+CMakeCCompilerId.obj 
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.exe"
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.obj"
+
+The C compiler identification is MSVC, found in "C:/projects/faocas_qc_w/exaro_2.0.0/build_debug/CMakeFiles/2.8.12/CompilerIdC/CMakeCCompilerId.exe"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: C:/Program Files (x86)/Microsoft Visual Studio 9.0/VC/bin/cl.exe 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 15.00.30729.01 for 80x86
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+CMakeCXXCompilerId.cpp
+Microsoft (R) Incremental Linker Version 9.00.30729.01
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/out:CMakeCXXCompilerId.exe 
+CMakeCXXCompilerId.obj 
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.exe"
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.obj"
+
+The CXX compiler identification is MSVC, found in "C:/projects/faocas_qc_w/exaro_2.0.0/build_debug/CMakeFiles/2.8.12/CompilerIdCXX/CMakeCXXCompilerId.exe"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: C:/projects/faocas_qc_w/exaro_2.0.0/build_debug/CMakeFiles/CMakeTmp
+
+Run Build Command:nmake /NOLOGO  "cmTryCompileExec2576859043\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\BIN\nmake.exe" -f CMakeFiles\cmTryCompileExec2576859043.dir\build.make /nologo -L                  CMakeFiles\cmTryCompileExec2576859043.dir\build
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E cmake_progress_report C:\projects\faocas_qc_w\exaro_2.0.0\build_debug\CMakeFiles\CMakeTmp\CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2576859043.dir/testCCompiler.c.obj
+	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe  @C:\Users\jo\AppData\Local\Temp\nm866E.tmp
+testCCompiler.c
+Linking C executable cmTryCompileExec2576859043.exe
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E vs_link_exe C:\PROGRA~2\MICROS~1.0\VC\bin\link.exe /nologo @CMakeFiles\cmTryCompileExec2576859043.dir\objects1.rsp @C:\Users\jo\AppData\Local\Temp\nm86FC.tmp
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: C:/projects/faocas_qc_w/exaro_2.0.0/build_debug/CMakeFiles/CMakeTmp
+
+Run Build Command:nmake /NOLOGO  "cmTryCompileExec802374161\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\BIN\nmake.exe" -f CMakeFiles\cmTryCompileExec802374161.dir\build.make /nologo -L                  CMakeFiles\cmTryCompileExec802374161.dir\build
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E cmake_progress_report C:\projects\faocas_qc_w\exaro_2.0.0\build_debug\CMakeFiles\CMakeTmp\CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec802374161.dir/CMakeCCompilerABI.c.obj
+	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe  @C:\Users\jo\AppData\Local\Temp\nm898A.tmp
+CMakeCCompilerABI.c
+Linking C executable cmTryCompileExec802374161.exe
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E vs_link_exe C:\PROGRA~2\MICROS~1.0\VC\bin\link.exe /nologo @CMakeFiles\cmTryCompileExec802374161.dir\objects1.rsp @C:\Users\jo\AppData\Local\Temp\nm89F8.tmp
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: C:/projects/faocas_qc_w/exaro_2.0.0/build_debug/CMakeFiles/CMakeTmp
+
+Run Build Command:nmake /NOLOGO  "cmTryCompileExec3700523156\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\BIN\nmake.exe" -f CMakeFiles\cmTryCompileExec3700523156.dir\build.make /nologo -L                  CMakeFiles\cmTryCompileExec3700523156.dir\build
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E cmake_progress_report C:\projects\faocas_qc_w\exaro_2.0.0\build_debug\CMakeFiles\CMakeTmp\CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3700523156.dir/testCXXCompiler.cxx.obj
+	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe  @C:\Users\jo\AppData\Local\Temp\nm8C77.tmp
+testCXXCompiler.cxx
+Linking CXX executable cmTryCompileExec3700523156.exe
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E vs_link_exe C:\PROGRA~2\MICROS~1.0\VC\bin\link.exe /nologo @CMakeFiles\cmTryCompileExec3700523156.dir\objects1.rsp @C:\Users\jo\AppData\Local\Temp\nm8CF4.tmp
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: C:/projects/faocas_qc_w/exaro_2.0.0/build_debug/CMakeFiles/CMakeTmp
+
+Run Build Command:nmake /NOLOGO  "cmTryCompileExec1409573713\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\BIN\nmake.exe" -f CMakeFiles\cmTryCompileExec1409573713.dir\build.make /nologo -L                  CMakeFiles\cmTryCompileExec1409573713.dir\build
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E cmake_progress_report C:\projects\faocas_qc_w\exaro_2.0.0\build_debug\CMakeFiles\CMakeTmp\CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec1409573713.dir/CMakeCXXCompilerABI.cpp.obj
+	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe  @C:\Users\jo\AppData\Local\Temp\nm8F63.tmp
+CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTryCompileExec1409573713.exe
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E vs_link_exe C:\PROGRA~2\MICROS~1.0\VC\bin\link.exe /nologo @CMakeFiles\cmTryCompileExec1409573713.dir\objects1.rsp @C:\Users\jo\AppData\Local\Temp\nm8FD2.tmp
+
+
+Determining if the Q_WS_WIN exist passed with the following output:
+Change Dir: C:/projects/faocas_qc_w/exaro_2.0.0/build_debug/CMakeFiles/CMakeTmp
+
+Run Build Command:nmake /NOLOGO  "cmTryCompileExec3670382901\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\BIN\nmake.exe" -f CMakeFiles\cmTryCompileExec3670382901.dir\build.make /nologo -L                  CMakeFiles\cmTryCompileExec3670382901.dir\build
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E cmake_progress_report C:\projects\faocas_qc_w\exaro_2.0.0\build_debug\CMakeFiles\CMakeTmp\CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3670382901.dir/CheckSymbolExists.cxx.obj
+	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe  @C:\Users\jo\AppData\Local\Temp\nmC5EE.tmp
+CheckSymbolExists.cxx
+Linking CXX executable cmTryCompileExec3670382901.exe
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E vs_link_exe C:\PROGRA~2\MICROS~1.0\VC\bin\link.exe /nologo @CMakeFiles\cmTryCompileExec3670382901.dir\objects1.rsp @C:\Users\jo\AppData\Local\Temp\nmC717.tmp
+
+File C:/projects/faocas_qc_w/exaro_2.0.0/build_debug/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_WIN
+  return ((int*)(&Q_WS_WIN))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+

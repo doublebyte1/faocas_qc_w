@@ -1,0 +1,16 @@
+-IC:/projects/faocas_qc_w/propertyeditor-2.1.3/lib
+-IC:/Qt/4.8.5/include
+-IC:/Qt/4.8.5/include/QtGui
+-IC:/Qt/4.8.5/include/QtCore
+-IC:/projects/faocas_qc_w/propertyeditor-2.1.3
+-IC:/Qt/4.8.5/include
+-IC:/projects/faocas_qc_w/propertyeditor-2.1.3/build_release
+-DPROPERTYEDITOR_VERSION="2.1.3"
+-DQT_DLL
+-DQT_GUI_LIB
+-DQT_CORE_LIB
+-DLIB_INSTALL_DIR="lib"
+-DWIN32
+-o
+C:/projects/faocas_qc_w/propertyeditor-2.1.3/build_release/plugins/numbers/moc_numbers.cxx
+C:/projects/faocas_qc_w/propertyeditor-2.1.3/plugins/numbers/numbers.h

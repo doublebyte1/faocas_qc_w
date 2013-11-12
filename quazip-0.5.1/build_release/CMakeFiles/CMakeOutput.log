@@ -1,0 +1,101 @@
+The system is: Windows - 6.1 - AMD64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: C:/Program Files (x86)/Microsoft Visual Studio 9.0/VC/bin/cl.exe 
+Build flags: ;/DWIN32;/D_WINDOWS;/W3
+Id flags: 
+
+The output was:
+0
+Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 15.00.30729.01 for 80x86
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+CMakeCCompilerId.c
+Microsoft (R) Incremental Linker Version 9.00.30729.01
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/out:CMakeCCompilerId.exe 
+CMakeCCompilerId.obj 
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.exe"
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.obj"
+
+The C compiler identification is MSVC, found in "C:/projects/faocas_qc_w/quazip-0.5.1/build_release/CMakeFiles/2.8.12/CompilerIdC/CMakeCCompilerId.exe"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: C:/Program Files (x86)/Microsoft Visual Studio 9.0/VC/bin/cl.exe 
+Build flags: ;/DWIN32;/D_WINDOWS;/W3;/GR;/EHsc
+Id flags: 
+
+The output was:
+0
+Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 15.00.30729.01 for 80x86
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+CMakeCXXCompilerId.cpp
+Microsoft (R) Incremental Linker Version 9.00.30729.01
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/out:CMakeCXXCompilerId.exe 
+CMakeCXXCompilerId.obj 
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.exe"
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.obj"
+
+The CXX compiler identification is MSVC, found in "C:/projects/faocas_qc_w/quazip-0.5.1/build_release/CMakeFiles/2.8.12/CompilerIdCXX/CMakeCXXCompilerId.exe"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: C:/projects/faocas_qc_w/quazip-0.5.1/build_release/CMakeFiles/CMakeTmp
+
+Run Build Command:nmake /NOLOGO  "cmTryCompileExec1110525540\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\BIN\nmake.exe" -f CMakeFiles\cmTryCompileExec1110525540.dir\build.make /nologo -L                  CMakeFiles\cmTryCompileExec1110525540.dir\build
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E cmake_progress_report C:\projects\faocas_qc_w\quazip-0.5.1\build_release\CMakeFiles\CMakeTmp\CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1110525540.dir/testCCompiler.c.obj
+	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe  @C:\Users\jo\AppData\Local\Temp\nm95E8.tmp
+testCCompiler.c
+Linking C executable cmTryCompileExec1110525540.exe
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E vs_link_exe C:\PROGRA~2\MICROS~1.0\VC\bin\link.exe /nologo @CMakeFiles\cmTryCompileExec1110525540.dir\objects1.rsp @C:\Users\jo\AppData\Local\Temp\nm9657.tmp
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: C:/projects/faocas_qc_w/quazip-0.5.1/build_release/CMakeFiles/CMakeTmp
+
+Run Build Command:nmake /NOLOGO  "cmTryCompileExec3566978164\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\BIN\nmake.exe" -f CMakeFiles\cmTryCompileExec3566978164.dir\build.make /nologo -L                  CMakeFiles\cmTryCompileExec3566978164.dir\build
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E cmake_progress_report C:\projects\faocas_qc_w\quazip-0.5.1\build_release\CMakeFiles\CMakeTmp\CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3566978164.dir/CMakeCCompilerABI.c.obj
+	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe  @C:\Users\jo\AppData\Local\Temp\nm98C6.tmp
+CMakeCCompilerABI.c
+Linking C executable cmTryCompileExec3566978164.exe
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E vs_link_exe C:\PROGRA~2\MICROS~1.0\VC\bin\link.exe /nologo @CMakeFiles\cmTryCompileExec3566978164.dir\objects1.rsp @C:\Users\jo\AppData\Local\Temp\nm9934.tmp
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: C:/projects/faocas_qc_w/quazip-0.5.1/build_release/CMakeFiles/CMakeTmp
+
+Run Build Command:nmake /NOLOGO  "cmTryCompileExec985103813\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\BIN\nmake.exe" -f CMakeFiles\cmTryCompileExec985103813.dir\build.make /nologo -L                  CMakeFiles\cmTryCompileExec985103813.dir\build
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E cmake_progress_report C:\projects\faocas_qc_w\quazip-0.5.1\build_release\CMakeFiles\CMakeTmp\CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec985103813.dir/testCXXCompiler.cxx.obj
+	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe  @C:\Users\jo\AppData\Local\Temp\nm9B93.tmp
+testCXXCompiler.cxx
+Linking CXX executable cmTryCompileExec985103813.exe
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E vs_link_exe C:\PROGRA~2\MICROS~1.0\VC\bin\link.exe /nologo @CMakeFiles\cmTryCompileExec985103813.dir\objects1.rsp @C:\Users\jo\AppData\Local\Temp\nm9C11.tmp
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: C:/projects/faocas_qc_w/quazip-0.5.1/build_release/CMakeFiles/CMakeTmp
+
+Run Build Command:nmake /NOLOGO  "cmTryCompileExec2829150288\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\BIN\nmake.exe" -f CMakeFiles\cmTryCompileExec2829150288.dir\build.make /nologo -L                  CMakeFiles\cmTryCompileExec2829150288.dir\build
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E cmake_progress_report C:\projects\faocas_qc_w\quazip-0.5.1\build_release\CMakeFiles\CMakeTmp\CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec2829150288.dir/CMakeCXXCompilerABI.cpp.obj
+	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe  @C:\Users\jo\AppData\Local\Temp\nm9E61.tmp
+CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTryCompileExec2829150288.exe
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E vs_link_exe C:\PROGRA~2\MICROS~1.0\VC\bin\link.exe /nologo @CMakeFiles\cmTryCompileExec2829150288.dir\objects1.rsp @C:\Users\jo\AppData\Local\Temp\nm9EDF.tmp
+
+

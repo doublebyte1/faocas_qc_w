@@ -1,0 +1,13 @@
+prefix=C:/projects/faocas_qc_w/exaro-package/zlib/release
+exec_prefix=C:/projects/faocas_qc_w/exaro-package/zlib/release
+libdir=C:/projects/faocas_qc_w/exaro-package/zlib/release/lib
+sharedlibdir=C:/projects/faocas_qc_w/exaro-package/zlib/release/lib
+includedir=C:/projects/faocas_qc_w/exaro-package/zlib/release/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.2.8
+
+Requires:
+Libs: -L${libdir} -L${sharedlibdir} -lz
+Cflags: -I${includedir}

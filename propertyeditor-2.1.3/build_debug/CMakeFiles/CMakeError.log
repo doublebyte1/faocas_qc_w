@@ -1,0 +1,90 @@
+Determining if the Q_WS_X11 exist failed with the following output:
+Change Dir: C:/projects/faocas_qc_w/propertyeditor-2.1.3/build_debug/CMakeFiles/CMakeTmp
+
+Run Build Command:nmake /NOLOGO  "cmTryCompileExec1952706728\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\BIN\nmake.exe" -f CMakeFiles\cmTryCompileExec1952706728.dir\build.make /nologo -L                  CMakeFiles\cmTryCompileExec1952706728.dir\build
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E cmake_progress_report C:\projects\faocas_qc_w\propertyeditor-2.1.3\build_debug\CMakeFiles\CMakeTmp\CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec1952706728.dir/CheckSymbolExists.cxx.obj
+	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe  @C:\Users\jo\AppData\Local\Temp\nm79E.tmp
+CheckSymbolExists.cxx
+C:\projects\faocas_qc_w\propertyeditor-2.1.3\build_debug\CMakeFiles\CMakeTmp\CheckSymbolExists.cxx(8) : error C2065: 'Q_WS_X11' : undeclared identifier
+NMAKE : fatal error U1077: 'C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe' : return code '0x2'
+Stop.
+NMAKE : fatal error U1077: '"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\BIN\nmake.exe"' : return code '0x2'
+Stop.
+
+File C:/projects/faocas_qc_w/propertyeditor-2.1.3/build_debug/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_X11
+  return ((int*)(&Q_WS_X11))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the Q_WS_QWS exist failed with the following output:
+Change Dir: C:/projects/faocas_qc_w/propertyeditor-2.1.3/build_debug/CMakeFiles/CMakeTmp
+
+Run Build Command:nmake /NOLOGO  "cmTryCompileExec1221061228\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\BIN\nmake.exe" -f CMakeFiles\cmTryCompileExec1221061228.dir\build.make /nologo -L                  CMakeFiles\cmTryCompileExec1221061228.dir\build
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E cmake_progress_report C:\projects\faocas_qc_w\propertyeditor-2.1.3\build_debug\CMakeFiles\CMakeTmp\CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec1221061228.dir/CheckSymbolExists.cxx.obj
+	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe  @C:\Users\jo\AppData\Local\Temp\nmD39.tmp
+CheckSymbolExists.cxx
+C:\projects\faocas_qc_w\propertyeditor-2.1.3\build_debug\CMakeFiles\CMakeTmp\CheckSymbolExists.cxx(8) : error C2065: 'Q_WS_QWS' : undeclared identifier
+NMAKE : fatal error U1077: 'C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe' : return code '0x2'
+Stop.
+NMAKE : fatal error U1077: '"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\BIN\nmake.exe"' : return code '0x2'
+Stop.
+
+File C:/projects/faocas_qc_w/propertyeditor-2.1.3/build_debug/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_QWS
+  return ((int*)(&Q_WS_QWS))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the Q_WS_MAC exist failed with the following output:
+Change Dir: C:/projects/faocas_qc_w/propertyeditor-2.1.3/build_debug/CMakeFiles/CMakeTmp
+
+Run Build Command:nmake /NOLOGO  "cmTryCompileExec2171064391\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\BIN\nmake.exe" -f CMakeFiles\cmTryCompileExec2171064391.dir\build.make /nologo -L                  CMakeFiles\cmTryCompileExec2171064391.dir\build
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E cmake_progress_report C:\projects\faocas_qc_w\propertyeditor-2.1.3\build_debug\CMakeFiles\CMakeTmp\CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec2171064391.dir/CheckSymbolExists.cxx.obj
+	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe  @C:\Users\jo\AppData\Local\Temp\nmEDF.tmp
+CheckSymbolExists.cxx
+C:\projects\faocas_qc_w\propertyeditor-2.1.3\build_debug\CMakeFiles\CMakeTmp\CheckSymbolExists.cxx(8) : error C2065: 'Q_WS_MAC' : undeclared identifier
+NMAKE : fatal error U1077: 'C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe' : return code '0x2'
+Stop.
+NMAKE : fatal error U1077: '"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\BIN\nmake.exe"' : return code '0x2'
+Stop.
+
+File C:/projects/faocas_qc_w/propertyeditor-2.1.3/build_debug/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_MAC
+  return ((int*)(&Q_WS_MAC))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+

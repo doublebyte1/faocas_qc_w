@@ -1,0 +1,7 @@
+C:/projects/faocas_qc_w/exaro-package/zlib/debug/lib/zlibd.lib
+C:/projects/faocas_qc_w/exaro-package/zlib/debug/bin/zlibd.dll
+C:/projects/faocas_qc_w/exaro-package/zlib/debug/lib/zlibstaticd.lib
+C:/projects/faocas_qc_w/exaro-package/zlib/debug/include/zconf.h
+C:/projects/faocas_qc_w/exaro-package/zlib/debug/include/zlib.h
+C:/projects/faocas_qc_w/exaro-package/zlib/debug/share/man/man3/zlib.3
+C:/projects/faocas_qc_w/exaro-package/zlib/debug/share/pkconfig/zlib.pc

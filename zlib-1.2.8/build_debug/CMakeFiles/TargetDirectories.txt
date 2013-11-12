@@ -1,0 +1,4 @@
+C:/projects/faocas_qc_w/zlib-1.2.8/build_debug/CMakeFiles/example.dir
+C:/projects/faocas_qc_w/zlib-1.2.8/build_debug/CMakeFiles/minigzip.dir
+C:/projects/faocas_qc_w/zlib-1.2.8/build_debug/CMakeFiles/zlib.dir
+C:/projects/faocas_qc_w/zlib-1.2.8/build_debug/CMakeFiles/zlibstatic.dir

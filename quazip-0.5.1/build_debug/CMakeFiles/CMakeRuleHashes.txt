@@ -1,0 +1,17 @@
+# Hashes of file build rules.
+74de4663a066f0062dee84b46d7ad5b4 quazip/moc_JlCompress.cxx
+7069bf423c38649e0d186005ca9123eb quazip/moc_crypt.cxx
+246a047ea37300e32f90f6bcaf807f36 quazip/moc_ioapi.cxx
+f6827085b84cb92521689a950d1cea73 quazip/moc_quaadler32.cxx
+1cd2c9316af526983f7d9a3cdd4078aa quazip/moc_quachecksum32.cxx
+54a119396c24a5b577ed7ca2fd0d35fe quazip/moc_quacrc32.cxx
+b2c2c17a8de1449b158c3376421113c8 quazip/moc_quagzipfile.cxx
+7002d2c0c97fc3a70295a9e26d7bb6c3 quazip/moc_quaziodevice.cxx
+9573d4880dc76c5fd9698e1864f4f8cf quazip/moc_quazip.cxx
+702483d1a9ddc2c1a66003aee6667cfa quazip/moc_quazip_global.cxx
+87842052100d47812e3a42bd94804ac9 quazip/moc_quazipdir.cxx
+fc4f978de39934693fdb1fd879ee9856 quazip/moc_quazipfile.cxx
+b8e74880586ea1d4af82ba306586893e quazip/moc_quazipfileinfo.cxx
+fce2cd167ed77d63b3671544adac7e6c quazip/moc_quazipnewinfo.cxx
+a8d65ab4dc4ed82f33f648518951f66c quazip/moc_unzip.cxx
+94f0a8763cbd80466318cf89c495c234 quazip/moc_zip.cxx

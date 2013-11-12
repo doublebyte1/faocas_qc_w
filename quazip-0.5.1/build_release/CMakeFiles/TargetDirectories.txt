@@ -1,0 +1,1 @@
+C:/projects/faocas_qc_w/quazip-0.5.1/build_release/quazip/CMakeFiles/quazip.dir

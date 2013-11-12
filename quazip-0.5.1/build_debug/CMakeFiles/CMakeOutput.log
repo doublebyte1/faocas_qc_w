@@ -1,0 +1,128 @@
+The system is: Windows - 6.1 - AMD64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: C:/Program Files (x86)/Microsoft Visual Studio 9.0/VC/bin/cl.exe 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 15.00.30729.01 for 80x86
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+CMakeCCompilerId.c
+Microsoft (R) Incremental Linker Version 9.00.30729.01
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/out:CMakeCCompilerId.exe 
+CMakeCCompilerId.obj 
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.exe"
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.obj"
+
+The C compiler identification is MSVC, found in "C:/projects/faocas_qc_w/quazip-0.5.1/build_debug/CMakeFiles/2.8.12/CompilerIdC/CMakeCCompilerId.exe"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: C:/Program Files (x86)/Microsoft Visual Studio 9.0/VC/bin/cl.exe 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 15.00.30729.01 for 80x86
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+CMakeCXXCompilerId.cpp
+Microsoft (R) Incremental Linker Version 9.00.30729.01
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/out:CMakeCXXCompilerId.exe 
+CMakeCXXCompilerId.obj 
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.exe"
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.obj"
+
+The CXX compiler identification is MSVC, found in "C:/projects/faocas_qc_w/quazip-0.5.1/build_debug/CMakeFiles/2.8.12/CompilerIdCXX/CMakeCXXCompilerId.exe"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: C:/projects/faocas_qc_w/quazip-0.5.1/build_debug/CMakeFiles/CMakeTmp
+
+Run Build Command:nmake /NOLOGO  "cmTryCompileExec1688697279\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\BIN\nmake.exe" -f CMakeFiles\cmTryCompileExec1688697279.dir\build.make /nologo -L                  CMakeFiles\cmTryCompileExec1688697279.dir\build
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E cmake_progress_report C:\projects\faocas_qc_w\quazip-0.5.1\build_debug\CMakeFiles\CMakeTmp\CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1688697279.dir/testCCompiler.c.obj
+	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe  @C:\Users\jo\AppData\Local\Temp\nmE723.tmp
+testCCompiler.c
+Linking C executable cmTryCompileExec1688697279.exe
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E vs_link_exe C:\PROGRA~2\MICROS~1.0\VC\bin\link.exe /nologo @CMakeFiles\cmTryCompileExec1688697279.dir\objects1.rsp @C:\Users\jo\AppData\Local\Temp\nmE791.tmp
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: C:/projects/faocas_qc_w/quazip-0.5.1/build_debug/CMakeFiles/CMakeTmp
+
+Run Build Command:nmake /NOLOGO  "cmTryCompileExec2255567106\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\BIN\nmake.exe" -f CMakeFiles\cmTryCompileExec2255567106.dir\build.make /nologo -L                  CMakeFiles\cmTryCompileExec2255567106.dir\build
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E cmake_progress_report C:\projects\faocas_qc_w\quazip-0.5.1\build_debug\CMakeFiles\CMakeTmp\CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2255567106.dir/CMakeCCompilerABI.c.obj
+	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe  @C:\Users\jo\AppData\Local\Temp\nmEA00.tmp
+CMakeCCompilerABI.c
+Linking C executable cmTryCompileExec2255567106.exe
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E vs_link_exe C:\PROGRA~2\MICROS~1.0\VC\bin\link.exe /nologo @CMakeFiles\cmTryCompileExec2255567106.dir\objects1.rsp @C:\Users\jo\AppData\Local\Temp\nmEA7E.tmp
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: C:/projects/faocas_qc_w/quazip-0.5.1/build_debug/CMakeFiles/CMakeTmp
+
+Run Build Command:nmake /NOLOGO  "cmTryCompileExec1288258422\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\BIN\nmake.exe" -f CMakeFiles\cmTryCompileExec1288258422.dir\build.make /nologo -L                  CMakeFiles\cmTryCompileExec1288258422.dir\build
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E cmake_progress_report C:\projects\faocas_qc_w\quazip-0.5.1\build_debug\CMakeFiles\CMakeTmp\CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec1288258422.dir/testCXXCompiler.cxx.obj
+	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe  @C:\Users\jo\AppData\Local\Temp\nmECDE.tmp
+testCXXCompiler.cxx
+Linking CXX executable cmTryCompileExec1288258422.exe
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E vs_link_exe C:\PROGRA~2\MICROS~1.0\VC\bin\link.exe /nologo @CMakeFiles\cmTryCompileExec1288258422.dir\objects1.rsp @C:\Users\jo\AppData\Local\Temp\nmED5B.tmp
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: C:/projects/faocas_qc_w/quazip-0.5.1/build_debug/CMakeFiles/CMakeTmp
+
+Run Build Command:nmake /NOLOGO  "cmTryCompileExec3693628831\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\BIN\nmake.exe" -f CMakeFiles\cmTryCompileExec3693628831.dir\build.make /nologo -L                  CMakeFiles\cmTryCompileExec3693628831.dir\build
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E cmake_progress_report C:\projects\faocas_qc_w\quazip-0.5.1\build_debug\CMakeFiles\CMakeTmp\CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3693628831.dir/CMakeCXXCompilerABI.cpp.obj
+	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe  @C:\Users\jo\AppData\Local\Temp\nmEFAB.tmp
+CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTryCompileExec3693628831.exe
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E vs_link_exe C:\PROGRA~2\MICROS~1.0\VC\bin\link.exe /nologo @CMakeFiles\cmTryCompileExec3693628831.dir\objects1.rsp @C:\Users\jo\AppData\Local\Temp\nmF029.tmp
+
+
+Determining if the Q_WS_WIN exist passed with the following output:
+Change Dir: C:/projects/faocas_qc_w/quazip-0.5.1/build_debug/CMakeFiles/CMakeTmp
+
+Run Build Command:nmake /NOLOGO  "cmTryCompileExec2358007029\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\BIN\nmake.exe" -f CMakeFiles\cmTryCompileExec2358007029.dir\build.make /nologo -L                  CMakeFiles\cmTryCompileExec2358007029.dir\build
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E cmake_progress_report C:\projects\faocas_qc_w\quazip-0.5.1\build_debug\CMakeFiles\CMakeTmp\CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec2358007029.dir/CheckSymbolExists.cxx.obj
+	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe  @C:\Users\jo\AppData\Local\Temp\nm25E7.tmp
+CheckSymbolExists.cxx
+Linking CXX executable cmTryCompileExec2358007029.exe
+	"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -E vs_link_exe C:\PROGRA~2\MICROS~1.0\VC\bin\link.exe /nologo @CMakeFiles\cmTryCompileExec2358007029.dir\objects1.rsp @C:\Users\jo\AppData\Local\Temp\nm2711.tmp
+
+File C:/projects/faocas_qc_w/quazip-0.5.1/build_debug/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_WIN
+  return ((int*)(&Q_WS_WIN))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
