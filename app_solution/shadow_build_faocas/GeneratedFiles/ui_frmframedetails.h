@@ -59,6 +59,8 @@ public:
     QPushButton *pushCollapse;
     QPushButton *pushLegend;
     QSpacerItem *horizontalSpacer;
+    QPushButton *pushEdit;
+    QPushButton *pushReset;
     QPushButton *pushBack;
     QPushButton *pushVerify;
     QPushButton *pushApply;
@@ -68,7 +70,7 @@ public:
     {
         if (frmframedetails->objectName().isEmpty())
             frmframedetails->setObjectName(QString::fromUtf8("frmframedetails"));
-        frmframedetails->resize(726, 591);
+        frmframedetails->resize(755, 591);
         gridLayout = new QGridLayout(frmframedetails);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         groupBox = new QGroupBox(frmframedetails);
@@ -218,9 +220,19 @@ public:
 
         horizontalLayout->addWidget(pushLegend);
 
-        horizontalSpacer = new QSpacerItem(37, 17, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer);
+
+        pushEdit = new QPushButton(frmframedetails);
+        pushEdit->setObjectName(QString::fromUtf8("pushEdit"));
+
+        horizontalLayout->addWidget(pushEdit);
+
+        pushReset = new QPushButton(frmframedetails);
+        pushReset->setObjectName(QString::fromUtf8("pushReset"));
+
+        horizontalLayout->addWidget(pushReset);
 
         pushBack = new QPushButton(frmframedetails);
         pushBack->setObjectName(QString::fromUtf8("pushBack"));
@@ -263,6 +275,8 @@ public:
         QObject::connect(pushVerify, SIGNAL(clicked()), frmframedetails, SLOT(verify()));
         QObject::connect(cmbCloned, SIGNAL(currentIndexChanged(QString)), frmframedetails, SLOT(isClonedFromPreviousFrame(QString)));
         QObject::connect(pushLegend, SIGNAL(clicked()), frmframedetails, SLOT(showLegend()));
+        QObject::connect(pushEdit, SIGNAL(clicked()), frmframedetails, SLOT(editFrame()));
+        QObject::connect(pushReset, SIGNAL(clicked()), frmframedetails, SLOT(createFrame()));
 
         QMetaObject::connectSlotsByName(frmframedetails);
     } // setupUi
@@ -294,6 +308,8 @@ public:
         pushLegend->setWhatsThis(QApplication::translate("frmframedetails", "View legend", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_WHATSTHIS
         pushLegend->setText(QApplication::translate("frmframedetails", "Legend", 0, QApplication::UnicodeUTF8));
+        pushEdit->setText(QApplication::translate("frmframedetails", "Edit", 0, QApplication::UnicodeUTF8));
+        pushReset->setText(QApplication::translate("frmframedetails", "Reset", 0, QApplication::UnicodeUTF8));
 #ifndef QT_NO_TOOLTIP
         pushBack->setToolTip(QApplication::translate("frmframedetails", "Cancel", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_TOOLTIP
@@ -303,7 +319,7 @@ public:
 #ifndef QT_NO_WHATSTHIS
         pushBack->setWhatsThis(QApplication::translate("frmframedetails", "Cancel changes and go back to previous form", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_WHATSTHIS
-        pushBack->setText(QApplication::translate("frmframedetails", "Cancel", 0, QApplication::UnicodeUTF8));
+        pushBack->setText(QApplication::translate("frmframedetails", "Back", 0, QApplication::UnicodeUTF8));
 #ifndef QT_NO_TOOLTIP
         pushVerify->setToolTip(QApplication::translate("frmframedetails", "Verify changes", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_TOOLTIP

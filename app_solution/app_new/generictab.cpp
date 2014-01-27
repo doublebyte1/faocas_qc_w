@@ -1,8 +1,8 @@
 //#include <QTest>
 #include "generictab.h"
 
-GenericTab::GenericTab(const int index, RoleDef* inRoleDef, Sample* inSample, DateModel* inTDateTime, const QString inStrTitle, RuleChecker* ruleCheckerPtr, QWidget *parent, Qt::WFlags flags):
-QWidget(parent, flags),m_index(index), m_tDateTime(inTDateTime), m_roleDef(inRoleDef), m_sample(inSample), m_title(inStrTitle), m_ruleCheckerPtr(ruleCheckerPtr) {
+GenericTab::GenericTab(const int index, RoleDef* inRoleDef, Sample* inSample, const QString inStrTitle, RuleChecker* ruleCheckerPtr, QWidget *parent, Qt::WFlags flags):
+QWidget(parent, flags),m_index(index), m_roleDef(inRoleDef), m_sample(inSample), m_title(inStrTitle), m_ruleCheckerPtr(ruleCheckerPtr) {
 
     lbHead=0;
     m_mapperBinderPtr=0;
@@ -108,7 +108,7 @@ void GenericTab::setLbHead(QLabel* inLbHeader)
 {
     lbHead=inLbHeader;
 }
-
+/*
 bool GenericTab::getDtId(const int mapIdx, int& id)
 {
     QModelIndex idx= m_tDateTime->index(mapIdx,0,QModelIndex());
@@ -117,7 +117,7 @@ bool GenericTab::getDtId(const int mapIdx, int& id)
     id=m_tDateTime->data(idx).toInt();
     return true;
 }
-
+*/
 void GenericTab::goBack()
 {
     emit navigate(false,m_index);
@@ -145,11 +145,11 @@ QWidget(parent, flags){
 
 void filterTable(QSqlTableModel* table)
 {
-    table->setFilter("Name<>'" + qApp->translate("null_replacements", strNa)
-            + "' AND Name<>'" + qApp->translate("bin", strOutside)
-            + "' AND Name<>'" + qApp->translate("null_replacements", strMissing)
-            + "' AND Name<>'" + qApp->translate("null_replacements", strOther)
-            + "' AND Name<>'" + qApp->translate("null_replacements", strUnknown)
+    table->setFilter("name<>'" + qApp->translate("null_replacements", strNa)
+            + "' AND name<>'" + qApp->translate("bin", strOutside)
+            + "' AND name<>'" + qApp->translate("null_replacements", strMissing)
+            + "' AND name<>'" + qApp->translate("null_replacements", strOther)
+            + "' AND name<>'" + qApp->translate("null_replacements", strUnknown)
             + "'");
 }
 

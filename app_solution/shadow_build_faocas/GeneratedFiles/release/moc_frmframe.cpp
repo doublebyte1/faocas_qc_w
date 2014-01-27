@@ -22,7 +22,7 @@ static const uint qt_meta_data_FrmFrame[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      15,   14, // methods
+      14,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -36,17 +36,16 @@ static const uint qt_meta_data_FrmFrame[] = {
      115,  108,    9,    9, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-     146,    9,    9,    9, 0x0a,
-     169,    9,    9,    9, 0x0a,
-     194,    9,    9,    9, 0x08,
-     209,    9,    9,    9, 0x08,
-     230,    9,    9,    9, 0x08,
-     251,    9,    9,    9, 0x08,
-     286,  275,    9,    9, 0x08,
-     310,    9,    9,    9, 0x08,
-     331,  325,    9,    9, 0x08,
-     355,    9,    9,    9, 0x08,
-     394,  373,    9,    9, 0x08,
+     146,    9,    9,    9, 0x08,
+     172,  161,    9,    9, 0x08,
+     197,    9,    9,    9, 0x08,
+     218,    9,    9,    9, 0x08,
+     242,  161,    9,    9, 0x08,
+     266,    9,    9,    9, 0x08,
+     287,  281,    9,    9, 0x08,
+     311,    9,    9,    9, 0x08,
+     350,  329,    9,    9, 0x08,
+     373,  281,    9,    9, 0x08,
 
        0        // eod
 };
@@ -56,13 +55,12 @@ static const char qt_meta_stringdata_FrmFrame[] = {
     "index,bOk\0submitted(int,bool)\0mode\0"
     "setFrmSamplingMode(FrmSampling::MODE)\0"
     "bApply\0applyChanges2FrmSampling(bool)\0"
-    "blockCustomDateCtrls()\0unblockCustomDateCtrls()\0"
-    "editFinished()\0onHideFrameDetails()\0"
-    "onShowFrameDetails()\0adjustFrmSamplingMode()\0"
-    "bSubmitted\0onHideFrmSampling(bool)\0"
+    "editFinished()\0bSubmitted\0"
+    "onHideFrameDetails(bool)\0onShowFrameDetails()\0"
+    "adjustFrmSamplingMode()\0onHideFrmSampling(bool)\0"
     "createRecord()\0index\0previewRow(QModelIndex)\0"
     "onItemSelection()\0bFinished,bDiscarded\0"
-    "onEditLeave(bool,bool)\0"
+    "onEditLeave(bool,bool)\0onFrameChange(int)\0"
 };
 
 void FrmFrame::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -75,17 +73,16 @@ void FrmFrame::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 1: _t->submitted((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
         case 2: _t->setFrmSamplingMode((*reinterpret_cast< const FrmSampling::MODE(*)>(_a[1]))); break;
         case 3: _t->applyChanges2FrmSampling((*reinterpret_cast< const bool(*)>(_a[1]))); break;
-        case 4: _t->blockCustomDateCtrls(); break;
-        case 5: _t->unblockCustomDateCtrls(); break;
-        case 6: _t->editFinished(); break;
-        case 7: _t->onHideFrameDetails(); break;
-        case 8: _t->onShowFrameDetails(); break;
-        case 9: _t->adjustFrmSamplingMode(); break;
-        case 10: _t->onHideFrmSampling((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 11: _t->createRecord(); break;
-        case 12: _t->previewRow((*reinterpret_cast< QModelIndex(*)>(_a[1]))); break;
-        case 13: _t->onItemSelection(); break;
-        case 14: _t->onEditLeave((*reinterpret_cast< const bool(*)>(_a[1])),(*reinterpret_cast< const bool(*)>(_a[2]))); break;
+        case 4: _t->editFinished(); break;
+        case 5: _t->onHideFrameDetails((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 6: _t->onShowFrameDetails(); break;
+        case 7: _t->adjustFrmSamplingMode(); break;
+        case 8: _t->onHideFrmSampling((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 9: _t->createRecord(); break;
+        case 10: _t->previewRow((*reinterpret_cast< QModelIndex(*)>(_a[1]))); break;
+        case 11: _t->onItemSelection(); break;
+        case 12: _t->onEditLeave((*reinterpret_cast< const bool(*)>(_a[1])),(*reinterpret_cast< const bool(*)>(_a[2]))); break;
+        case 13: _t->onFrameChange((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -125,9 +122,9 @@ int FrmFrame::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 15)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 14;
     }
     return _id;
 }

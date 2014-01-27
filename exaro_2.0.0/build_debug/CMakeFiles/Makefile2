@@ -1001,8 +1001,8 @@ plugins\report\items\charts\barchart\preinstall:
 # Target rules for target plugins/report/items/charts/barchart/CMakeFiles/Barchart.dir
 
 # All Build rule for target.
-plugins\report\items\charts\barchart\CMakeFiles\Barchart.dir\all: plugins\report\items\charts\chartinterface\CMakeFiles\ChartInterface.dir\all
 plugins\report\items\charts\barchart\CMakeFiles\Barchart.dir\all: libs\report\CMakeFiles\Report.dir\all
+plugins\report\items\charts\barchart\CMakeFiles\Barchart.dir\all: plugins\report\items\charts\chartinterface\CMakeFiles\ChartInterface.dir\all
 	$(MAKE) -f plugins\report\items\charts\barchart\CMakeFiles\Barchart.dir\build.make /nologo -$(MAKEFLAGS) plugins\report\items\charts\barchart\CMakeFiles\Barchart.dir\depend
 	$(MAKE) -f plugins\report\items\charts\barchart\CMakeFiles\Barchart.dir\build.make /nologo -$(MAKEFLAGS) plugins\report\items\charts\barchart\CMakeFiles\Barchart.dir\build
 	$(CMAKE_COMMAND) -E cmake_progress_report C:\projects\faocas_qc_w\exaro_2.0.0\build_debug\CMakeFiles  2 3
@@ -1052,8 +1052,8 @@ plugins\report\items\charts\chartcontainer\preinstall:
 # Target rules for target plugins/report/items/charts/chartcontainer/CMakeFiles/ChartContainer.dir
 
 # All Build rule for target.
-plugins\report\items\charts\chartcontainer\CMakeFiles\ChartContainer.dir\all: plugins\report\items\charts\chartinterface\CMakeFiles\ChartInterface.dir\all
 plugins\report\items\charts\chartcontainer\CMakeFiles\ChartContainer.dir\all: libs\report\CMakeFiles\Report.dir\all
+plugins\report\items\charts\chartcontainer\CMakeFiles\ChartContainer.dir\all: plugins\report\items\charts\chartinterface\CMakeFiles\ChartInterface.dir\all
 	$(MAKE) -f plugins\report\items\charts\chartcontainer\CMakeFiles\ChartContainer.dir\build.make /nologo -$(MAKEFLAGS) plugins\report\items\charts\chartcontainer\CMakeFiles\ChartContainer.dir\depend
 	$(MAKE) -f plugins\report\items\charts\chartcontainer\CMakeFiles\ChartContainer.dir\build.make /nologo -$(MAKEFLAGS) plugins\report\items\charts\chartcontainer\CMakeFiles\ChartContainer.dir\build
 	$(CMAKE_COMMAND) -E cmake_progress_report C:\projects\faocas_qc_w\exaro_2.0.0\build_debug\CMakeFiles  4 5
@@ -1153,8 +1153,8 @@ plugins\report\items\charts\legend\preinstall:
 # Target rules for target plugins/report/items/charts/legend/CMakeFiles/Legend.dir
 
 # All Build rule for target.
-plugins\report\items\charts\legend\CMakeFiles\Legend.dir\all: plugins\report\items\charts\chartinterface\CMakeFiles\ChartInterface.dir\all
 plugins\report\items\charts\legend\CMakeFiles\Legend.dir\all: libs\report\CMakeFiles\Report.dir\all
+plugins\report\items\charts\legend\CMakeFiles\Legend.dir\all: plugins\report\items\charts\chartinterface\CMakeFiles\ChartInterface.dir\all
 	$(MAKE) -f plugins\report\items\charts\legend\CMakeFiles\Legend.dir\build.make /nologo -$(MAKEFLAGS) plugins\report\items\charts\legend\CMakeFiles\Legend.dir\depend
 	$(MAKE) -f plugins\report\items\charts\legend\CMakeFiles\Legend.dir\build.make /nologo -$(MAKEFLAGS) plugins\report\items\charts\legend\CMakeFiles\Legend.dir\build
 	$(CMAKE_COMMAND) -E cmake_progress_report C:\projects\faocas_qc_w\exaro_2.0.0\build_debug\CMakeFiles  29 30
@@ -1204,8 +1204,8 @@ plugins\report\items\charts\piechart\preinstall:
 # Target rules for target plugins/report/items/charts/piechart/CMakeFiles/Piechart.dir
 
 # All Build rule for target.
-plugins\report\items\charts\piechart\CMakeFiles\Piechart.dir\all: plugins\report\items\charts\chartinterface\CMakeFiles\ChartInterface.dir\all
 plugins\report\items\charts\piechart\CMakeFiles\Piechart.dir\all: libs\report\CMakeFiles\Report.dir\all
+plugins\report\items\charts\piechart\CMakeFiles\Piechart.dir\all: plugins\report\items\charts\chartinterface\CMakeFiles\ChartInterface.dir\all
 	$(MAKE) -f plugins\report\items\charts\piechart\CMakeFiles\Piechart.dir\build.make /nologo -$(MAKEFLAGS) plugins\report\items\charts\piechart\CMakeFiles\Piechart.dir\depend
 	$(MAKE) -f plugins\report\items\charts\piechart\CMakeFiles\Piechart.dir\build.make /nologo -$(MAKEFLAGS) plugins\report\items\charts\piechart\CMakeFiles\Piechart.dir\build
 	$(CMAKE_COMMAND) -E cmake_progress_report C:\projects\faocas_qc_w\exaro_2.0.0\build_debug\CMakeFiles  45

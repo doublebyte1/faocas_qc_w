@@ -39,7 +39,7 @@
 #include <QFile>
 #include <QScriptEngine>
 #include <QScriptValue>
-#include <QtUiTools\QUiLoader>
+#include <QUiLoader>
 #include <QSqlRecord>
 #include <QSplashScreen>
 #include <QSqlDatabase>

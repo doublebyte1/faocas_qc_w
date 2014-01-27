@@ -35,7 +35,7 @@ static const uint qt_meta_data_ButtonGroup[] = {
       55,   13,   12,   12, 0x05,
 
  // properties: name, type, flags
-      78,   74, 0x02195003,
+      79,   74, 0x01195003,
 
        0        // eod
 };
@@ -43,7 +43,7 @@ static const uint qt_meta_data_ButtonGroup[] = {
 static const char qt_meta_stringdata_ButtonGroup[] = {
     "ButtonGroup\0\0id\0buttonClicked(int)\0"
     "buttonReleased(int)\0buttonPressed(int)\0"
-    "int\0checkedId\0"
+    "bool\0checkedId\0"
 };
 
 void ButtonGroup::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -100,13 +100,13 @@ int ButtonGroup::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
       else if (_c == QMetaObject::ReadProperty) {
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast< int*>(_v) = getCheckedId(); break;
+        case 0: *reinterpret_cast< bool*>(_v) = getCheckedId(); break;
         }
         _id -= 1;
     } else if (_c == QMetaObject::WriteProperty) {
         void *_v = _a[0];
         switch (_id) {
-        case 0: checkId(*reinterpret_cast< int*>(_v)); break;
+        case 0: checkId(*reinterpret_cast< bool*>(_v)); break;
         }
         _id -= 1;
     } else if (_c == QMetaObject::ResetProperty) {

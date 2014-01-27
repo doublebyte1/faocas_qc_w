@@ -7,8 +7,6 @@
 MainFrm::MainFrm(RoleDef* roleDef, QWidget *parent, Qt::WFlags flags):
 m_roleDef(roleDef),QMainWindow(parent, flags){
 
-    workerThread=0;
-    tDateTime=0;
     pFrmFrame=0;
     pFrmMinorStrata=0;
     pFrmFrameDetails=0;
@@ -43,15 +41,6 @@ MainFrm::~MainFrm()
     tabWidget->disconnect();
     vTabs.clear();
 
-    if (workerThread!=0){
-        // Make sure we stop the thread before deleting it;
-        while (workerThread->isRunning()){
-            workerThread->terminate();
-            workerThread->wait();
-        }
-        delete workerThread; workerThread=0;
-    }
-
     if (pFrmReports!=0) delete pFrmReports;
     if (pFrmRegions!=0) delete pFrmRegions;
     if (pFrmImportRegions!=0) delete pFrmImportRegions;
@@ -70,7 +59,6 @@ MainFrm::~MainFrm()
     if (pFrmPrjPage!=0) delete pFrmPrjPage;
     if (toolbar!=0) delete toolbar;
     //n.b.: delete these in the end, as they are used by the forms!
-    if (tDateTime!=0) delete tDateTime;
     if (sSample!=0) delete sSample;
     if (ruleCheckerPtr!=0) delete ruleCheckerPtr;
     if (handler!=0) delete handler;
@@ -84,16 +72,6 @@ MainFrm::~MainFrm()
 
 void MainFrm::initRules()
 {
-    //delete rulechecker, but first wait for the thread to finish
-
-    if (workerThread!=0) {
-        while (workerThread->isRunning()){
-            workerThread->terminate();
-            workerThread->wait();
-        }
-        delete workerThread; workerThread=0;
-    }
-
     if (ruleCheckerPtr!=0) {delete ruleCheckerPtr; ruleCheckerPtr=0;}
 
     ruleCheckerPtr=new RuleChecker();
@@ -104,12 +82,7 @@ void MainFrm::initRules()
     connect(ruleCheckerPtr, SIGNAL(showError(QString,bool)), this,
         SLOT(displayError(QString,bool)));
 
-    workerThread=new InitRulesThread(ruleCheckerPtr);
-
-    connect(workerThread, SIGNAL(done(bool)), this,
-        SLOT(rulesInitialized(bool)));
-
-    workerThread->start();
+    rulesInitialized(ruleCheckerPtr->init());
 }
 
 void MainFrm::rulesInitialized(bool bReady)
@@ -289,9 +262,6 @@ void MainFrm::loadTabs()
     statusShow(tr("Wait..."));
 
         resetTabs();
-
-        if (!initDateModel())
-            emit displayError(tr("Could not initialize date model!"),false);
 
         initTabs();
 
@@ -636,7 +606,6 @@ void MainFrm::resetTabs()
         if (pFrmTrip!=0) {delete pFrmTrip; pFrmTrip=0;}
         if (pFrmOperation!=0) {delete pFrmOperation; pFrmOperation=0;}
         if (pFrmCatch!=0) {delete pFrmCatch; pFrmCatch=0;}
-        if (tDateTime!=0) {delete tDateTime; tDateTime=0;}
 
         //if (sSample!=0) {delete sSample; sSample=0;}
         //if (ruleCheckerPtr!=0) {delete ruleCheckerPtr; ruleCheckerPtr=0;}
@@ -648,21 +617,6 @@ void MainFrm::initPreviewTab(PreviewTab* tab)
     vTabs.push_back(tab);
 }
 
-bool MainFrm::initDateModel()
-{
-    if (tDateTime!=0) return false;//must be empty!!!!
-
-    //Dates
-    tDateTime= new DateModel();
-    tDateTime->setTable(QSqlDatabase().driver()->escapeIdentifier(tr("GL_Dates"),
-        QSqlDriver::TableName));
-    tDateTime->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    tDateTime->setAuto(false);
-    tDateTime->select();
-
-    return true;
-}
-
 void MainFrm::newTabs()
 {
     qApp->setOverrideCursor( QCursor(Qt::BusyCursor ) );
@@ -672,8 +626,6 @@ void MainFrm::newTabs()
             closeSecondaryFrm(pFrmReports);
 
         resetTabs();
-        if (!initDateModel())
-            emit displayError(tr("Could not initialize date model!"),false);
 
         if (sSample!=0) {delete sSample; sSample=0;}
         sSample=new Sample;
@@ -685,25 +637,25 @@ void MainFrm::newTabs()
 
 void MainFrm::initTabs()
 {
-    pFrmFrame=new FrmFrame(m_roleDef,sSample,tDateTime,ruleCheckerPtr);
+    pFrmFrame=new FrmFrame(m_roleDef,sSample,ruleCheckerPtr);
     initPreviewTab(pFrmFrame);
 
      connect(pFrmFrame, SIGNAL(disableTabs(bool)), this,
     SLOT(disableTabs(bool)));
 
-    pFrmMinorStrata=new FrmMinorStrata(m_roleDef,sSample,tDateTime,ruleCheckerPtr);
+    pFrmMinorStrata=new FrmMinorStrata(m_roleDef,sSample,ruleCheckerPtr);
     initPreviewTab(pFrmMinorStrata);
-    pFrmCell=new FrmCell(m_roleDef,sSample,tDateTime,ruleCheckerPtr);
+    pFrmCell=new FrmCell(m_roleDef,sSample,ruleCheckerPtr);
     initPreviewTab(pFrmCell);
-    pFrmVesselType=new FrmVesselType(m_roleDef,sSample,tDateTime,ruleCheckerPtr);
+    pFrmVesselType=new FrmVesselType(m_roleDef,sSample,ruleCheckerPtr);
     initPreviewTab(pFrmVesselType);
-    pFrmVessel=new FrmVessel(m_roleDef,sSample,tDateTime,ruleCheckerPtr);
+    pFrmVessel=new FrmVessel(m_roleDef,sSample,ruleCheckerPtr);
     initPreviewTab(pFrmVessel);
-    pFrmTrip=new FrmTrip(m_roleDef,sSample,tDateTime,ruleCheckerPtr);
+    pFrmTrip=new FrmTrip(m_roleDef,sSample,ruleCheckerPtr);
     initPreviewTab(pFrmTrip);
-    pFrmOperation=new FrmOperation(m_roleDef,sSample,tDateTime,ruleCheckerPtr);
+    pFrmOperation=new FrmOperation(m_roleDef,sSample,ruleCheckerPtr);
     initPreviewTab(pFrmOperation);
-    pFrmCatch=new FrmCatch(m_roleDef,sSample,tDateTime,ruleCheckerPtr);
+    pFrmCatch=new FrmCatch(m_roleDef,sSample,ruleCheckerPtr);
     initPreviewTab(pFrmCatch);
 
     pFrmFrameDetails=new FrmFrameDetails();
@@ -731,7 +683,7 @@ void MainFrm::initTabs()
     gridLayout->addWidget(pFrmFrameDetails);
     pFrmFrameDetails->hide();
 
-    pFrmSampling=new FrmSampling(m_roleDef,sSample,tDateTime,ruleCheckerPtr);
+    pFrmSampling=new FrmSampling(m_roleDef,sSample,ruleCheckerPtr);
      connect(pFrmSampling, SIGNAL(hideFrmSampling(bool)), this,
     SLOT(hideFrmSampling()));
 
@@ -762,8 +714,8 @@ void MainFrm::initTabs()
          connect(vTabs.at(i), SIGNAL(navigate(const bool, const int)), this,
         SLOT(navigateThroughTabs(const bool, const int)),Qt::UniqueConnection);
 
-         connect(vTabs.at(i), SIGNAL(showFrameDetails(const FrmFrameDetails::Mode, const FrmFrameDetails::Persistence, Sample*,QList<int>&, const int)), this,
-        SLOT(showFrameDetails(const FrmFrameDetails::Mode, const FrmFrameDetails::Persistence, Sample*,QList<int>&, const int)),Qt::UniqueConnection);
+         connect(vTabs.at(i), SIGNAL(showFrameDetails(const FrmFrameDetails::Mode, const FrmFrameDetails::Persistence, Sample*,QList<int>, const int)), this,
+        SLOT(showFrameDetails(const FrmFrameDetails::Mode, const FrmFrameDetails::Persistence, Sample*,QList<int>, const int)),Qt::UniqueConnection);
 
          connect(pFrmFrameDetails, SIGNAL(hideFrameDetails(bool)), vTabs.at(i),
         SIGNAL(hideFrameDetails(bool)),Qt::UniqueConnection);
@@ -917,7 +869,7 @@ void MainFrm::hideFrameDetails()
 
 void MainFrm::showFrameDetails(const FrmFrameDetails::Mode mode,
                                const FrmFrameDetails::Persistence persistence,Sample* sample,
-                               QList<int>& blackList, const int options){
+                               QList<int> blackList, const int options){
 
    if (!pFrmFrameDetails->setFrameDetails(mode,persistence,sample,blackList, options)){
        //displayError(tr("Could not initialize form with frame details!"),true);

@@ -9,11 +9,13 @@
 #ifndef UI_FRMCELL_H
 #define UI_FRMCELL_H
 
+#include <QtCore/QDate>
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
 #include <QtGui/QComboBox>
+#include <QtGui/QDateEdit>
 #include <QtGui/QDialogButtonBox>
 #include <QtGui/QGridLayout>
 #include <QtGui/QGroupBox>
@@ -28,7 +30,6 @@
 #include <QtGui/QToolButton>
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QWidget>
-#include "customtimectrl.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -54,11 +55,11 @@ public:
     QComboBox *cmbLS;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_2;
-    CustomTimeCtrl *customDtStart;
+    QDateEdit *customDtStart;
     QDialogButtonBox *buttonBox;
     QHBoxLayout *horizontalLayout_4;
     QLabel *label_3;
-    CustomTimeCtrl *customDtEnd;
+    QDateEdit *customDtEnd;
     QHBoxLayout *horizontalLayout;
     QVBoxLayout *verticalLayout;
     QLabel *label_11;
@@ -214,8 +215,12 @@ public:
 
         horizontalLayout_2->addWidget(label_2);
 
-        customDtStart = new CustomTimeCtrl(groupDetails);
+        customDtStart = new QDateEdit(groupDetails);
         customDtStart->setObjectName(QString::fromUtf8("customDtStart"));
+        customDtStart->setMaximumDate(QDate(2070, 1, 1));
+        customDtStart->setMinimumDate(QDate(1970, 1, 1));
+        customDtStart->setCalendarPopup(true);
+        customDtStart->setTimeSpec(Qt::UTC);
 
         horizontalLayout_2->addWidget(customDtStart);
 
@@ -235,8 +240,12 @@ public:
 
         horizontalLayout_4->addWidget(label_3);
 
-        customDtEnd = new CustomTimeCtrl(groupDetails);
+        customDtEnd = new QDateEdit(groupDetails);
         customDtEnd->setObjectName(QString::fromUtf8("customDtEnd"));
+        customDtEnd->setMaximumDate(QDate(2070, 1, 1));
+        customDtEnd->setMinimumDate(QDate(1969, 12, 31));
+        customDtEnd->setCalendarPopup(true);
+        customDtEnd->setTimeSpec(Qt::UTC);
 
         horizontalLayout_4->addWidget(customDtEnd);
 
@@ -500,7 +509,9 @@ public:
         groupDetails->setTitle(QApplication::translate("frmCell", "Details", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("frmCell", "Landing Site", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("frmCell", "Start Date", 0, QApplication::UnicodeUTF8));
+        customDtStart->setDisplayFormat(QApplication::translate("frmCell", "yyyy-MM-dd", 0, QApplication::UnicodeUTF8));
         label_3->setText(QApplication::translate("frmCell", "End Date", 0, QApplication::UnicodeUTF8));
+        customDtEnd->setDisplayFormat(QApplication::translate("frmCell", "yyyy-MM-dd", 0, QApplication::UnicodeUTF8));
         label_11->setText(QString());
         label_7->setText(QApplication::translate("frmCell", "No of Vessels", 0, QApplication::UnicodeUTF8));
         label_8->setText(QApplication::translate("frmCell", "Active Vessels", 0, QApplication::UnicodeUTF8));

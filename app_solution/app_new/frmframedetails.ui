@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>726</width>
+    <width>755</width>
     <height>591</height>
    </rect>
   </property>
@@ -244,11 +244,25 @@
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>37</width>
-         <height>17</height>
+         <width>40</width>
+         <height>20</height>
         </size>
        </property>
       </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushEdit">
+       <property name="text">
+        <string>Edit</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushReset">
+       <property name="text">
+        <string>Reset</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pushBack">
@@ -262,7 +276,7 @@
         <string>Cancel changes and go back to previous form</string>
        </property>
        <property name="text">
-        <string>Cancel</string>
+        <string>Back</string>
        </property>
       </widget>
      </item>
@@ -338,8 +352,8 @@
    <slot>apply()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>678</x>
-     <y>569</y>
+     <x>624</x>
+     <y>584</y>
     </hint>
     <hint type="destinationlabel">
      <x>362</x>
@@ -386,8 +400,8 @@
    <slot>verify()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>435</x>
-     <y>569</y>
+     <x>560</x>
+     <y>584</y>
     </hint>
     <hint type="destinationlabel">
      <x>362</x>
@@ -427,6 +441,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushEdit</sender>
+   <signal>clicked()</signal>
+   <receiver>frmframedetails</receiver>
+   <slot>editFrame()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>339</x>
+     <y>572</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>362</x>
+     <y>295</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushReset</sender>
+   <signal>clicked()</signal>
+   <receiver>frmframedetails</receiver>
+   <slot>createFrame()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>396</x>
+     <y>572</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>362</x>
+     <y>295</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>cancel()</slot>
@@ -436,5 +482,7 @@
   <slot>undo()</slot>
   <slot>verify()</slot>
   <slot>showLegend()</slot>
+  <slot>editFrame()</slot>
+  <slot>createFrame()</slot>
  </slots>
 </ui>

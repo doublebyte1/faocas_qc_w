@@ -23,7 +23,7 @@ class FrmMinorStrata : public PreviewTab, public Ui::frmminorstrata
     Q_OBJECT
 
     public:
-        FrmMinorStrata(RoleDef* inRoleDef, Sample* inSample, DateModel* inTDateTime, RuleChecker* ruleCheckerPtr=0, QWidget *parent = 0, Qt::WFlags flags = 0);
+        FrmMinorStrata(RoleDef* inRoleDef, Sample* inSample, RuleChecker* ruleCheckerPtr=0, QWidget *parent = 0, Qt::WFlags flags = 0);
         ~FrmMinorStrata();
 
     private slots:
@@ -35,9 +35,6 @@ class FrmMinorStrata : public PreviewTab, public Ui::frmminorstrata
         /*! Reimplemented from the PreviewTab base class
         */
         void                                   previewRow(QModelIndex index);
-        void                                   blockCustomDateCtrls();
-        void                                   unblockCustomDateCtrls();
-
         void                                   setActiveReason(bool bActive);
         void                                   disableReasonCombo();
         //! On item selection
@@ -114,8 +111,6 @@ class FrmMinorStrata : public PreviewTab, public Ui::frmminorstrata
         QSqlRelationalTableModel*              tRefMinorStrata;
         QSqlQueryModel*                        viewMinorStrata;
         QDataWidgetMapper*                     mapper1;
-        QDataWidgetMapper*                     mapperStartDt;
-        QDataWidgetMapper*                     mapperEndDt;
         ButtonGroup*                           buttonGroup;
 };
 #endif //FRMMINORSTRATA_H

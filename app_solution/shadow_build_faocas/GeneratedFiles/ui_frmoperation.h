@@ -9,13 +9,16 @@
 #ifndef UI_FRMOPERATION_H
 #define UI_FRMOPERATION_H
 
+#include <QtCore/QDate>
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
 #include <QtGui/QComboBox>
+#include <QtGui/QDateEdit>
 #include <QtGui/QDialogButtonBox>
 #include <QtGui/QDoubleSpinBox>
+#include <QtGui/QGridLayout>
 #include <QtGui/QGroupBox>
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
@@ -26,10 +29,10 @@
 #include <QtGui/QSpacerItem>
 #include <QtGui/QSpinBox>
 #include <QtGui/QTableView>
+#include <QtGui/QTimeEdit>
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QWidget>
 #include "catchinputctrl.h"
-#include "customtimectrl.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -48,17 +51,21 @@ public:
     QPushButton *pushEdit;
     QPushButton *pushRemove;
     QGroupBox *groupDetails;
-    QHBoxLayout *horizontalLayout_6;
+    QGridLayout *gridLayout;
     QVBoxLayout *verticalLayout_4;
-    QHBoxLayout *horizontalLayout_5;
+    QHBoxLayout *horizontalLayout_7;
     QLabel *label_3;
     QSpinBox *spinOrder;
     QLabel *label_4;
     QComboBox *cmbFishingZone;
     QLabel *label;
-    CustomTimeCtrl *customDtStart;
+    QHBoxLayout *horizontalLayout_5;
+    QDateEdit *dtStart;
+    QTimeEdit *timeStart;
     QLabel *label_2;
-    CustomTimeCtrl *customDtEnd;
+    QHBoxLayout *horizontalLayout_6;
+    QDateEdit *dtEnd;
+    QTimeEdit *timeEnd;
     QLabel *label_8;
     QPlainTextEdit *textComments;
     QVBoxLayout *verticalLayout_6;
@@ -192,37 +199,37 @@ public:
         sizePolicy3.setHeightForWidth(groupDetails->sizePolicy().hasHeightForWidth());
         groupDetails->setSizePolicy(sizePolicy3);
         groupDetails->setFocusPolicy(Qt::StrongFocus);
-        horizontalLayout_6 = new QHBoxLayout(groupDetails);
-        horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
+        gridLayout = new QGridLayout(groupDetails);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         verticalLayout_4 = new QVBoxLayout();
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
-        horizontalLayout_5 = new QHBoxLayout();
-        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
+        horizontalLayout_7 = new QHBoxLayout();
+        horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
         label_3 = new QLabel(groupDetails);
         label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
-        horizontalLayout_5->addWidget(label_3);
+        horizontalLayout_7->addWidget(label_3);
 
         spinOrder = new QSpinBox(groupDetails);
         spinOrder->setObjectName(QString::fromUtf8("spinOrder"));
 
-        horizontalLayout_5->addWidget(spinOrder);
+        horizontalLayout_7->addWidget(spinOrder);
 
         label_4 = new QLabel(groupDetails);
         label_4->setObjectName(QString::fromUtf8("label_4"));
         label_4->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
-        horizontalLayout_5->addWidget(label_4);
+        horizontalLayout_7->addWidget(label_4);
 
         cmbFishingZone = new QComboBox(groupDetails);
         cmbFishingZone->setObjectName(QString::fromUtf8("cmbFishingZone"));
         cmbFishingZone->setEditable(false);
 
-        horizontalLayout_5->addWidget(cmbFishingZone);
+        horizontalLayout_7->addWidget(cmbFishingZone);
 
 
-        verticalLayout_4->addLayout(horizontalLayout_5);
+        verticalLayout_4->addLayout(horizontalLayout_7);
 
         label = new QLabel(groupDetails);
         label->setObjectName(QString::fromUtf8("label"));
@@ -231,10 +238,25 @@ public:
 
         verticalLayout_4->addWidget(label);
 
-        customDtStart = new CustomTimeCtrl(groupDetails);
-        customDtStart->setObjectName(QString::fromUtf8("customDtStart"));
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
+        dtStart = new QDateEdit(groupDetails);
+        dtStart->setObjectName(QString::fromUtf8("dtStart"));
+        dtStart->setMaximumDate(QDate(2070, 1, 1));
+        dtStart->setMinimumDate(QDate(1969, 12, 29));
+        dtStart->setCalendarPopup(true);
+        dtStart->setTimeSpec(Qt::UTC);
 
-        verticalLayout_4->addWidget(customDtStart);
+        horizontalLayout_5->addWidget(dtStart);
+
+        timeStart = new QTimeEdit(groupDetails);
+        timeStart->setObjectName(QString::fromUtf8("timeStart"));
+        timeStart->setTimeSpec(Qt::UTC);
+
+        horizontalLayout_5->addWidget(timeStart);
+
+
+        verticalLayout_4->addLayout(horizontalLayout_5);
 
         label_2 = new QLabel(groupDetails);
         label_2->setObjectName(QString::fromUtf8("label_2"));
@@ -243,10 +265,23 @@ public:
 
         verticalLayout_4->addWidget(label_2);
 
-        customDtEnd = new CustomTimeCtrl(groupDetails);
-        customDtEnd->setObjectName(QString::fromUtf8("customDtEnd"));
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
+        dtEnd = new QDateEdit(groupDetails);
+        dtEnd->setObjectName(QString::fromUtf8("dtEnd"));
+        dtEnd->setCalendarPopup(true);
+        dtEnd->setTimeSpec(Qt::UTC);
 
-        verticalLayout_4->addWidget(customDtEnd);
+        horizontalLayout_6->addWidget(dtEnd);
+
+        timeEnd = new QTimeEdit(groupDetails);
+        timeEnd->setObjectName(QString::fromUtf8("timeEnd"));
+        timeEnd->setTimeSpec(Qt::UTC);
+
+        horizontalLayout_6->addWidget(timeEnd);
+
+
+        verticalLayout_4->addLayout(horizontalLayout_6);
 
         label_8 = new QLabel(groupDetails);
         label_8->setObjectName(QString::fromUtf8("label_8"));
@@ -267,7 +302,7 @@ public:
         verticalLayout_4->addWidget(textComments);
 
 
-        horizontalLayout_6->addLayout(verticalLayout_4);
+        gridLayout->addLayout(verticalLayout_4, 0, 0, 1, 1);
 
         verticalLayout_6 = new QVBoxLayout();
         verticalLayout_6->setObjectName(QString::fromUtf8("verticalLayout_6"));
@@ -393,7 +428,7 @@ public:
         verticalLayout_6->addLayout(horizontalLayout);
 
 
-        horizontalLayout_6->addLayout(verticalLayout_6);
+        gridLayout->addLayout(verticalLayout_6, 0, 1, 1, 1);
 
 
         verticalLayout_5->addWidget(groupDetails);
@@ -435,8 +470,8 @@ public:
         label_23->setBuddy(tableView);
         label_3->setBuddy(spinOrder);
         label_4->setBuddy(cmbFishingZone);
-        label->setBuddy(customDtStart);
-        label_2->setBuddy(customDtEnd);
+        label->setBuddy(dtStart);
+        label_2->setBuddy(dtEnd);
         label_8->setBuddy(textComments);
         label_5->setBuddy(cmbGear);
         label_6->setBuddy(spinNoUnits);
@@ -449,9 +484,7 @@ public:
         QWidget::setTabOrder(pushEdit, pushRemove);
         QWidget::setTabOrder(pushRemove, spinOrder);
         QWidget::setTabOrder(spinOrder, cmbFishingZone);
-        QWidget::setTabOrder(cmbFishingZone, customDtStart);
-        QWidget::setTabOrder(customDtStart, customDtEnd);
-        QWidget::setTabOrder(customDtEnd, textComments);
+        QWidget::setTabOrder(cmbFishingZone, textComments);
         QWidget::setTabOrder(textComments, cmbGear);
         QWidget::setTabOrder(cmbGear, spinNoUnits);
         QWidget::setTabOrder(spinNoUnits, doubleSpinSize);
@@ -523,7 +556,11 @@ public:
         label_3->setText(QApplication::translate("FrmOperation", "Order Number", 0, QApplication::UnicodeUTF8));
         label_4->setText(QApplication::translate("FrmOperation", "Fishing zone", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("FrmOperation", "Start", 0, QApplication::UnicodeUTF8));
+        dtStart->setDisplayFormat(QApplication::translate("FrmOperation", "yyyy-MM-dd", 0, QApplication::UnicodeUTF8));
+        timeStart->setDisplayFormat(QApplication::translate("FrmOperation", "HH:mm:ss", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("FrmOperation", "End", 0, QApplication::UnicodeUTF8));
+        dtEnd->setDisplayFormat(QApplication::translate("FrmOperation", "yyyy-MM-dd", 0, QApplication::UnicodeUTF8));
+        timeEnd->setDisplayFormat(QApplication::translate("FrmOperation", "HH:mm:ss", 0, QApplication::UnicodeUTF8));
         label_8->setText(QApplication::translate("FrmOperation", "Comments", 0, QApplication::UnicodeUTF8));
         groupGear->setTitle(QApplication::translate("FrmOperation", "Gear", 0, QApplication::UnicodeUTF8));
         label_5->setText(QApplication::translate("FrmOperation", "Gear", 0, QApplication::UnicodeUTF8));

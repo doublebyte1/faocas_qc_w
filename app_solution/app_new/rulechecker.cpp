@@ -66,31 +66,36 @@ MapRules* RuleChecker::GetContainerFromType(const Type& type)
 bool RuleChecker::buildHashes()
 {
     //First run queries
-    QString sqlActiveRules=tr("SELECT distinct dbo.UI_Rules.id, dbo.UI_Rules.field, dbo.UI_Rules.mapper, "
-        "dbo.UI_Forms.Name as form_name, "
-        "dbo.UI_Rules.[rule], dbo.UI_Rule_Types.name AS type_name "
-        "FROM UI_Rules "
-        " INNER JOIN dbo.UI_Rule_Types ON dbo.UI_Rules.type = dbo.UI_Rule_Types.id "
-        "INNER JOIN UI_Forms ON UI_Rules.form=UI_Forms.ID "
-        "WHERE (dbo.UI_Rules.active=1)");
+    QString sqlActiveRules=tr("select distinct ui_rules.id, ui_rules.field, ui_rules.mapper, "
+                              "ui_forms.name as form_name, "
+                              "ui_rules.rule, ui_rule_types.name as type_name "
+                              "from ui_rules "
+                               "inner join ui_rule_types on ui_rules.type = ui_rule_types.id "
+                              "inner join ui_forms on ui_rules.form=ui_forms.id "
+                              "where (ui_rules.active=True)");
 
     QSqlQuery query;
     if (!query.prepare(sqlActiveRules)) return false;
     QSqlQuery triggerPtrQuery;
     if (!triggerPtrQuery.prepare(
-        tr("SELECT dbo.UI_Rule_Ptrs.field, dbo.UI_Rule_Ptrs.id_rules, "
-        "dbo.UI_Rule_Ptrs.mapper, dbo.UI_Forms.Name as form_name"
-        "dbo.UI_Rule_Ptrs.ID FROM dbo.UI_Rule_Ptrs INNER JOIN dbo.UI_Rules ON "
-        "dbo.UI_Rule_Ptrs.id_rules = dbo.UI_Rules.id "
-        "INNER JOIN UI_Forms ON UI_Rule_Ptrs.form=UI_Forms.ID "
-        "WHERE (dbo.UI_Rule_Ptrs.id_rules = :id AND dbo.UI_Rules.active=1)"
+        tr("select ui_rule_ptrs.field, ui_rule_ptrs.id_rules, "
+           "ui_rule_ptrs.mapper, ui_forms.name as form_name, "
+           "ui_rule_ptrs.id from ui_rule_ptrs inner join ui_rules on "
+           "ui_rule_ptrs.id_rules = ui_rules.id "
+           "inner join ui_forms on ui_rule_ptrs.form=ui_forms.id "
+           "where (ui_rule_ptrs.id_rules = :id and ui_rules.active=True)"
         )) ){
             return false;
         }
 
+
+    //QSqlDatabase db=QSqlDatabase::database();
+    //qDebug() << db.driver()->hasFeature(QSqlDriver::QuerySize) << endl;
+
     query.setForwardOnly(true);
     if (!query.exec()) return false;
-    if (query.numRowsAffected()>0){//Maybe we don't have any active rules?
+
+    if (query.size()>0){//Maybe we don't have any active rules?
 
         while (query.next()){
             size_t field=query.value(query.record().indexOf(tr("field"))).toInt();
@@ -105,14 +110,15 @@ bool RuleChecker::buildHashes()
                 || eRuleType==RuleChecker::VALIDATION || eRuleType==RuleChecker::POSTTRIGGER){
                 // Watch out this piece of code, cause the pointers and references can get us into a lot of trouble!
                 MapRules* mapPtr=GetContainerFromType(eRuleType);
-                    if (mapPtr!=0)
+                    if (mapPtr!=0){
                         if (!standardRuleInsertion(rule,id,cellShrPtr(new cell(field,form,mapper)),*mapPtr)) return false;
+                    }
             }else if (eRuleType==RuleChecker::PRETRIGGER){
                 // Retrieve the settings from the origin column
                 size_t id=query.value(query.record().indexOf(tr("id_rules"))).toInt();
                 triggerPtrQuery.bindValue(tr(":id_rules"), id);
                 triggerPtrQuery.setForwardOnly(true);
-                if (!triggerPtrQuery.exec()|| triggerPtrQuery.numRowsAffected()<1){
+                if (!triggerPtrQuery.exec()|| triggerPtrQuery.size()<1){
                     return false;
                 }
                 // Watch out because we can have more than one reference to rows in the other table!
@@ -129,11 +135,11 @@ bool RuleChecker::buildHashes()
     QSqlQuery dumPtrQuery;
     if (!dumPtrQuery.prepare(
 
-        " SELECT dbo.UI_Rules.field,dbo.UI_Rules.id , dbo.UI_Rules.mapper, UI_Rule_Types.Name as type_name, "
-        "UI_Forms.Name as form_name FROM UI_Rules "
-        "INNER JOIN UI_Forms ON UI_Rules.form=UI_Forms.ID "
-        "INNER JOIN UI_Rule_Types ON UI_Rules.type=UI_Rule_Types.Id "
-        "WHERE (UI_Rule_Types.Name like :par_na AND dbo.UI_Rules.active=1) "
+                "select ui_rules.field,ui_rules.id , ui_rules.mapper, ui_rule_types.name as type_name, "
+                "ui_forms.name as form_name from ui_rules "
+                        "inner join ui_forms on ui_rules.form=ui_forms.id "
+                        "inner join ui_rule_types on ui_rules.type=ui_rule_types.id "
+                "where (ui_rule_types.name like :par_na and ui_rules.active=True)"
         )){
             return false;
         }
@@ -238,6 +244,9 @@ bool RuleChecker::parseRule(const QString strRule, QMultiMap<size_t, QMap<size_t
 
 bool RuleChecker::applyRule(const QString strRule,QSqlQuery& query, QVariant varPar)
 {
+
+    //qDebug() << strRule << endl;
+
     query.prepare(strRule);
     if (varPar.type()!=QVariant::Invalid) {
         // Bind parameter
@@ -245,30 +254,4 @@ bool RuleChecker::applyRule(const QString strRule,QSqlQuery& query, QVariant var
     }
     query.setForwardOnly(true);
     return query.exec();
-}
-
-////////////////////////
-
-InitRulesThread::InitRulesThread(RuleChecker* parent)
-{
-        rulesPtr=parent;
-        moveToThread(this);
-
-        QObject::connect(this,
-                       SIGNAL(finished()),
-                       this,
-                       SLOT(deleteLater()));
-}
-
-void InitRulesThread::run()
-{
-    QTimer::singleShot(0, this, SLOT(doTheWork()));
-    exec();
-}
-
-void InitRulesThread::doTheWork()
-{
-    mutex.tryLock();
-    emit done(rulesPtr->init());
-    mutex.unlock();
 }

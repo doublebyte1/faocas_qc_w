@@ -23,7 +23,7 @@ class FrmTrip : public PreviewTab, public Ui::FrmTrip
     Q_OBJECT
 
     public:
-        FrmTrip(RoleDef* inRoleDef, Sample* inSample, DateModel* inTDateTime, RuleChecker* ruleCheckerPtr=0, QWidget *parent = 0, Qt::WFlags flags = 0);
+        FrmTrip(RoleDef* inRoleDef, Sample* inSample, RuleChecker* ruleCheckerPtr=0, QWidget *parent = 0, Qt::WFlags flags = 0);
         ~FrmTrip();
 
     private slots:
@@ -39,8 +39,6 @@ class FrmTrip : public PreviewTab, public Ui::FrmTrip
         /*! Reimplemented from the PreviewTab base class
         */
         void                                   onItemSelection();
-        void                                   blockCustomDateCtrls();
-        void                                   unblockCustomDateCtrls();
         //! On Edit Leave
         /*! Reimplemented from the PreviewTab base class
          \par bFinished flag that indicates if we started/finished editing
@@ -92,7 +90,7 @@ class FrmTrip : public PreviewTab, public Ui::FrmTrip
         //! Init Mappers
         /*! Reimplemented from the genericTab base class
         */
-        void                                   initMappers();
+        void                                   initMappers(){;}
         //! Init UI
         /*! Reimplemented from the genericTab base class
         */
@@ -121,7 +119,5 @@ class FrmTrip : public PreviewTab, public Ui::FrmTrip
 
         QSqlQueryModel*                        viewTrips;
         QDataWidgetMapper*                     mapper1;
-        QDataWidgetMapper*                     mapperStartDt;
-        QDataWidgetMapper*                     mapperEndDt;
 };
 #endif //FRMTRIP_H

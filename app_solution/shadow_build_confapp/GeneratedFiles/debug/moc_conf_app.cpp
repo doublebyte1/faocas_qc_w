@@ -22,7 +22,7 @@ static const uint qt_meta_data_conf_app[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      49,   14, // methods
+      43,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -51,36 +51,30 @@ static const uint qt_meta_data_conf_app[] = {
     1099, 1093,    9,    9, 0x08,
     1122,    9,    9,    9, 0x08,
     1134,    9,    9,    9, 0x08,
-    1146,    9,    9,    9, 0x08,
-    1157,    9,    9,    9, 0x08,
-    1191, 1174, 1169,    9, 0x08,
-    1211,    9,    9,    9, 0x08,
-    1254, 1221, 1169,    9, 0x08,
-    1283,    9,    9,    9, 0x08,
-    1302,    9,    9,    9, 0x08,
-    1322,    9,    9,    9, 0x08,
-    1340,    9,    9,    9, 0x08,
-    1363,    9,    9,    9, 0x08,
-    1377,    9,    9,    9, 0x08,
-    1406,    9,    9,    9, 0x08,
-    1428, 1093,    9,    9, 0x08,
-    1450,    9,    9,    9, 0x08,
-    1475, 1468, 1169,    9, 0x08,
-    1511, 1468, 1169,    9, 0x08,
-    1547,    9,    9,    9, 0x08,
-    1566,    9,    9,    9, 0x08,
-    1585,   54, 1169,    9, 0x08,
-    1736,  298,    9,    9, 0x08,
-    1774, 1768,    9,    9, 0x08,
-    1792,    9,    9,    9, 0x08,
-    1812,    9,    9,    9, 0x08,
-    1832, 1768,    9,    9, 0x08,
-    1857, 1768,    9,    9, 0x08,
-    1885, 1882, 1169,    9, 0x08,
-    1900, 1882, 1169,    9, 0x08,
-    1915,  348,    9,    9, 0x08,
-    2077,    9,    9,    9, 0x08,
-    2090,    9,    9,    9, 0x08,
+    1168, 1151, 1146,    9, 0x08,
+    1188,    9,    9,    9, 0x08,
+    1207,    9,    9,    9, 0x08,
+    1227,    9,    9,    9, 0x08,
+    1245,    9,    9,    9, 0x08,
+    1268,    9,    9,    9, 0x08,
+    1282,    9,    9,    9, 0x08,
+    1311,    9,    9,    9, 0x08,
+    1333, 1093,    9,    9, 0x08,
+    1355,    9,    9,    9, 0x08,
+    1380, 1373, 1146,    9, 0x08,
+    1416, 1373, 1146,    9, 0x08,
+    1452,   54, 1146,    9, 0x08,
+    1603,  298,    9,    9, 0x08,
+    1641, 1635,    9,    9, 0x08,
+    1659,    9,    9,    9, 0x08,
+    1679,    9,    9,    9, 0x08,
+    1699, 1635,    9,    9, 0x08,
+    1724, 1635,    9,    9, 0x08,
+    1752, 1749, 1146,    9, 0x08,
+    1767, 1749, 1146,    9, 0x08,
+    1782,  348,    9,    9, 0x08,
+    1944,    9,    9,    9, 0x08,
+    1957,    9,    9,    9, 0x08,
 
        0        // eod
 };
@@ -111,18 +105,15 @@ static const char qt_meta_stringdata_conf_app[] = {
     "filterModel(QString)\0apply()\0enableApply()\0"
     "bNoShow\0onShowStartupMsgI(bool)\0bShow\0"
     "onShowStartupMsg(bool)\0insertRow()\0"
-    "removeRow()\0doBackup()\0doRestore()\0"
-    "bool\0lu,strMacAddress\0doDump(int,QString)\0"
-    "doPatch()\0lu_master,strMacAddress,bApplied\0"
-    "doApply(int&,QString&,bool&)\0"
-    "readProcessError()\0readProcessOutput()\0"
-    "processFinished()\0finishedReadingNames()\0"
-    "parseParams()\0finishedCheckingBackupFile()\0"
+    "removeRow()\0bool\0lu,strMacAddress\0"
+    "doDump(int,QString)\0readProcessError()\0"
+    "readProcessOutput()\0processFinished()\0"
+    "finishedReadingNames()\0parseParams()\0"
+    "finishedCheckingBackupFile()\0"
     "parseBackupFileInfo()\0showSqlMessages(bool)\0"
     "finishedRestore()\0button\0"
     "onUserButtonClick(QAbstractButton*)\0"
     "onRoleButtonClick(QAbstractButton*)\0"
-    "createUserRecord()\0createRoleRecord()\0"
     "ApplyModel(QDataWidgetMapper*,QDialogButtonBox*,QGroupBox*,QSqlQueryMo"
     "del*,QString,QPushButton*,QPushButton*,QPushButton*,QSqlTableModel*,QT"
     "ableView*)\0"
@@ -162,43 +153,36 @@ void conf_app::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 16: _t->onShowStartupMsg((*reinterpret_cast< const bool(*)>(_a[1]))); break;
         case 17: _t->insertRow(); break;
         case 18: _t->removeRow(); break;
-        case 19: _t->doBackup(); break;
-        case 20: _t->doRestore(); break;
-        case 21: { bool _r = _t->doDump((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])));
+        case 19: { bool _r = _t->doDump((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 22: _t->doPatch(); break;
-        case 23: { bool _r = _t->doApply((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< bool(*)>(_a[3])));
+        case 20: _t->readProcessError(); break;
+        case 21: _t->readProcessOutput(); break;
+        case 22: _t->processFinished(); break;
+        case 23: _t->finishedReadingNames(); break;
+        case 24: _t->parseParams(); break;
+        case 25: _t->finishedCheckingBackupFile(); break;
+        case 26: _t->parseBackupFileInfo(); break;
+        case 27: _t->showSqlMessages((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 28: _t->finishedRestore(); break;
+        case 29: { bool _r = _t->onUserButtonClick((*reinterpret_cast< QAbstractButton*(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 24: _t->readProcessError(); break;
-        case 25: _t->readProcessOutput(); break;
-        case 26: _t->processFinished(); break;
-        case 27: _t->finishedReadingNames(); break;
-        case 28: _t->parseParams(); break;
-        case 29: _t->finishedCheckingBackupFile(); break;
-        case 30: _t->parseBackupFileInfo(); break;
-        case 31: _t->showSqlMessages((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 32: _t->finishedRestore(); break;
-        case 33: { bool _r = _t->onUserButtonClick((*reinterpret_cast< QAbstractButton*(*)>(_a[1])));
+        case 30: { bool _r = _t->onRoleButtonClick((*reinterpret_cast< QAbstractButton*(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 34: { bool _r = _t->onRoleButtonClick((*reinterpret_cast< QAbstractButton*(*)>(_a[1])));
+        case 31: { bool _r = _t->ApplyModel((*reinterpret_cast< QDataWidgetMapper*(*)>(_a[1])),(*reinterpret_cast< QDialogButtonBox*(*)>(_a[2])),(*reinterpret_cast< QGroupBox*(*)>(_a[3])),(*reinterpret_cast< QSqlQueryModel*(*)>(_a[4])),(*reinterpret_cast< const QString(*)>(_a[5])),(*reinterpret_cast< QPushButton*(*)>(_a[6])),(*reinterpret_cast< QPushButton*(*)>(_a[7])),(*reinterpret_cast< QPushButton*(*)>(_a[8])),(*reinterpret_cast< QSqlTableModel*(*)>(_a[9])),(*reinterpret_cast< QTableView*(*)>(_a[10])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 35: _t->createUserRecord(); break;
-        case 36: _t->createRoleRecord(); break;
-        case 37: { bool _r = _t->ApplyModel((*reinterpret_cast< QDataWidgetMapper*(*)>(_a[1])),(*reinterpret_cast< QDialogButtonBox*(*)>(_a[2])),(*reinterpret_cast< QGroupBox*(*)>(_a[3])),(*reinterpret_cast< QSqlQueryModel*(*)>(_a[4])),(*reinterpret_cast< const QString(*)>(_a[5])),(*reinterpret_cast< QPushButton*(*)>(_a[6])),(*reinterpret_cast< QPushButton*(*)>(_a[7])),(*reinterpret_cast< QPushButton*(*)>(_a[8])),(*reinterpret_cast< QSqlTableModel*(*)>(_a[9])),(*reinterpret_cast< QTableView*(*)>(_a[10])));
+        case 32: _t->onLockControls((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< QGroupBox*(*)>(_a[2]))); break;
+        case 33: _t->resizeTables((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 34: _t->adjustUserEnables(); break;
+        case 35: _t->adjustRoleEnables(); break;
+        case 36: _t->previewUser((*reinterpret_cast< QModelIndex(*)>(_a[1]))); break;
+        case 37: _t->previewRole((*reinterpret_cast< QModelIndex(*)>(_a[1]))); break;
+        case 38: { bool _r = _t->editUser((*reinterpret_cast< bool(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 38: _t->onLockControls((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< QGroupBox*(*)>(_a[2]))); break;
-        case 39: _t->resizeTables((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 40: _t->adjustUserEnables(); break;
-        case 41: _t->adjustRoleEnables(); break;
-        case 42: _t->previewUser((*reinterpret_cast< QModelIndex(*)>(_a[1]))); break;
-        case 43: _t->previewRole((*reinterpret_cast< QModelIndex(*)>(_a[1]))); break;
-        case 44: { bool _r = _t->editUser((*reinterpret_cast< bool(*)>(_a[1])));
+        case 39: { bool _r = _t->editRole((*reinterpret_cast< bool(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 45: { bool _r = _t->editRole((*reinterpret_cast< bool(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 46: _t->onEditLeave((*reinterpret_cast< const bool(*)>(_a[1])),(*reinterpret_cast< QPushButton*(*)>(_a[2])),(*reinterpret_cast< QPushButton*(*)>(_a[3])),(*reinterpret_cast< QPushButton*(*)>(_a[4])),(*reinterpret_cast< QGroupBox*(*)>(_a[5])),(*reinterpret_cast< QDataWidgetMapper*(*)>(_a[6])),(*reinterpret_cast< QSqlTableModel*(*)>(_a[7])),(*reinterpret_cast< QDialogButtonBox*(*)>(_a[8])),(*reinterpret_cast< QSqlQueryModel*(*)>(_a[9])),(*reinterpret_cast< const QString(*)>(_a[10])),(*reinterpret_cast< QTableView*(*)>(_a[11])),(*reinterpret_cast< const bool(*)>(_a[12]))); break;
-        case 47: _t->removeUser(); break;
-        case 48: _t->removeRole(); break;
+        case 40: _t->onEditLeave((*reinterpret_cast< const bool(*)>(_a[1])),(*reinterpret_cast< QPushButton*(*)>(_a[2])),(*reinterpret_cast< QPushButton*(*)>(_a[3])),(*reinterpret_cast< QPushButton*(*)>(_a[4])),(*reinterpret_cast< QGroupBox*(*)>(_a[5])),(*reinterpret_cast< QDataWidgetMapper*(*)>(_a[6])),(*reinterpret_cast< QSqlTableModel*(*)>(_a[7])),(*reinterpret_cast< QDialogButtonBox*(*)>(_a[8])),(*reinterpret_cast< QSqlQueryModel*(*)>(_a[9])),(*reinterpret_cast< const QString(*)>(_a[10])),(*reinterpret_cast< QTableView*(*)>(_a[11])),(*reinterpret_cast< const bool(*)>(_a[12]))); break;
+        case 41: _t->removeUser(); break;
+        case 42: _t->removeRole(); break;
         default: ;
         }
     }
@@ -238,9 +222,9 @@ int conf_app::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 49)
+        if (_id < 43)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 49;
+        _id -= 43;
     }
     return _id;
 }

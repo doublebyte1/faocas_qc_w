@@ -22,7 +22,7 @@ static const uint qt_meta_data_FrmFrameDetails[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      15,   14, // methods
+      17,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -47,6 +47,8 @@ static const uint qt_meta_data_FrmFrameDetails[] = {
      262,   16,   16,   16, 0x08,
      275,   16,   16,   16, 0x08,
      305,   16,  183,   16, 0x08,
+     319,   16,   16,   16, 0x08,
+     331,   16,   16,   16, 0x08,
 
        0        // eod
 };
@@ -61,7 +63,7 @@ static const char qt_meta_stringdata_FrmFrameDetails[] = {
     "isClonedFromPreviousFrame(QString)\0"
     "enableVerify()\0showLegend()\0"
     "onApplyChanges2FrameDetails()\0"
-    "onNoChanges()\0"
+    "onNoChanges()\0editFrame()\0createFrame()\0"
 };
 
 void FrmFrameDetails::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -87,6 +89,8 @@ void FrmFrameDetails::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         case 13: _t->onApplyChanges2FrameDetails(); break;
         case 14: { bool _r = _t->onNoChanges();
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+        case 15: _t->editFrame(); break;
+        case 16: _t->createFrame(); break;
         default: ;
         }
     }
@@ -126,9 +130,9 @@ int FrmFrameDetails::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 15)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 17;
     }
     return _id;
 }

@@ -2,8 +2,16 @@
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app_new", "app_new\app_new.vcproj", "{7C60C570-3CF0-4AC6-BC5C-5480FDA1938C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EABCBF32-F1E1-45CD-AB7B-6027D57D5EAF} = {EABCBF32-F1E1-45CD-AB7B-6027D57D5EAF}
+		{39346C9C-1ED6-4808-9721-5929C8CA0368} = {39346C9C-1ED6-4808-9721-5929C8CA0368}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "conf_app", "conf_app\conf_app.vcproj", "{DFF0DBBB-B426-4F72-A90E-CB03F0566834}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CatchInputCtrl", "..\CatchInputCtrl\CatchInputCtrl\CatchInputCtrl.vcproj", "{39346C9C-1ED6-4808-9721-5929C8CA0368}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "customtimectrl", "..\CustomTimeCtrl\CustomTimeCtrl\CustomTimeCtrl.vcproj", "{EABCBF32-F1E1-45CD-AB7B-6027D57D5EAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +37,22 @@ Global
 		{DFF0DBBB-B426-4F72-A90E-CB03F0566834}.Release|Win32.Build.0 = Release|Win32
 		{DFF0DBBB-B426-4F72-A90E-CB03F0566834}.RelWithDebInfo|Win32.ActiveCfg = Release|Win32
 		{DFF0DBBB-B426-4F72-A90E-CB03F0566834}.RelWithDebInfo|Win32.Build.0 = Release|Win32
+		{39346C9C-1ED6-4808-9721-5929C8CA0368}.Debug|Win32.ActiveCfg = Debug|Win32
+		{39346C9C-1ED6-4808-9721-5929C8CA0368}.Debug|Win32.Build.0 = Debug|Win32
+		{39346C9C-1ED6-4808-9721-5929C8CA0368}.MinSizeRel|Win32.ActiveCfg = Debug|Win32
+		{39346C9C-1ED6-4808-9721-5929C8CA0368}.MinSizeRel|Win32.Build.0 = Debug|Win32
+		{39346C9C-1ED6-4808-9721-5929C8CA0368}.Release|Win32.ActiveCfg = Release|Win32
+		{39346C9C-1ED6-4808-9721-5929C8CA0368}.Release|Win32.Build.0 = Release|Win32
+		{39346C9C-1ED6-4808-9721-5929C8CA0368}.RelWithDebInfo|Win32.ActiveCfg = Release|Win32
+		{39346C9C-1ED6-4808-9721-5929C8CA0368}.RelWithDebInfo|Win32.Build.0 = Release|Win32
+		{EABCBF32-F1E1-45CD-AB7B-6027D57D5EAF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EABCBF32-F1E1-45CD-AB7B-6027D57D5EAF}.Debug|Win32.Build.0 = Debug|Win32
+		{EABCBF32-F1E1-45CD-AB7B-6027D57D5EAF}.MinSizeRel|Win32.ActiveCfg = Debug|Win32
+		{EABCBF32-F1E1-45CD-AB7B-6027D57D5EAF}.MinSizeRel|Win32.Build.0 = Debug|Win32
+		{EABCBF32-F1E1-45CD-AB7B-6027D57D5EAF}.Release|Win32.ActiveCfg = Release|Win32
+		{EABCBF32-F1E1-45CD-AB7B-6027D57D5EAF}.Release|Win32.Build.0 = Release|Win32
+		{EABCBF32-F1E1-45CD-AB7B-6027D57D5EAF}.RelWithDebInfo|Win32.ActiveCfg = Release|Win32
+		{EABCBF32-F1E1-45CD-AB7B-6027D57D5EAF}.RelWithDebInfo|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -21,16 +21,16 @@ bool AbstractRuleBinder::parseSample(const QString strRule, QMap<QString,QString
 {
     int left=0,right=0;
     while (left!=-1){
-        left=strRule.indexOf(QString(StrRuleSample+ tr("(")),left,Qt::CaseInsensitive);
+        left=strRule.indexOf(QString(StrRuleSample+ QString("(")),left,Qt::CaseInsensitive);
         if (left==-1) break;
         right=strRule.indexOf(tr(")"),left);
         if (right==0) break;
         //parse keyword ///////////////
-        int start=left+ QString(StrRuleSample+ tr("(")).length();
+        int start=left+ QString(StrRuleSample+ QString("(")).length();
         int len=right-start;
         QString keyword=strRule.mid(start,len);
         if (m_sample==0) return false;// check, just in case...
-        if (keyword.compare(tr("frameId"))==0)
+        if (keyword.compare("frameId")==0)
             mapLookups.insert(keyword,QVariant(m_sample->frameId).toString());
         else if (keyword.compare(tr("frameTimeId"))==0)
             mapLookups.insert(keyword,QVariant(m_sample->frameTimeId).toString());
@@ -47,7 +47,7 @@ bool AbstractRuleBinder::parseSample(const QString strRule, QMap<QString,QString
         else if (keyword.compare(tr("operationId"))==0)
             mapLookups.insert(keyword,QVariant(m_sample->operationId).toString());
         else if (keyword.compare(tr("bLogBook"))==0)//cast the bool to int, b4 converting into string!
-            mapLookups.insert(keyword,QVariant(QVariant(m_sample->bLogBook).toInt()).toString());
+            mapLookups.insert(keyword,QVariant(QVariant(m_sample->bLogBook).toBool()).toString());
         else return false;
 
         left=start+len;//found next occurrence
@@ -72,10 +72,10 @@ bool AbstractRuleBinder::parseRuleReferences(QString& strRule)
 
              QVariant var=getVal(field,mapper);
              if (var.type()==QVariant::Invalid) return false;
-             if (var.type()==QVariant::String) strResult=tr("'") + var.toString() + tr("'");
+             if (var.type()==QVariant::String) strResult="'" + var.toString() + "'";
              else strResult=var.toString();
 
-             QString searchStr=StrRulePtr + tr("(") + QVariant(j.key()).toString() + tr(")");
+             QString searchStr=StrRulePtr + QString("(") + QVariant(j.key()).toString() + QString(")");
              strRule=strRule.replace(searchStr,
                  strResult);
 
@@ -91,7 +91,7 @@ bool AbstractRuleBinder::parseRuleReferences(QString& strRule)
     QMap<QString, QString>::iterator j = mapSample.begin();
      while (j != mapSample.end()) {
 
-             QString searchStr=StrRuleSample + tr("(") + QVariant(j.key()).toString() + tr(")");
+             QString searchStr=StrRuleSample + QString("(") + QVariant(j.key()).toString() + QString(")");
              strRule=strRule.replace(searchStr,
                  j.value());
 

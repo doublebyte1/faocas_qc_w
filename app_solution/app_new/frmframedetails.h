@@ -15,7 +15,6 @@
 #define FRMFRAMEDETAILS_H
 
 class QTreeView;
-//class NullRelationalDelegate;
 struct Sample;
 class ModelInterface;
 
@@ -51,7 +50,7 @@ class FrmFrameDetails : public QWidget, public Ui::frmframedetails
         enum Options { 
               READ_TMP    = 0x1,/*!< Read also temporary changes on the frame. */
               ALLOW_NEW   = 0x2,/*!<Allow new items. */
-              CACHE_CHANGES   = 0x4,/*!<Cache changes (for edit mode). */
+              CACHE_CHANGES   = 0x4,/*!<Cache changes (for edit model). */
                     };
 
         FrmFrameDetails(QWidget *parent = 0, Qt::WFlags flags = 0);
@@ -81,6 +80,8 @@ class FrmFrameDetails : public QWidget, public Ui::frmframedetails
         void                    showLegend();
         void                    onApplyChanges2FrameDetails();
         bool                    onNoChanges();
+        void                    editFrame();
+        void                    createFrame();
 
     private:
         Sample*                 m_sample;

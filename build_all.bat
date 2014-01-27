@@ -58,13 +58,12 @@ echo "re'installing propertyeditor debug"
 cd %PROJDIR%\propertyeditor-2.1.3\build_debug
 nmake install
 
-
 echo "building CatchInputCtrl"
 cd %PROJDIR%\CatchInputCtrl\shadow_build
 nmake Debug && nmake Release
-echo "building CustomTimeCtrl"
-cd %PROJDIR%\CustomTimeCtrl\shadow_build
-nmake Debug && nmake Release
+rem echo "building CustomTimeCtrl"
+rem cd %PROJDIR%\CustomTimeCtrl\shadow_build
+rem nmake Debug && nmake Release
 echo "building conf_app"
 cd %PROJDIR%\app_solution\shadow_build_confapp
 nmake Debug && nmake Release

@@ -9,11 +9,13 @@
 #ifndef UI_FRMFRAME_H
 #define UI_FRMFRAME_H
 
+#include <QtCore/QDate>
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
 #include <QtGui/QComboBox>
+#include <QtGui/QDateEdit>
 #include <QtGui/QDialogButtonBox>
 #include <QtGui/QGridLayout>
 #include <QtGui/QGroupBox>
@@ -21,13 +23,12 @@
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
 #include <QtGui/QPushButton>
-#include <QtGui/QRadioButton>
 #include <QtGui/QSpacerItem>
+#include <QtGui/QSplitter>
 #include <QtGui/QTableView>
 #include <QtGui/QToolButton>
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QWidget>
-#include "customtimectrl.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -45,34 +46,25 @@ public:
     QPushButton *pushEdit;
     QPushButton *pushRemove;
     QGroupBox *groupDetails;
-    QGridLayout *gridLayout_4;
-    QGroupBox *groupPhysical;
-    QGridLayout *gridLayout_2;
-    QLabel *label_4;
-    QComboBox *cmbPrexistent;
-    QToolButton *toolView;
-    QLabel *label_3;
-    QGroupBox *groupNew;
     QGridLayout *gridLayout;
-    QRadioButton *radioCreate;
-    QSpacerItem *horizontalSpacer_2;
-    QRadioButton *radioCopy;
-    QComboBox *cmbCopy;
+    QGroupBox *groupPhysical;
+    QHBoxLayout *horizontalLayout_4;
+    QLabel *label_3;
+    QComboBox *cmbPrexistent;
     QToolButton *toolEdit;
+    QLabel *lbSource;
     QGroupBox *groupTime;
     QGridLayout *gridLayout_3;
     QLabel *label;
+    QDateEdit *customDtEnd;
+    QDateEdit *customDtStart;
     QLabel *label_2;
-    CustomTimeCtrl *customDtStart;
-    CustomTimeCtrl *customDtEnd;
-    QVBoxLayout *verticalLayout;
+    QLabel *lbHeader;
     QGroupBox *groupProcess;
-    QHBoxLayout *horizontalLayout_4;
     QHBoxLayout *horizontalLayout_3;
     QLabel *label_5;
     QToolButton *toolProcess;
-    QLabel *lbHeader;
-    QSpacerItem *verticalSpacer;
+    QSplitter *splitter;
     QDialogButtonBox *buttonBox;
     QGroupBox *groupBackNext;
     QHBoxLayout *horizontalLayout_2;
@@ -163,71 +155,47 @@ public:
 
         groupDetails = new QGroupBox(frmframe);
         groupDetails->setObjectName(QString::fromUtf8("groupDetails"));
-        gridLayout_4 = new QGridLayout(groupDetails);
-        gridLayout_4->setObjectName(QString::fromUtf8("gridLayout_4"));
+        gridLayout = new QGridLayout(groupDetails);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         groupPhysical = new QGroupBox(groupDetails);
         groupPhysical->setObjectName(QString::fromUtf8("groupPhysical"));
         groupPhysical->setFocusPolicy(Qt::StrongFocus);
-        gridLayout_2 = new QGridLayout(groupPhysical);
-        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
-        label_4 = new QLabel(groupPhysical);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
+        horizontalLayout_4 = new QHBoxLayout(groupPhysical);
+        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
+        label_3 = new QLabel(groupPhysical);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
 
-        gridLayout_2->addWidget(label_4, 0, 0, 1, 1);
+        horizontalLayout_4->addWidget(label_3);
 
         cmbPrexistent = new QComboBox(groupPhysical);
         cmbPrexistent->setObjectName(QString::fromUtf8("cmbPrexistent"));
         cmbPrexistent->setFocusPolicy(Qt::StrongFocus);
 
-        gridLayout_2->addWidget(cmbPrexistent, 0, 1, 1, 1);
-
-        toolView = new QToolButton(groupPhysical);
-        toolView->setObjectName(QString::fromUtf8("toolView"));
-        toolView->setFocusPolicy(Qt::StrongFocus);
-
-        gridLayout_2->addWidget(toolView, 0, 2, 1, 1);
-
-        label_3 = new QLabel(groupPhysical);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-
-        gridLayout_2->addWidget(label_3, 1, 0, 1, 1);
-
-        groupNew = new QGroupBox(groupPhysical);
-        groupNew->setObjectName(QString::fromUtf8("groupNew"));
-        gridLayout = new QGridLayout(groupNew);
-        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-        radioCreate = new QRadioButton(groupNew);
-        radioCreate->setObjectName(QString::fromUtf8("radioCreate"));
-
-        gridLayout->addWidget(radioCreate, 0, 0, 1, 1);
-
-        horizontalSpacer_2 = new QSpacerItem(200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        gridLayout->addItem(horizontalSpacer_2, 0, 1, 1, 1);
-
-        radioCopy = new QRadioButton(groupNew);
-        radioCopy->setObjectName(QString::fromUtf8("radioCopy"));
-
-        gridLayout->addWidget(radioCopy, 1, 0, 1, 1);
-
-        cmbCopy = new QComboBox(groupNew);
-        cmbCopy->setObjectName(QString::fromUtf8("cmbCopy"));
-        cmbCopy->setFocusPolicy(Qt::StrongFocus);
-
-        gridLayout->addWidget(cmbCopy, 1, 1, 1, 1);
-
-
-        gridLayout_2->addWidget(groupNew, 1, 1, 2, 1);
+        horizontalLayout_4->addWidget(cmbPrexistent);
 
         toolEdit = new QToolButton(groupPhysical);
         toolEdit->setObjectName(QString::fromUtf8("toolEdit"));
         toolEdit->setFocusPolicy(Qt::StrongFocus);
 
-        gridLayout_2->addWidget(toolEdit, 2, 2, 1, 1);
+        horizontalLayout_4->addWidget(toolEdit);
+
+        lbSource = new QLabel(groupPhysical);
+        lbSource->setObjectName(QString::fromUtf8("lbSource"));
+        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(lbSource->sizePolicy().hasHeightForWidth());
+        lbSource->setSizePolicy(sizePolicy2);
+        lbSource->setStyleSheet(QString::fromUtf8("background-color: qconicalgradient(cx:0, cy:0, angle:135, stop:0 rgba(220, 220, 220, 69), stop:0.375 rgba(255, 255, 0, 69), stop:0.423533 rgba(251, 255, 0, 145), stop:0.45 rgba(247, 255, 0, 208), stop:0.477581 rgba(255, 244, 71, 130), stop:0.518717 rgba(255, 218, 71, 130), stop:0.55 rgba(255, 255, 0, 255), stop:0.57754 rgba(255, 203, 0, 130), stop:0.625 rgba(255, 255, 0, 69), stop:1 rgba(255, 255, 0, 69));\n"
+"font: 75 10pt \"Fixedsys\";"));
+        lbSource->setFrameShape(QFrame::StyledPanel);
+        lbSource->setFrameShadow(QFrame::Raised);
+        lbSource->setScaledContents(true);
+
+        horizontalLayout_4->addWidget(lbSource);
 
 
-        gridLayout_4->addWidget(groupPhysical, 0, 0, 1, 2);
+        gridLayout->addWidget(groupPhysical, 0, 0, 1, 3);
 
         groupTime = new QGroupBox(groupDetails);
         groupTime->setObjectName(QString::fromUtf8("groupTime"));
@@ -236,13 +204,35 @@ public:
         gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
         label = new QLabel(groupTime);
         label->setObjectName(QString::fromUtf8("label"));
-        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
         sizePolicy2.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
         label->setSizePolicy(sizePolicy2);
 
         gridLayout_3->addWidget(label, 0, 0, 1, 1);
+
+        customDtEnd = new QDateEdit(groupTime);
+        customDtEnd->setObjectName(QString::fromUtf8("customDtEnd"));
+        QSizePolicy sizePolicy3(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(customDtEnd->sizePolicy().hasHeightForWidth());
+        customDtEnd->setSizePolicy(sizePolicy3);
+        customDtEnd->setMaximumDate(QDate(2070, 1, 1));
+        customDtEnd->setMinimumDate(QDate(1969, 12, 23));
+        customDtEnd->setCalendarPopup(true);
+        customDtEnd->setTimeSpec(Qt::UTC);
+
+        gridLayout_3->addWidget(customDtEnd, 1, 1, 1, 1);
+
+        customDtStart = new QDateEdit(groupTime);
+        customDtStart->setObjectName(QString::fromUtf8("customDtStart"));
+        sizePolicy3.setHeightForWidth(customDtStart->sizePolicy().hasHeightForWidth());
+        customDtStart->setSizePolicy(sizePolicy3);
+        customDtStart->setMaximumDate(QDate(2070, 1, 1));
+        customDtStart->setMinimumDate(QDate(1969, 12, 23));
+        customDtStart->setCalendarPopup(true);
+        customDtStart->setTimeSpec(Qt::UTC);
+
+        gridLayout_3->addWidget(customDtStart, 1, 0, 1, 1);
 
         label_2 = new QLabel(groupTime);
         label_2->setObjectName(QString::fromUtf8("label_2"));
@@ -251,34 +241,19 @@ public:
 
         gridLayout_3->addWidget(label_2, 0, 1, 1, 1);
 
-        customDtStart = new CustomTimeCtrl(groupTime);
-        customDtStart->setObjectName(QString::fromUtf8("customDtStart"));
-        sizePolicy1.setHeightForWidth(customDtStart->sizePolicy().hasHeightForWidth());
-        customDtStart->setSizePolicy(sizePolicy1);
-        customDtStart->setFocusPolicy(Qt::StrongFocus);
 
-        gridLayout_3->addWidget(customDtStart, 1, 0, 1, 1);
+        gridLayout->addWidget(groupTime, 1, 0, 2, 1);
 
-        customDtEnd = new CustomTimeCtrl(groupTime);
-        customDtEnd->setObjectName(QString::fromUtf8("customDtEnd"));
-        sizePolicy1.setHeightForWidth(customDtEnd->sizePolicy().hasHeightForWidth());
-        customDtEnd->setSizePolicy(sizePolicy1);
-        customDtEnd->setFocusPolicy(Qt::StrongFocus);
+        lbHeader = new QLabel(groupDetails);
+        lbHeader->setObjectName(QString::fromUtf8("lbHeader"));
 
-        gridLayout_3->addWidget(customDtEnd, 1, 1, 1, 1);
+        gridLayout->addWidget(lbHeader, 1, 1, 1, 1);
 
-
-        gridLayout_4->addWidget(groupTime, 1, 0, 1, 1);
-
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         groupProcess = new QGroupBox(groupDetails);
         groupProcess->setObjectName(QString::fromUtf8("groupProcess"));
         groupProcess->setFocusPolicy(Qt::StrongFocus);
         groupProcess->setFlat(true);
-        horizontalLayout_4 = new QHBoxLayout(groupProcess);
-        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
-        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3 = new QHBoxLayout(groupProcess);
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         label_5 = new QLabel(groupProcess);
         label_5->setObjectName(QString::fromUtf8("label_5"));
@@ -292,19 +267,13 @@ public:
         horizontalLayout_3->addWidget(toolProcess);
 
 
-        horizontalLayout_4->addLayout(horizontalLayout_3);
+        gridLayout->addWidget(groupProcess, 1, 2, 1, 1);
 
+        splitter = new QSplitter(groupDetails);
+        splitter->setObjectName(QString::fromUtf8("splitter"));
+        splitter->setOrientation(Qt::Horizontal);
 
-        verticalLayout->addWidget(groupProcess);
-
-        lbHeader = new QLabel(groupDetails);
-        lbHeader->setObjectName(QString::fromUtf8("lbHeader"));
-
-        verticalLayout->addWidget(lbHeader);
-
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout->addItem(verticalSpacer);
+        gridLayout->addWidget(splitter, 2, 1, 1, 1);
 
         buttonBox = new QDialogButtonBox(groupDetails);
         buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
@@ -313,10 +282,7 @@ public:
         buttonBox->setFocusPolicy(Qt::StrongFocus);
         buttonBox->setStandardButtons(QDialogButtonBox::Apply|QDialogButtonBox::Close);
 
-        verticalLayout->addWidget(buttonBox);
-
-
-        gridLayout_4->addLayout(verticalLayout, 1, 1, 1, 1);
+        gridLayout->addWidget(buttonBox, 2, 2, 1, 1);
 
 
         verticalLayout_4->addWidget(groupDetails);
@@ -354,31 +320,27 @@ public:
 
 #ifndef QT_NO_SHORTCUT
         label_6->setBuddy(tableView);
+        label_3->setBuddy(cmbPrexistent);
+        label->setBuddy(customDtStart);
+        label_2->setBuddy(customDtEnd);
+        label_5->setBuddy(toolProcess);
 #endif // QT_NO_SHORTCUT
         QWidget::setTabOrder(tableView, pushNew);
         QWidget::setTabOrder(pushNew, pushEdit);
         QWidget::setTabOrder(pushEdit, pushRemove);
-        QWidget::setTabOrder(pushRemove, cmbPrexistent);
-        QWidget::setTabOrder(cmbPrexistent, toolView);
-        QWidget::setTabOrder(toolView, radioCreate);
-        QWidget::setTabOrder(radioCreate, radioCopy);
-        QWidget::setTabOrder(radioCopy, cmbCopy);
-        QWidget::setTabOrder(cmbCopy, toolEdit);
-        QWidget::setTabOrder(toolEdit, customDtStart);
-        QWidget::setTabOrder(customDtStart, customDtEnd);
-        QWidget::setTabOrder(customDtEnd, toolProcess);
-        QWidget::setTabOrder(toolProcess, buttonBox);
+        QWidget::setTabOrder(pushRemove, buttonBox);
         QWidget::setTabOrder(buttonBox, pushPrevious);
         QWidget::setTabOrder(pushPrevious, pushNext);
 
         retranslateUi(frmframe);
         QObject::connect(pushNext, SIGNAL(clicked()), frmframe, SLOT(next()));
         QObject::connect(pushNew, SIGNAL(clicked()), frmframe, SLOT(createRecord()));
-        QObject::connect(buttonBox, SIGNAL(clicked(QAbstractButton*)), frmframe, SLOT(onButtonClick(QAbstractButton*)));
         QObject::connect(pushEdit, SIGNAL(clicked(bool)), frmframe, SLOT(editRecord(bool)));
         QObject::connect(pushRemove, SIGNAL(clicked()), frmframe, SLOT(removeRecord()));
         QObject::connect(cmbPrexistent, SIGNAL(currentIndexChanged(int)), frmframe, SLOT(adjustFrmSamplingMode()));
         QObject::connect(tableView, SIGNAL(clicked(QModelIndex)), frmframe, SLOT(previewRow(QModelIndex)));
+        QObject::connect(buttonBox, SIGNAL(clicked(QAbstractButton*)), frmframe, SLOT(onButtonClick(QAbstractButton*)));
+        QObject::connect(cmbPrexistent, SIGNAL(currentIndexChanged(int)), frmframe, SLOT(onFrameChange(int)));
 
         QMetaObject::connectSlotsByName(frmframe);
     } // setupUi
@@ -447,64 +409,27 @@ public:
         groupPhysical->setWhatsThis(QApplication::translate("frmframe", "Describe physical characteristics of the frame;", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_WHATSTHIS
         groupPhysical->setTitle(QApplication::translate("frmframe", "Physical Frame", 0, QApplication::UnicodeUTF8));
-        label_4->setText(QApplication::translate("frmframe", "Choose frame", 0, QApplication::UnicodeUTF8));
+        label_3->setText(QApplication::translate("frmframe", "Choose Frame", 0, QApplication::UnicodeUTF8));
 #ifndef QT_NO_TOOLTIP
         cmbPrexistent->setToolTip(QString());
 #endif // QT_NO_TOOLTIP
 #ifndef QT_NO_TOOLTIP
-        toolView->setToolTip(QApplication::translate("frmframe", "View Frame", 0, QApplication::UnicodeUTF8));
+        toolEdit->setToolTip(QApplication::translate("frmframe", "View Frame", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_TOOLTIP
 #ifndef QT_NO_STATUSTIP
-        toolView->setStatusTip(QApplication::translate("frmframe", "View Frame", 0, QApplication::UnicodeUTF8));
+        toolEdit->setStatusTip(QApplication::translate("frmframe", "View Frame", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_STATUSTIP
 #ifndef QT_NO_WHATSTHIS
-        toolView->setWhatsThis(QApplication::translate("frmframe", "Allows viewing this frame", 0, QApplication::UnicodeUTF8));
-#endif // QT_NO_WHATSTHIS
-        toolView->setText(QApplication::translate("frmframe", "...", 0, QApplication::UnicodeUTF8));
-        label_3->setText(QApplication::translate("frmframe", "Create New", 0, QApplication::UnicodeUTF8));
-#ifndef QT_NO_TOOLTIP
-        groupNew->setToolTip(QApplication::translate("frmframe", "Input new frame to be created;", 0, QApplication::UnicodeUTF8));
-#endif // QT_NO_TOOLTIP
-#ifndef QT_NO_STATUSTIP
-        groupNew->setStatusTip(QApplication::translate("frmframe", "Input new frame to be created;", 0, QApplication::UnicodeUTF8));
-#endif // QT_NO_STATUSTIP
-#ifndef QT_NO_WHATSTHIS
-        groupNew->setWhatsThis(QApplication::translate("frmframe", "Input new frame to be created;", 0, QApplication::UnicodeUTF8));
-#endif // QT_NO_WHATSTHIS
-        groupNew->setTitle(QString());
-        radioCreate->setText(QApplication::translate("frmframe", "Create from Scratch", 0, QApplication::UnicodeUTF8));
-        radioCopy->setText(QApplication::translate("frmframe", "Copy from pre-existent", 0, QApplication::UnicodeUTF8));
-#ifndef QT_NO_TOOLTIP
-        toolEdit->setToolTip(QApplication::translate("frmframe", "Edit Frame", 0, QApplication::UnicodeUTF8));
-#endif // QT_NO_TOOLTIP
-#ifndef QT_NO_STATUSTIP
-        toolEdit->setStatusTip(QApplication::translate("frmframe", "Edit Frame", 0, QApplication::UnicodeUTF8));
-#endif // QT_NO_STATUSTIP
-#ifndef QT_NO_WHATSTHIS
-        toolEdit->setWhatsThis(QApplication::translate("frmframe", "Allows editing this frame", 0, QApplication::UnicodeUTF8));
+        toolEdit->setWhatsThis(QApplication::translate("frmframe", "Allows viewing this frame", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_WHATSTHIS
         toolEdit->setText(QApplication::translate("frmframe", "...", 0, QApplication::UnicodeUTF8));
+        lbSource->setText(QApplication::translate("frmframe", "[SOURCE]", 0, QApplication::UnicodeUTF8));
         groupTime->setTitle(QApplication::translate("frmframe", "Time Frame", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("frmframe", "Start Date", 0, QApplication::UnicodeUTF8));
+        customDtEnd->setDisplayFormat(QApplication::translate("frmframe", "yyyy-MM-dd", 0, QApplication::UnicodeUTF8));
+        customDtStart->setDisplayFormat(QApplication::translate("frmframe", "yyyy-MM-dd", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("frmframe", "End Date", 0, QApplication::UnicodeUTF8));
-#ifndef QT_NO_TOOLTIP
-        customDtStart->setToolTip(QApplication::translate("frmframe", "Input start date for current frame;", 0, QApplication::UnicodeUTF8));
-#endif // QT_NO_TOOLTIP
-#ifndef QT_NO_STATUSTIP
-        customDtStart->setStatusTip(QApplication::translate("frmframe", "Input start date for current frame;", 0, QApplication::UnicodeUTF8));
-#endif // QT_NO_STATUSTIP
-#ifndef QT_NO_WHATSTHIS
-        customDtStart->setWhatsThis(QApplication::translate("frmframe", "Input start date for current frame;", 0, QApplication::UnicodeUTF8));
-#endif // QT_NO_WHATSTHIS
-#ifndef QT_NO_TOOLTIP
-        customDtEnd->setToolTip(QApplication::translate("frmframe", "Input end date for current frame;", 0, QApplication::UnicodeUTF8));
-#endif // QT_NO_TOOLTIP
-#ifndef QT_NO_STATUSTIP
-        customDtEnd->setStatusTip(QApplication::translate("frmframe", "Input end date for current frame;", 0, QApplication::UnicodeUTF8));
-#endif // QT_NO_STATUSTIP
-#ifndef QT_NO_WHATSTHIS
-        customDtEnd->setWhatsThis(QApplication::translate("frmframe", "Input end date for current frame;", 0, QApplication::UnicodeUTF8));
-#endif // QT_NO_WHATSTHIS
+        lbHeader->setText(QApplication::translate("frmframe", "LBHEADER", 0, QApplication::UnicodeUTF8));
         groupProcess->setTitle(QString());
         label_5->setText(QApplication::translate("frmframe", "Sampling Technique", 0, QApplication::UnicodeUTF8));
 #ifndef QT_NO_TOOLTIP
@@ -517,7 +442,6 @@ public:
         toolProcess->setWhatsThis(QApplication::translate("frmframe", "Characterise the sampling methodology(ies);", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_WHATSTHIS
         toolProcess->setText(QApplication::translate("frmframe", "...", 0, QApplication::UnicodeUTF8));
-        lbHeader->setText(QApplication::translate("frmframe", "LBHEADER", 0, QApplication::UnicodeUTF8));
         groupBackNext->setTitle(QString());
         pushPrevious->setText(QApplication::translate("frmframe", "Previous", 0, QApplication::UnicodeUTF8));
         pushNext->setText(QApplication::translate("frmframe", "Next", 0, QApplication::UnicodeUTF8));

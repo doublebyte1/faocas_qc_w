@@ -1,9 +1,6 @@
 #ifndef SQL_H
 #define SQL_H
 
-//#include <QSqlDatabase>
-//#include <QSqlError>
-//#include <QSqlQuery>
 #include <QDebug>
 #include <QVariant>
 #include <QtSql>
@@ -51,14 +48,15 @@ Each element (table) provides us with the necessary information for navigation: 
 the next table and if it contains or not dates (for Date Validation purposes)
 */
 struct sTable {
-    sTable( const QString refField, const QString next, const bool bHasDates):
-    m_refField(refField), m_next(next), m_bHasDates(bHasDates)
+    sTable( const QString refField, const QString next, const bool bHasDates, const bool bHasTimes):
+    m_refField(refField), m_next(next), m_bHasDates(bHasDates), m_bHasTimes(bHasTimes)
     {}
     sTable():m_bHasDates(true)
     {}
    QString             m_refField;//!< name of the field that stores a reference to the parent
    QString             m_next;//!< name of the table that is next on the sequence
    bool                m_bHasDates;//!< boolean to flag if we have dates
+   bool                m_bHasTimes;//!< boolean to flag if we have times
 };
 
 //! FK struct
@@ -113,7 +111,7 @@ struct NodeRef {
 //! Info Date struct
 /*! TODO: write somethin here later!!!
 */
-struct InfoDate {
+/*struct InfoDate {
     InfoDate( const QString strUTC, const QString strLocal, const int type):
     m_strUTC(strUTC), m_strLocal(strLocal), m_type(type)
     {}
@@ -123,7 +121,7 @@ struct InfoDate {
    QString             m_strUTC;//!< UTC date
    int                 m_type;//!< Date type
 };
-
+*/
 //! Info Changes struct
 /*! TODO: write somethin here later!!!
 */
@@ -173,12 +171,12 @@ static bool getImportedName(const QString inName, QString& outName, bool& bExist
         return false;
     }
     query.first();
-    if (query.numRowsAffected()>0)
+    if (query.size()>0)
         outName=query.record().value("imported_name").toString();
     else
         outName=inName;
 
-    bExists=query.numRowsAffected()>0;
+    bExists=query.size()>0;
     query.finish();
     return true;
 }
@@ -241,7 +239,7 @@ static bool castDate(QString inDate, QString& outDate)
     if (!query.prepare(strQuery)) return false;
     query.setForwardOnly(true);
     if (!query.exec()) return false;
-    if (query.numRowsAffected()!=1) return false;
+    if (query.size()!=1) return false;
     query.first();
     outDate=query.value(0).toString();
     return true;
@@ -421,7 +419,7 @@ static bool getObjects(QSqlQuery& query, const QString strTable=QString())
     if (!query.exec()) return false;
 
     query.finish();
-    return (strTable.isEmpty()?query.numRowsAffected()>0:true);
+    return (strTable.isEmpty()?query.size()>0:true);
 }
 
 static bool getAutoIncrementInfo(const int objectID, QSqlQuery& query)
@@ -615,7 +613,7 @@ static bool clearDBTable(const QString strTableName, bool bReseed=true)
             //Get autoincrementinfo
              QSqlQuery seedQuery;
              if (!getAutoIncrementInfo(objectID, seedQuery)) return false;
-             if (seedQuery.numRowsAffected()!=1) return false;
+             if (seedQuery.size()!=1) return false;
              seedQuery.first();
              int seed=seedQuery.value(0).toInt();//Casted seed value
 
@@ -907,7 +905,7 @@ static bool getNullForType(const QString strType, const QString strInternalName,
 
     query.setForwardOnly(true);
     if (!query.exec()) return false;
-    if (query.numRowsAffected()<1) return false;
+    if (query.size()<1) return false;
     query.first();
     outStrNull=query.record().value(0).toString();
     return true;
@@ -1203,7 +1201,7 @@ static bool updateDepth(const int id)
     query.setForwardOnly(true);
     query.exec();
 
-    if (query.numRowsAffected()<1) return false;
+    if (query.size()<1) return false;
     query.first();
     int result=query.value(query.record().indexOf("depth")).toInt();
 
@@ -1230,7 +1228,7 @@ static bool list2Nested()
     if (!query.prepare("SELECT id from Fr_Tree")) return false;
     query.setForwardOnly(true);
     if (!query.exec()) return false;
-    if (query.numRowsAffected()<1) return false;
+    if (query.size()<1) return false;
     while (query.next())
     {
         if (!updateDepth(query.record().value("id").toInt())) return false;
@@ -1258,7 +1256,7 @@ static bool getFieldDescriptionFromDB(const QString strTable, const QString strF
     query.bindValue(":field",strField);
     query.setForwardOnly(true);
     if (!query.exec()) return false;
-    return query.numRowsAffected()==1;
+    return query.size()==1;
 }
 
 static bool findNullReplacementFields(const QString strTable,
@@ -1271,7 +1269,7 @@ static bool findNullReplacementFields(const QString strTable,
     query.bindValue(":table",strTable);
     query.setForwardOnly(true);
     if (!query.exec()) return false;
-    if (query.numRowsAffected()>0)
+    if (query.size()>0)
     {
         while (query.next()){
             nullValues.insert(query.record().value(0).toString(),query.record().value(1).toString());
@@ -1313,7 +1311,7 @@ static bool selectValue(const QString strFieldOut, const QString strTable, const
     query.setForwardOnly(true);
     if (!query.exec()) return false;
 
-    if (query.numRowsAffected()>0)
+    if (query.size()>0)
     {
         query.first();
         rec=query.record();
@@ -1339,7 +1337,7 @@ static bool convert2PK(const QString strTable)
     query.bindValue(":table",strTable);
     query.setForwardOnly(true);
     if (!query.exec()) return false;
-    if (query.numRowsAffected()>0)
+    if (query.size()>0)
     {
         query.first();
         return query.record().value(0).toBool();
@@ -1447,7 +1445,7 @@ static bool generateTMPTableName(const QString instrTableName, QString& outStrTa
     if (bVerify){
         //Create TMP table name, but first make sure it does not exist yet...
         if (!getObjects(query,outStrTableName)) return false;
-        while (query.numRowsAffected()>0){
+        while (query.size()>0){
             outStrTableName=TMPCHAR + outStrTableName;
             if (!getObjects(query,outStrTableName)) return false;
         }
@@ -1502,7 +1500,7 @@ static bool getNullReplacements(QStringList& list){
         qDebug() << strQuery << endl;
         return false;
     }
-    if (query.numRowsAffected()< 1) return false;
+    if (query.size()< 1) return false;
     while (query.next())
         list << query.record().value(0).toString();
 
@@ -1522,7 +1520,7 @@ static bool GetCurentLocation(int& locationID)
     }
 
     //We only allow one current location at a time
-    if (query.numRowsAffected()!= 1) return false;
+    if (query.size()!= 1) return false;
     query.first();
     locationID=query.record().value("ID").toInt();
 
@@ -1539,7 +1537,7 @@ static bool getIdForValue(const QString strTable, const QString strIdField,
     query.bindValue(":par",strPar);
 
     query.setForwardOnly(true);
-    if (!query.exec()|| query.numRowsAffected()!=1){
+    if (!query.exec()|| query.size()!=1){
         return false;
     }
 
@@ -1619,7 +1617,7 @@ static bool getYearLimits(int& start, int&end)
         "select Top(1) start_year,end_year from Ref_Year_Limits WHERE active=1 ORDER BY ID DESC")) return false;
 
     query.setForwardOnly(true);
-    if (!query.exec()|| query.numRowsAffected()!=1){
+    if (!query.exec()|| query.size()!=1){
         return false;
     }
 
@@ -1643,7 +1641,7 @@ static bool getLastIdActivity(QString& strId)
         "select Top(1) id_activity from CAS_Activity ORDER BY id_activity DESC")) return false;
 
     query.setForwardOnly(true);
-    if (!query.exec()|| query.numRowsAffected()!=1){
+    if (!query.exec()|| query.size()!=1){
         return false;
     }
 
@@ -1670,7 +1668,7 @@ static bool getLastRecordFromTable(const QString strId, const QString strTable, 
         )) return false;
 
     query.setForwardOnly(true);
-    if (!query.exec()|| query.numRowsAffected()!=1){
+    if (!query.exec()|| query.size()!=1){
         return false;
     }
 
@@ -1695,7 +1693,7 @@ static bool getNaRuleID(size_t& id)
         "select id from UI_Rules WHERE [rule] like 'n/a'")) return false;
 
     query.setForwardOnly(true);
-    if (!query.exec()|| query.numRowsAffected()!=1){
+    if (!query.exec()|| query.size()!=1){
         return false;
     }
 
@@ -1783,7 +1781,7 @@ static QString rebuildIndexesSql()
         "EXEC sp_MSforeachtable @command1=\"print '?' DBCC DBREINDEX ('?', ' ', 80)\""
         ;
 }
-
+/*
 static bool grabDateById(const int inId, QDateTime& outDate)
 {
     //! Grab date by id
@@ -1793,7 +1791,7 @@ static bool grabDateById(const int inId, QDateTime& outDate)
     \param outDate address of QDateTime to store the results
     \return boolean stating as success or failure
     */
-
+/*
      QSqlQueryModel model;
      model.setQuery("SELECT Date_Local from GL_Dates WHERE ID=" + QVariant(inId).toString());
 
@@ -1802,6 +1800,10 @@ static bool grabDateById(const int inId, QDateTime& outDate)
 
      return true;
 }
+*/
+
+
+
 
 static bool onCheckDependantDates(const QMap<QString,sTable>& mapTables, const QString curTable, const QDateTime& curStartDt, const QDateTime& curEndDt
                                    ,QString strTable, int id, QString& strError)
@@ -1836,13 +1838,15 @@ static bool onCheckDependantDates(const QMap<QString,sTable>& mapTables, const Q
          model.setQuery("SELECT * FROM " + strTable + " WHERE " + it.value().m_refField + "="
              + QVariant(id).toString());
 
+         //qDebug() << model.query().lastQuery() << endl;
+
      //if it does not have dates, keep going with a filter till it finds it...
      if (!it.value().m_bHasDates){
 
          for (int i=0; i < model.rowCount(); ++i)
          {
             if (!onCheckDependantDates(mapTables,curTable,
-                curStartDt,curEndDt,it.value().m_next,model.record(i).value("ID").toInt(),strError))
+                curStartDt,curEndDt,it.value().m_next,model.record(i).value("id").toInt(),strError))
                 return false;
          }
 
@@ -1851,19 +1855,19 @@ static bool onCheckDependantDates(const QMap<QString,sTable>& mapTables, const Q
          QDateTime startDate, endDate;
 
          for (int i=0; i < model.rowCount(); ++i)
-         {
-
-             if (!grabDateById(model.record(i).value("id_start_dt").toInt(),startDate) ||
-                 !grabDateById(model.record(i).value("id_end_dt").toInt(),endDate))
-             {
-                 strError=QObject::tr("Could not retrieve start/end date from table ") + strTable;
-                return false;
-             }
+         {             
+             startDate=QDateTime(model.record(i).value("start_dt").toDate(),it.value().m_bHasTimes?model.record(i).value("start_time").toTime():QTime(0,0,0,0),Qt::UTC);
+             endDate=QDateTime(model.record(i).value("end_dt").toDate(),it.value().m_bHasTimes?model.record(i).value("end_time").toTime():QTime(23,59,59,999),Qt::UTC);
 
              //n.b.: use .toTime_t() for comparison of uints!
-            if ( curStartDt.toTime_t() > startDate.toTime_t() || curEndDt.toTime_t() < endDate.toTime_t())
+             /*qDebug() << "target start date" << startDate.time() << "," << startDate.toTime_t() << endl;
+             qDebug() << "target end date" << endDate.time()  << "," << endDate.toTime_t() << endl;
+             qDebug() << "cur start date" << curStartDt.time() << "," << curStartDt.toTime_t() << endl;
+             qDebug() << "cur end date" << curEndDt.time() << "," << curEndDt.toTime_t() << endl;*/
+
+             if ( curStartDt.toTime_t() > startDate.toTime_t() || curEndDt.toTime_t() < endDate.toTime_t())
             {
-                 strError=startDate > curStartDt?
+                 strError=startDate.toTime_t() > curStartDt.toTime_t()?
                      QObject::tr("This start date invalidates the time interval on table ") + strTable:
                   QObject::tr("This end date invalidates the time interval on table ") + strTable;
                  return false;
@@ -1883,7 +1887,7 @@ static bool getIDfromLastInsertedTable(const QString strTable, QVariant& outID,Q
     QSqlQuery query;
     query.prepare("select top(1) ID from " + strTable + " order by ID Desc");
     query.setForwardOnly(true);
-     if (!query.exec() || query.numRowsAffected() < 1){
+     if (!query.exec() || query.size() < 1){
          if (query.lastError().type() != QSqlError::NoError)
              strError=query.lastError().text();
          else
@@ -1905,7 +1909,7 @@ static bool getNADate(QVariant& outID,QString& strError)
     QSqlQuery query;
     query.prepare("select ID from GL_DATES WHERE (Date_Type=(SELECT ID from Ref_DateTime_Type WHERE Name='n/a'))");
     query.setForwardOnly(true);
-     if (!query.exec() || query.numRowsAffected() < 1){
+     if (!query.exec() || query.size() < 1){
          if (query.lastError().type() != QSqlError::NoError)
              strError=query.lastError().text();
          else
@@ -1932,7 +1936,7 @@ static bool getLastUpdate(int& outID, QString& strError)
         }
 
      //It is the first time and we do not have client values yet
-     if (query.numRowsAffected()<1){
+     if (query.size()<1){
          outID=1;
      }else{
          query.first();
@@ -2056,7 +2060,7 @@ static bool deserializeDateTime(const int id, QVariantMap & nestedMap)
     query.prepare(strQuery);
     query.bindValue(":id",id);
     query.setForwardOnly(true);
-     if (!query.exec() || query.numRowsAffected() < 1){
+     if (!query.exec() || query.size() < 1){
          if (query.lastError().type() != QSqlError::NoError)
              qDebug() << query.lastError().text() << endl;
          else
@@ -2093,7 +2097,7 @@ static bool identifyFK(const QString strTable, const QString strField, bool& bIs
         return false;
      }
 
-     bIsFK=(query.numRowsAffected()>0);
+     bIsFK=(query.size()>0);
      if (!bIsFK) return true;
 
      query.first();
@@ -2224,10 +2228,10 @@ static bool buildFKRec(const listInfoChanges& listChanges, const QString strTabl
         else
             strError= QObject::tr("Could not retrieve identified record!");
         return false;
-    }else if ( query.numRowsAffected() < 1){
+    }else if ( query.size() < 1){
            //We cannot find this record! Lets see if it was modified
           if (!getChangedRecord(listChanges,strTable,ID,fkRec,strError)) return false;
-    } else if (query.numRowsAffected()>1 ){//Paranoid-check: this should never happen really...
+    } else if (query.size()>1 ){//Paranoid-check: this should never happen really...
          strError= QObject::tr("Found more than one record with this ID!");
         return false;
     }else{//n.b.: note that we tol
@@ -2364,7 +2368,7 @@ static bool getLuMaster(const bool bIsMaster,int& lu, QString strError)
          return false;
     }
 
-    if (query.numRowsAffected()>0){
+    if (query.size()>0){
         query.first();
         lu=query.value(0).toInt();
     }else{
@@ -2459,7 +2463,7 @@ static bool getLastChanges(const int ID, QString& strJSON, const QString strMacA
     listInfoChanges infoChanges;
 
     //build a list of changes
-    if (query.numRowsAffected() > 0){
+    if (query.size() > 0){
         query.first();
         createInfoChange(query,infoChanges);
          while (query.next()) {
@@ -2702,7 +2706,7 @@ static void endSession()
 
     delete table;
 }
-
+/*
 static bool identifyDate(const InfoDate& dateTime, QList<int>& ids, QString& strError)
 {
 
@@ -2733,8 +2737,72 @@ static bool identifyDate(const InfoDate& dateTime, QList<int>& ids, QString& str
 
     return true;
 }
+*/
+static bool getLastId(const QString strTable, int& id, QString& strError)
+{
+    //! Get Last id
+    /* This function find the id of the last inserted row from a given table
+    \par strTable table name;
+    \par id integer to write the results;
+    \return boolean as sucess or failure
+    */
 
+    QString str="select id from [strTable] ORDER BY id DESC limit 1";
+    str=str.replace("[strTable]",strTable);
+    QSqlQuery query;
+    if (!query.prepare(
+                str)){
 
+        return false;
+     }
+
+    query.setForwardOnly(true);
+    if (!query.exec()|| query.size()!=1){
+        if (query.lastError().type()!=QSqlError::NoError)
+           strError= query.lastError().text();
+        else
+           strError= QObject::tr("Could not identify this date record!");
+       return false;
+    }
+
+    query.first();//! Not to mention this is *very* important!!!
+    id=query.value(0).toInt();
+
+    return true;
+}
+
+static bool getKeywordID(const QString strTable, const QString strKeyword, size_t& id)
+{
+    //! Get the ID of the name keyword
+    /* This is a convenience function to grab the ID of the a row that contains the a specific "name" value;
+     *Attention has to be brought into the following:
+     *- there is a field named 'name' on the table
+     *- the id field should be called id;
+     * This is generally true on reference tables, except for Ref_Vessels;
+    \par id size_t address, to put the id of the rule
+    \return boolean as sucess or failure
+    */
+
+    QString strQuery="select id from [strTable] WHERE name like '[strKeyword]'";
+    strQuery.replace("[strTable]", strTable);
+    strQuery.replace("[strKeyword]", strKeyword);
+
+    //qDebug() << strQuery << endl;
+
+    QSqlQuery query;
+    if (!query.prepare(
+                strQuery)) return false;
+
+    query.setForwardOnly(true);
+    if (!query.exec()|| query.size()!=1){
+        return false;
+    }
+
+    query.first();//! Not to mention this is *very* important!!!
+    id=(size_t)query.value(0).toInt();
+
+    return true;
+}
 
 #endif
 

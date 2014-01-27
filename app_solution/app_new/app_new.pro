@@ -13,7 +13,7 @@ CONFIG(debug, debug|release) {
  }
 
 QT += core gui sql network xml script xmlpatterns webkit
-CONFIG += qtestlib help help designer
+CONFIG += qtestlib help
 DEFINES += QT_XML_LIB QT_SQL_LIB QT_XMLPATTERNS_LIB QT_SCRIPT_LIB
 
 CONFIG(debug, debug|release) {
@@ -23,15 +23,12 @@ INCLUDEPATH += ./GeneratedFiles \
     ./GeneratedFiles/debug \
     . \
     $(BOOSTDIR) \
-    $(PROJDIR)/CustomTimeCtrl/CustomTimeCtrl \
-    $(PROJDIR)/CustomTimeCtrl/shadow_build/GeneratedFiles \
     $(PROJDIR)/CatchInputCtrl/CatchInputCtrl \
     $(PROJDIR)/CatchInputCtrl/shadow_build/GeneratedFiles \
     $(EXARO_INCLUDE_DIR)
 LIBS += -L"$(QTDIR)/plugins/designer" \
     -L"$(EXARO_LIBRARIES_D)" \
-    -lcustomtimectrld \
-    -lCatchInputCtrld \
+    -lcatchinputctrld \
     -lReport
 MOC_DIR += ./GeneratedFiles/debug
 OBJECTS_DIR += debug
@@ -44,15 +41,12 @@ INCLUDEPATH += ./GeneratedFiles \
     ./GeneratedFiles/release \
     . \
     $(BOOSTDIR) \
-    $(PROJDIR)/CustomTimeCtrl/CustomTimeCtrl \
-    $(PROJDIR)/CustomTimeCtrl/shadow_build/GeneratedFiles \
     $(PROJDIR)/CatchInputCtrl/CatchInputCtrl \
     $(PROJDIR)/CatchInputCtrl/shadow_build/GeneratedFiles \
     $(EXARO_INCLUDE_DIR)
 LIBS += -L"$(QTDIR)/plugins/designer" \
     -L"$(EXARO_LIBRARIES)" \
-    -lcustomtimectrl \
-    -lCatchInputCtrl \
+    -lcatchinputctrl \
     -lReport
 MOC_DIR += ./GeneratedFiles/release
 OBJECTS_DIR += release

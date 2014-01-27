@@ -22,7 +22,7 @@ static const uint qt_meta_data_FrmMinorStrata[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -32,23 +32,20 @@ static const uint qt_meta_data_FrmMinorStrata[] = {
  // slots: signature, parameters, type, tag, flags
       16,   15,   15,   15, 0x08,
       37,   31,   15,   15, 0x08,
-      61,   15,   15,   15, 0x08,
-      84,   15,   15,   15, 0x08,
-     117,  109,   15,   15, 0x08,
-     139,   15,   15,   15, 0x08,
-     160,   15,   15,   15, 0x08,
-     199,  178,   15,   15, 0x08,
-     222,   15,   15,   15, 0x08,
-     237,   15,   15,   15, 0x08,
-     258,   15,   15,   15, 0x08,
+      69,   61,   15,   15, 0x08,
+      91,   15,   15,   15, 0x08,
+     112,   15,   15,   15, 0x08,
+     151,  130,   15,   15, 0x08,
+     174,   15,   15,   15, 0x08,
+     189,   15,   15,   15, 0x08,
+     210,   15,   15,   15, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_FrmMinorStrata[] = {
     "FrmMinorStrata\0\0createRecord()\0index\0"
-    "previewRow(QModelIndex)\0blockCustomDateCtrls()\0"
-    "unblockCustomDateCtrls()\0bActive\0"
+    "previewRow(QModelIndex)\0bActive\0"
     "setActiveReason(bool)\0disableReasonCombo()\0"
     "onItemSelection()\0bFinished,bDiscarded\0"
     "onEditLeave(bool,bool)\0editFinished()\0"
@@ -63,15 +60,13 @@ void FrmMinorStrata::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         switch (_id) {
         case 0: _t->createRecord(); break;
         case 1: _t->previewRow((*reinterpret_cast< QModelIndex(*)>(_a[1]))); break;
-        case 2: _t->blockCustomDateCtrls(); break;
-        case 3: _t->unblockCustomDateCtrls(); break;
-        case 4: _t->setActiveReason((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 5: _t->disableReasonCombo(); break;
-        case 6: _t->onItemSelection(); break;
-        case 7: _t->onEditLeave((*reinterpret_cast< const bool(*)>(_a[1])),(*reinterpret_cast< const bool(*)>(_a[2]))); break;
-        case 8: _t->editFinished(); break;
-        case 9: _t->onShowFrameDetails(); break;
-        case 10: _t->onHideFrameDetails(); break;
+        case 2: _t->setActiveReason((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 3: _t->disableReasonCombo(); break;
+        case 4: _t->onItemSelection(); break;
+        case 5: _t->onEditLeave((*reinterpret_cast< const bool(*)>(_a[1])),(*reinterpret_cast< const bool(*)>(_a[2]))); break;
+        case 6: _t->editFinished(); break;
+        case 7: _t->onShowFrameDetails(); break;
+        case 8: _t->onHideFrameDetails(); break;
         default: ;
         }
     }
@@ -111,9 +106,9 @@ int FrmMinorStrata::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 9;
     }
     return _id;
 }

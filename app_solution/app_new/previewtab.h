@@ -1,6 +1,5 @@
 #include <QtGui>
 #include <QtSql>
-#include "customtimectrl.h"
 #include "generictab.h"
 #include "sql.h"
 
@@ -32,7 +31,7 @@ class PreviewTab : public GenericTab
     Q_OBJECT
 
     public:
-        PreviewTab(const int index, RoleDef* inRoleDef, Sample* inSample, DateModel* inTDateTime, const QString inStrTitle, 
+        PreviewTab(const int index, RoleDef* inRoleDef, Sample* inSample, const QString inStrTitle,
             RuleChecker* ruleCheckerPtr=0, QWidget *parent=0, Qt::WFlags flags=0);
         ~PreviewTab();
 
@@ -196,9 +195,6 @@ class PreviewTab : public GenericTab
         \return boolean as success or failure
         */
         bool                                  submitMapperAndModel(QDataWidgetMapper* aMapper);
-        bool                                  submitDates(QDataWidgetMapper* startMapper, QDataWidgetMapper* endMapper);
-        bool                                  amendDates(QDataWidgetMapper* startMapper, QDataWidgetMapper* endMapper,
-                                                    QVariant& start, QVariant& end);
 
         bool                                  translateIndex(const QModelIndex inIdx, QModelIndex& outIdx);
 
@@ -213,6 +209,8 @@ class PreviewTab : public GenericTab
           \sa updateSample(const QModelIndex& idx, const int id)
         */
         bool                                  updateSample();
+
+        bool                                  resetSample();
 
         QList<QWidget*>                       m_lWidgets;/**< list of widgets on the preview tab, that we want to enable/disable as we create/submit a record*/
         //! Init Help Ids

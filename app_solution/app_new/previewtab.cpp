@@ -1,7 +1,7 @@
 #include "previewtab.h"
 
-PreviewTab::PreviewTab(const int index, RoleDef* inRoleDef, Sample* inSample, DateModel* inTDateTime, const QString inStrTitle, RuleChecker* ruleCheckerPtr, QWidget *parent, Qt::WFlags flags):
-GenericTab(index,inRoleDef,inSample,inTDateTime,inStrTitle,ruleCheckerPtr,parent,flags){
+PreviewTab::PreviewTab(const int index, RoleDef* inRoleDef, Sample* inSample, const QString inStrTitle, RuleChecker* ruleCheckerPtr, QWidget *parent, Qt::WFlags flags):
+GenericTab(index,inRoleDef,inSample,inStrTitle,ruleCheckerPtr,parent,flags){
 
     m_model=0;
     m_table=0;
@@ -15,22 +15,22 @@ GenericTab(index,inRoleDef,inSample,inTDateTime,inStrTitle,ruleCheckerPtr,parent
     m_pushEdit=0;
 
     //Logbook flow
-    mapTablesL.insert("Fr_Time",sTable(qApp->translate("null_replacements", strNa),"Ref_Minor_Strata",true));
-    mapTablesL.insert("Ref_Minor_Strata",sTable("id_frame_time","Sampled_Strata_Vessels",true));
-    mapTablesL.insert("Sampled_Strata_Vessels",sTable("id_minor_strata","Abstract_Sampled_Vessels",false));
-    mapTablesL.insert("Abstract_Sampled_Vessels",sTable("id_sampled_strata_vessels","Sampled_Fishing_Trips",false));
-    mapTablesL.insert("Sampled_Fishing_Trips",sTable("id_abstract_sampled_vessels","Sampled_Fishing_Operations",true));
-    mapTablesL.insert("Sampled_Fishing_Operations",sTable("id_fishing_trip",qApp->translate("null_replacements", strNa),true));
+    mapTablesL.insert("fr_time",sTable(qApp->translate("null_replacements", strNa),"ref_minor_strata",true,false));
+    mapTablesL.insert("ref_minor_strata",sTable("id_frame_time","sampled_strata_vessels",true,false));
+    mapTablesL.insert("sampled_strata_vessels",sTable("id_minor_strata","abstract_sampled_vessels",false,false));
+    mapTablesL.insert("abstract_sampled_Vessels",sTable("id_sampled_strata_vessels","sampled_fishing_trips",false,false));
+    mapTablesL.insert("sampled_fishing_trips",sTable("id_abstract_sampled_vessels","sampled_fishing_operations",true,true));
+    mapTablesL.insert("sampled_fishing_operations",sTable("id_fishing_trip",qApp->translate("null_replacements", strNa),true,true));
 
     //sampling flow
-    mapTablesS.insert("Fr_Time",sTable(qApp->translate("null_replacements", strNa),"Ref_Minor_Strata",true));
-    mapTablesS.insert("Ref_Minor_Strata",sTable("id_frame_time","Sampled_Cell",true));
-    mapTablesS.insert("Sampled_Cell",sTable("id_minor_strata","Sampled_Cell_Vessel_Types",false));
-    mapTablesS.insert("Sampled_Cell_Vessel_Types",sTable("id_cell","Sampled_Cell_Vessels",false));
-    mapTablesS.insert("Sampled_Cell_Vessels",sTable("id_cell_vessel_types","Abstract_Sampled_Vessels",false));
-    mapTablesS.insert("Abstract_Sampled_Vessels",sTable("id_sampled_cell_vessels","Sampled_Fishing_Trips",false));
-    mapTablesS.insert("Sampled_Fishing_Trips",sTable("id_abstract_sampled_vessels","Sampled_Fishing_Operations",true));
-    mapTablesS.insert("Sampled_Fishing_Operations",sTable("id_fishing_trip",qApp->translate("null_replacements", strNa),true));
+    mapTablesS.insert("fr_time",sTable(qApp->translate("null_replacements", strNa),"ref_minor_strata",true,false));
+    mapTablesS.insert("ref_minor_strata",sTable("id_frame_time","sampled_cell",true,false));
+    mapTablesS.insert("sampled_cell",sTable("id_minor_strata","sampled_cell_vessel_types",true,false));
+    mapTablesS.insert("sampled_cell_vessel_types",sTable("id_cell","sampled_cell_vessels",false,false));
+    mapTablesS.insert("sampled_cell_vessels",sTable("id_cell_vessel_types","abstract_sampled_vessels",false,false));
+    mapTablesS.insert("abstract_sampled_vessels",sTable("id_sampled_cell_vessels","sampled_fishing_trips",false,false));
+    mapTablesS.insert("sampled_fishing_trips",sTable("id_abstract_sampled_vessels","sampled_fishing_operations",true,true));
+    mapTablesS.insert("sampled_fishing_operations",sTable("id_fishing_trip",qApp->translate("null_replacements", strNa),true,true));
 
     setAttribute( Qt::WA_AlwaysShowToolTips);
 
@@ -59,130 +59,6 @@ void PreviewTab::setTips(const bool bLogbook)
     lbHead->setToolTip(tr("This is a ") + (bLogbook? tr("logbook"): tr("sampling")) + tr(" frame"));
     lbHead->setStatusTip(tr("This is a ") + (bLogbook? tr("logbook"): tr("sampling")) + tr(" frame"));
     lbHead->setWhatsThis(tr("This is a ") + (bLogbook? tr("logbook"): tr("sampling")) + tr(" frame"));
-}
-
-bool PreviewTab::amendDates(QDataWidgetMapper* startMapper, QDataWidgetMapper* endMapper,
-                            QVariant& start, QVariant& end)
-{
-    bool bError=false;
-
-//    int curStart=startMapper->currentIndex();
-//    int curEnd=endMapper->currentIndex();
-
-    startMapper->submit();
-    endMapper->submit();
-
-    //grabbed the comited values
-    QVariant startUTC=m_tDateTime->index(0,1).data();
-    QVariant startLocal=m_tDateTime->index(0,2).data();
-    QVariant startType=m_tDateTime->index(0,3).data();
-
-    QVariant endUTC=m_tDateTime->index(1,1).data();
-    QVariant endLocal=m_tDateTime->index(1,2).data();
-    QVariant endType=m_tDateTime->index(1,3).data();
-
-    //and undo the changes
-    startMapper->revert();
-    endMapper->revert();
-    m_tDateTime->revertAll();
-
-    bool bChangeStart=startLocal!=m_tDateTime->index(0,2).data();
-    bool bChangeEnd=endLocal!=m_tDateTime->index(1,2).data();
-
-    //nothing changed
-    start=m_tDateTime->index(0,0).data();
-    end=m_tDateTime->index(1,0).data();
-
-    if (bChangeStart || bChangeEnd){
-
-        //First of all, remove the filter
-         m_tDateTime->setFilter("");
-         int rowCount;
-
-        if (bChangeStart){
-            if (!insertRecordIntoModel(m_tDateTime)) return false;
-
-            while(m_tDateTime->canFetchMore())
-                m_tDateTime->fetchMore();
-
-            rowCount=m_tDateTime->rowCount();
-
-            QModelIndex idx=m_tDateTime->index(rowCount-1,1);
-            m_tDateTime->setData(idx,startUTC);
-            idx=m_tDateTime->index(rowCount-1,2);
-            m_tDateTime->setData(idx,startLocal);
-            idx=m_tDateTime->index(rowCount-1,3);
-            m_tDateTime->setData(idx,startType);
-            m_tDateTime->submitAll();
-
-        }
-        if (bChangeEnd){
-            if (!insertRecordIntoModel(m_tDateTime)) return false;
-
-            while(m_tDateTime->canFetchMore())
-                m_tDateTime->fetchMore();
-
-            rowCount=m_tDateTime->rowCount();
-
-            QModelIndex idx=m_tDateTime->index(rowCount-1,1);
-            m_tDateTime->setData(idx,endUTC);
-            idx=m_tDateTime->index(rowCount-1,2);
-            m_tDateTime->setData(idx,endLocal);
-            idx=m_tDateTime->index(rowCount-1,3);
-            m_tDateTime->setData(idx,endType);
-            m_tDateTime->submitAll();
-
-        }
-
-        while(m_tDateTime->canFetchMore())
-            m_tDateTime->fetchMore();
-
-        rowCount=m_tDateTime->rowCount();
-
-        if (bChangeStart){
-            if(bChangeEnd)
-                start=m_tDateTime->index(rowCount-2,0).data();
-            else
-                start=m_tDateTime->index(rowCount-1,0).data();
-        }
-        if (bChangeEnd)
-            end=m_tDateTime->index(rowCount-1,0).data();
-
-        QString strFilter="ID=" +start.toString()+" OR ID=" + end.toString() + " ORDER BY DATE_LOCAL ASC";
-        m_tDateTime->setFilter(strFilter);
-        m_tDateTime->select();
-
-        if (m_tDateTime->rowCount()!=2)
-            return false;
-    }
-
-    startMapper->setCurrentIndex(0);
-    endMapper->setCurrentIndex(1);
-
-    return !bError;
-}
-
-bool PreviewTab::submitDates(QDataWidgetMapper* startMapper, QDataWidgetMapper* endMapper)
-{
-    bool bError=false;
-    if (!startMapper->submit() || !endMapper->submit()){
-        if (m_tDateTime->lastError().type()!=QSqlError::NoError)
-            emit showError(m_tDateTime->lastError().text());
-        else
-            emit showError(tr("Could not submit dates(s)!!"));
-        bError=true;
-    }
-    else{
-        if (!m_tDateTime->submitAll()){
-            if (m_tDateTime->lastError().type()!=QSqlError::NoError)
-                emit showError(m_tDateTime->lastError().text());
-            else
-                emit showError(tr("Could not write DateTime in the database!"));
-
-            bError=true;
-        }
-    }
-    return !bError;
 }
 
 bool PreviewTab::submitMapperAndModel(QDataWidgetMapper* aMapper)
@@ -323,11 +199,8 @@ void PreviewTab::onShowForm()
     //Make sure all models are up to date, and without filters
     if (m_model==0) return;
     m_model->select();
-    m_tDateTime->select();
 
     setPreviewQuery();
-
-    if (m_tDateTime==0) return ;
 
     //filter the relational model
     filterModel4Combo();
@@ -374,7 +247,7 @@ bool PreviewTab::next()
 bool PreviewTab::getNewHeader(QString& strLabel)
 {
     if (!getNextLabel(strLabel)) return false;
-    strLabel=(lbHead->text().isEmpty()? strLabel:lbHead->text()+ tr("-> ") + strLabel);
+    strLabel=(lbHead->text().isEmpty()? strLabel:lbHead->text()+ QString("-> ") + strLabel);
     return true;
 }
 
@@ -387,7 +260,6 @@ bool PreviewTab::editRecord(bool on)
 {
     //removing filters
     if (m_model==0) return false;
-    if (m_tDateTime==0) return false;
     if (m_pushNew==0) return false;
     if (m_pushEdit==0) return false;
     if (m_pushRemove==0) return false;
@@ -518,8 +390,13 @@ void PreviewTab::removeRecord()
                     showStatus(tr("Record successfully removed from the database!"));
                     setPreviewQuery();
                     emit recordRemoved();
-                    if (m_table->model()->rowCount()>0) m_table->selectRow(0);//to avoid a selection on a non existent row!
-                    else m_groupDetails->hide();
+
+                    m_table->clearSelection();
+                    /*
+                    if (m_table->model()->rowCount()>0){
+                        m_table->selectRow(0);//to avoid a selection on a non existent row!
+                     }
+                    else*/ m_groupDetails->hide();
                 }
             }
 
@@ -538,14 +415,13 @@ void PreviewTab::genericCreateRecord()
 {
     //removing filters
     if (m_model==0) return ;
-    if (!m_model->filter().isEmpty()) m_model->setFilter(tr(""));
-
-    if (m_tDateTime==0) return ;
-    if (!m_tDateTime->filter().isEmpty()) m_tDateTime->setFilter(tr(""));
+    if (!m_model->filter().isEmpty()) m_model->setFilter("");
 
     if (!discardNewRecord()) return;
 
     insertRecordIntoModel(m_model);
+
+    if (!resetSample()) return;
 }
 
 bool PreviewTab::discardNewRecord()
@@ -608,7 +484,7 @@ bool PreviewTab::abstractPreviewRow(QModelIndex index)
 
     QString id=idx.data().toString();
 
-    m_model->setFilter(m_model->tableName()+".ID="+id);
+    m_model->setFilter(m_model->tableName()+".id="+id);
 
     if (m_model->rowCount()!=1)
         return false;
@@ -628,6 +504,11 @@ bool PreviewTab::updateSample(const QModelIndex& idx)
     return (m_sample->setMemberById(m_index,idx.data().toInt()));
 }
 
+bool PreviewTab::resetSample()
+{
+    return (m_sample->setMemberById(m_index,-1));
+}
+
 bool PreviewTab::updateSample()
 {
     //check if there is a selection
@@ -645,7 +526,10 @@ bool PreviewTab::updateSample()
 void setSourceText(QLabel* label, const bool bIsLogbook)
 {
     label->setStyleSheet(bIsLogbook?
-        QObject::tr("background-color: qconicalgradient(cx:0, cy:0, angle:135, stop:0 rgba(220, 220, 220, 69), stop:0.375 rgba(255, 255, 0, 69), stop:0.423533 rgba(251, 255, 0, 145), stop:0.45 rgba(247, 255, 0, 208), stop:0.477581 rgba(255, 244, 71, 130), stop:0.518717 rgba(255, 218, 71, 130), stop:0.55 rgba(255, 255, 0, 255), stop:0.57754 rgba(255, 203, 0, 130), stop:0.625 rgba(255, 255, 0, 69), stop:1 rgba(255, 255, 0, 69));font: 75 10pt \"Fixedsys\"")
-    : QObject::tr("background-color: qconicalgradient(cx:0, cy:0, angle:135, stop:0 rgba(220, 220, 220, 69), stop:0.375 rgba(255, 255, 0, 69), stop:0.423533 rgba(255, 0, 0, 145), stop:0.45 rgba(247, 255, 0, 208), stop:0.477581 rgba(255, 244, 71, 130), stop:0.518717 rgba(255, 85, 0, 130), stop:0.55 rgba(255, 255, 0, 255), stop:0.573864 rgba(255, 255, 255, 130), stop:0.57754 rgba(255, 255, 255, 130), stop:0.625 rgba(255, 255, 0, 69), stop:1 rgba(255, 255, 0, 69));font: 75 10pt \"Fixedsys\"") );
+                             "background-color: rgb(192, 255, 255); font: 75 10pt \"Fixedsys\""
+                           :"background-color: rgb(255, 200, 248);font: 75 10pt \"Fixedsys\"");
+
+       // "background-color: qconicalgradient(cx:0, cy:0, angle:135, stop:0 rgba(220, 220, 220, 69), stop:0.375 rgba(255, 255, 0, 69), stop:0.423533 rgba(251, 255, 0, 145), stop:0.45 rgba(247, 255, 0, 208), stop:0.477581 rgba(255, 244, 71, 130), stop:0.518717 rgba(255, 218, 71, 130), stop:0.55 rgba(255, 255, 0, 255), stop:0.57754 rgba(255, 203, 0, 130), stop:0.625 rgba(255, 255, 0, 69), stop:1 rgba(255, 255, 0, 69));font: 75 10pt \"Fixedsys\""
+    //: "background-color: qconicalgradient(cx:0, cy:0, angle:135, stop:0 rgba(220, 220, 220, 69), stop:0.375 rgba(255, 255, 0, 69), stop:0.423533 rgba(255, 0, 0, 145), stop:0.45 rgba(247, 255, 0, 208), stop:0.477581 rgba(255, 244, 71, 130), stop:0.518717 rgba(255, 85, 0, 130), stop:0.55 rgba(255, 255, 0, 255), stop:0.573864 rgba(255, 255, 255, 130), stop:0.57754 rgba(255, 255, 255, 130), stop:0.625 rgba(255, 255, 0, 69), stop:1 rgba(255, 255, 0, 69));font: 75 10pt \"Fixedsys\"" );
     label->setText(bIsLogbook? qApp->translate("frame", strLogbook): qApp->translate("frame", strSampling));
 }

@@ -1,8 +1,8 @@
 //#include "globaldefs.h"
 #include "frmvesseltype.h"
 
-FrmVesselType::FrmVesselType(RoleDef* inRoleDef, Sample* inSample, DateModel* inTDateTime, RuleChecker* ruleCheckerPtr, QWidget *parent, Qt::WFlags flags):
-PreviewTab(3,inRoleDef,inSample,inTDateTime,tr("Vessel Type"), ruleCheckerPtr, parent, flags){
+FrmVesselType::FrmVesselType(RoleDef* inRoleDef, Sample* inSample, RuleChecker* ruleCheckerPtr, QWidget *parent, Qt::WFlags flags):
+PreviewTab(3,inRoleDef,inSample,tr("Vessel Type"), ruleCheckerPtr, parent, flags){
 
     setupUi(this);
 
@@ -21,7 +21,6 @@ PreviewTab(3,inRoleDef,inSample,inTDateTime,tr("Vessel Type"), ruleCheckerPtr, p
 
     initModels();
     initUI();
-    initMappers();
 }
 
 FrmVesselType::~FrmVesselType()
@@ -47,11 +46,6 @@ void FrmVesselType::onItemSelection()
 
 void FrmVesselType::initMappers()
 {
-    //NOTHING
-}
-
-void FrmVesselType::initMapper1()
-{
     if (m_mapperBinderPtr!=0) {delete m_mapperBinderPtr; m_mapperBinderPtr=0;}
     if (mapper1!=0) delete mapper1;
     mapper1= new QDataWidgetMapper(this);
@@ -69,7 +63,7 @@ void FrmVesselType::initMapper1()
 
     cmbTypes->setModel(tSVesselTypes->relationModel(2));
     cmbTypes->setModelColumn(
-        tSVesselTypes->relationModel(2)->fieldIndex(tr("Name")));
+        tSVesselTypes->relationModel(2)->fieldIndex("name"));
 
     mapper1->addMapping(cmbTypes, 2);
 
@@ -114,12 +108,14 @@ void FrmVesselType::setPreviewQuery()
     if (m_sample==0) return;
 
     viewVesselTypes->setQuery(
-        tr("SELECT     dbo.Sampled_Cell_Vessel_Types.ID, dbo.Ref_Vessel_Types.Name [Vessel Type]")+
-        tr(" FROM         dbo.Sampled_Cell_Vessel_Types INNER JOIN")+
-        tr("                      dbo.Ref_Vessel_Types ON dbo.Sampled_Cell_Vessel_Types.id_vessel_type = dbo.Ref_Vessel_Types.ID")+
-        tr(" WHERE     (dbo.Sampled_Cell_Vessel_Types.id_cell =")+ QVariant(m_sample->cellId).toString() + tr(")") +
-        tr(" ORDER BY dbo.Sampled_Cell_Vessel_Types.ID DESC")
+        "select     sampled_cell_vessel_types.id, ref_vessel_types.name \"vessel type\""
+        " from         sampled_cell_vessel_types inner join"
+        "                      ref_vessel_types on sampled_cell_vessel_types.id_vessel_type = ref_vessel_types.id"
+        " where     (sampled_cell_vessel_types.id_cell =" + QVariant(m_sample->cellId).toString() + ")"
+        " order by sampled_cell_vessel_types.id desc"
     );
+
+    //qDebug() << viewVesselTypes->query().lastQuery() << endl;
 
     tableView->hideColumn(0);
     resizeToVisibleColumns(tableView);
@@ -177,10 +173,10 @@ void FrmVesselType::createRecord()
 {
     genericCreateRecord();
 
-    mapper1->toLast();
-
     while(tSVesselTypes->canFetchMore())
-        tSVesselTypes->fetchMore();
+       tSVesselTypes->fetchMore();
+
+    mapper1->toLast();
 
     QModelIndex idx=tSVesselTypes->index(tSVesselTypes->rowCount()-1,1);
     tSVesselTypes->setData(idx,m_sample->cellId);//id_cell
@@ -193,40 +189,55 @@ void FrmVesselType::createRecord()
 
 void FrmVesselType::filterModel4Combo()
 {
-    QString strQuery(
-    tr("SELECT     dbo.Ref_Vessel_Types.ID")+
-    tr(" FROM         dbo.FR_ALS2Vessel INNER JOIN")+
-    tr("                      dbo.Ref_Vessels ON dbo.FR_ALS2Vessel.vesselID = dbo.Ref_Vessels.VesselID INNER JOIN")+
-    tr("                      dbo.Ref_Vessel_Types ON dbo.Ref_Vessels.VesselType = dbo.Ref_Vessel_Types.ID")+
-    tr(" WHERE     (dbo.FR_ALS2Vessel.id_sub_frame =")+
-    tr("                          (SELECT     ID")+
-    tr("                            FROM          dbo.FR_Sub_Frame")+
-    tr("                            WHERE      (Type =")+
-    tr("                                                       (SELECT     ID")+
-    tr("                                                         FROM          dbo.Ref_Frame")+
-    tr("                                                         WHERE      (Name = 'root'))) AND (id_frame = ") + QVariant(m_sample->frameId).toString() + tr("))) AND (dbo.FR_ALS2Vessel.id_abstract_landingsite =")+
-    tr("                          (SELECT     id_abstract_LandingSite")+
-    tr("                            FROM          dbo.Sampled_Cell")+
-    tr("                            WHERE      (ID = ") + QVariant(m_sample->cellId).toString() + tr("))) AND (dbo.FR_ALS2Vessel.vesselID NOT IN")+
-    tr("                          (SELECT     VesselID")+
-    tr("                            FROM          dbo.Abstract_Changes_Temp_Vessel")+
-    tr("                            WHERE      (id_cell = ") + QVariant(m_sample->cellId).toString() + tr(") AND (To_LS =")+
-    tr("                                                       (SELECT     ID")+
-    tr("                                                         FROM          dbo.Ref_Abstract_LandingSite")+
-    tr("                                                         WHERE      (Name = 'outside')))))")+
-    tr(" UNION")+
-    tr(" SELECT     Ref_Vessel_Types_1.Name")+
-    tr(" FROM         dbo.FR_ALS2Vessel AS FR_ALS2Vessel_1 INNER JOIN")+
-    tr("                      dbo.Ref_Vessels AS Ref_Vessels_1 ON FR_ALS2Vessel_1.vesselID = Ref_Vessels_1.VesselID INNER JOIN")+
-    tr("                      dbo.Ref_Vessel_Types AS Ref_Vessel_Types_1 ON Ref_Vessels_1.VesselType = Ref_Vessel_Types_1.ID")+
-    tr(" WHERE     (Ref_Vessels_1.VesselID IN")+
-    tr("                          (SELECT     VesselID")+
-    tr("                            FROM          dbo.Abstract_Changes_Temp_Vessel AS Abstract_Changes_Temp_Vessel_1")+
-    tr("                            WHERE      (id_cell = ") + QVariant(m_sample->cellId).toString() + tr(") AND (To_LS =")+
-    tr("                                                       (SELECT     id_abstract_LandingSite")+
-    tr("                                                         FROM          dbo.Sampled_Cell AS Sampled_Cell_1")+
-    tr("                                                         WHERE      (ID = ") + QVariant(m_sample->cellId).toString() + tr(")))))")
-    );
+    QString strQuery=
+                "SELECT distinct"
+                " ref_vessel_types.id"
+                " FROM   "
+                "       fr_sub_frame,"
+                "       fr_als2vessel,"
+                "       ref_vessels,"
+                "       ref_vessel_types"
+                " WHERE  "
+                "       fr_als2vessel.id_sub_frame=fr_sub_frame.id"
+                "       AND fr_als2vessel.vesselid = ref_vessels.vesselid       "
+                "       AND ref_vessels.vesseltype = ref_vessel_types.id"
+                "       AND fr_als2vessel.id_abstract_landingsite = (SELECT"
+                "           sampled_cell.id_abstract_landingsite"
+                "                                          FROM   sampled_cell"
+                "                                          WHERE  sampled_cell.id ="+ QVariant(m_sample->cellId).toString() + ")"
+                "       AND fr_sub_frame.id_frame = " + QVariant(m_sample->frameId).toString() +
+                "       AND fr_sub_frame.description like 'root'  "
+            /*
+                // removing vessels temporary deactivated ////////////
+                " and fr_als2vessel.vesselid NOT IN ("
+                "select t.vesselid from "
+                " (select vesselid, max(id) as MaxID"
+                " from abstract_changes_temp_vessel f where from_ls="
+                " (select sampled_cell.id_abstract_landingsite from sampled_cell where id="+ QVariant(m_sample->cellId).toString() + ")  group by vesselid) r"
+                " inner join abstract_changes_temp_vessel t"
+                " on t.vesselid=r.vesselid and t.id=r.MaxID "
+                " inner join ref_temp_frame f "
+                " on  t.id_temp_frame=f.id"
+                " where f.id_cell="+ QVariant(m_sample->cellId).toString() +
+                " order by vesselid asc"
+                ")"
+                // adding vessels temporary deactivated ////////////
+                 " UNION "
+                " select distinct ref_vessels.vesseltype from "
+                " (select vesselid, max(id) as MaxID "
+                " from abstract_changes_temp_vessel f where to_ls="
+            " (select sampled_cell.id_abstract_landingsite from sampled_cell where id="+ QVariant(m_sample->cellId).toString() +")  group by vesselid) r"
+                " inner join abstract_changes_temp_vessel t"
+                " on t.vesselid=r.vesselid and t.id=r.MaxID "
+                " inner join ref_temp_frame f "
+                " on  t.id_temp_frame=f.id"
+                " inner join ref_vessels "
+                " on t.vesselid=ref_vessels.vesselid"
+                " where f.id_cell="+ QVariant(m_sample->cellId).toString()
+                //" order by ref_vessels.vesseltype asc"*/
+                ;
+
+    qDebug() << strQuery << endl;
 
     QSqlQuery query;
     query.prepare(strQuery);
@@ -235,17 +246,19 @@ void FrmVesselType::filterModel4Combo()
         return;
     }
 
-    QString strFilter(tr(""));
+    Q_ASSERT_X(query.size()>=1, "Vessel Types", QString(QString("Selection of a LS without vessels!") + m_sample->print()).toUtf8().constData());
+    QString strFilter("");
      while (query.next()) {
-        strFilter.append(tr("ID=") + query.value(0).toString());
-        strFilter.append(tr(" OR "));
+        strFilter.append("id=" + query.value(0).toString());
+        strFilter.append(" OR ");
      }
+
      if (!strFilter.isEmpty())
-         strFilter=strFilter.remove(strFilter.size()-tr(" OR ").length(),tr(" OR ").length());
+         strFilter=strFilter.remove(strFilter.size()-QString(" OR ").length(),QString(" OR ").length());
 
     tSVesselTypes->relationModel(2)->setFilter(strFilter);
     //first we set the relation; then we create a mapper and assign the (amended) model to the mapper;
-    initMapper1();
+    initMappers();
 }
 
 void FrmVesselType::initUI()
@@ -291,9 +304,9 @@ void FrmVesselType::initVesselTypeModel()
     if (tSVesselTypes!=0) delete tSVesselTypes;
 
     tSVesselTypes=new QSqlRelationalTableModel();
-    tSVesselTypes->setTable(QSqlDatabase().driver()->escapeIdentifier("Sampled_Cell_Vessel_Types",
+    tSVesselTypes->setTable(QSqlDatabase().driver()->escapeIdentifier("sampled_cell_vessel_types",
         QSqlDriver::TableName));
-    tSVesselTypes->setRelation(2, QSqlRelation("Ref_Vessel_Types", "ID", "Name"));
+    tSVesselTypes->setRelation(2, QSqlRelation("ref_vessel_types", "id", "name"));
     tSVesselTypes->relationModel(2)->setEditStrategy(QSqlTableModel::OnManualSubmit);
     tSVesselTypes->setEditStrategy(QSqlTableModel::OnManualSubmit);
     tSVesselTypes->sort(0,Qt::AscendingOrder);

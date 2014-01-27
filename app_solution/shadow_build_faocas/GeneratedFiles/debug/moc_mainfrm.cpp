@@ -129,25 +129,25 @@ static const uint qt_meta_data_MainFrm[] = {
       82,    8,    8,    8, 0x08,
      102,   92,    8,    8, 0x08,
      174,  132,    8,    8, 0x08,
-     267,    8,    8,    8, 0x08,
-     286,    8,    8,    8, 0x08,
-     304,    8,    8,    8, 0x08,
-     326,  322,    8,    8, 0x08,
-     346,  322,    8,    8, 0x08,
-     388,  367,    8,    8, 0x08,
-     415,    8,    8,    8, 0x08,
-     433,    8,    8,    8, 0x08,
-     452,    8,    8,    8, 0x08,
-     475,  468,    8,    8, 0x08,
-     498,    8,    8,    8, 0x08,
-     509,    8,    8,    8, 0x08,
-     526,    8,    8,    8, 0x08,
-     538,    8,    8,    8, 0x08,
-     550,    8,    8,    8, 0x08,
-     574,  570,    8,    8, 0x08,
-     607,    8,    8,    8, 0x08,
-     626,  570,    8,    8, 0x08,
-     658,    8,    8,    8, 0x08,
+     266,    8,    8,    8, 0x08,
+     285,    8,    8,    8, 0x08,
+     303,    8,    8,    8, 0x08,
+     325,  321,    8,    8, 0x08,
+     345,  321,    8,    8, 0x08,
+     387,  366,    8,    8, 0x08,
+     414,    8,    8,    8, 0x08,
+     432,    8,    8,    8, 0x08,
+     451,    8,    8,    8, 0x08,
+     474,  467,    8,    8, 0x08,
+     497,    8,    8,    8, 0x08,
+     508,    8,    8,    8, 0x08,
+     525,    8,    8,    8, 0x08,
+     537,    8,    8,    8, 0x08,
+     549,    8,    8,    8, 0x08,
+     573,  569,    8,    8, 0x08,
+     606,    8,    8,    8, 0x08,
+     625,  569,    8,    8, 0x08,
+     657,    8,    8,    8, 0x08,
 
        0        // eod
 };
@@ -158,7 +158,7 @@ static const char qt_meta_stringdata_MainFrm[] = {
     "newTabs()\0bNext,idx\0navigateThroughTabs(bool,int)\0"
     "mode,persistence,sample,blackList,options\0"
     "showFrameDetails(FrmFrameDetails::Mode,FrmFrameDetails::Persistence,Sa"
-    "mple*,QList<int>&,int)\0"
+    "mple*,QList<int>,int)\0"
     "hideFrameDetails()\0showFrmSampling()\0"
     "hideFrmSampling()\0str\0statusShow(QString)\0"
     "statusClean(QString)\0strError,bShowMsgBox\0"

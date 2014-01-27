@@ -1,7 +1,7 @@
 #include "frmcatch.h"
 
-FrmCatch::FrmCatch(RoleDef* inRoleDef, Sample* inSample, DateModel* inTDateTime, RuleChecker* ruleCheckerPtr, QWidget *parent, Qt::WFlags flags):
-PreviewTab(7, inRoleDef,inSample,inTDateTime,tr("Catch"), ruleCheckerPtr,parent, flags){
+FrmCatch::FrmCatch(RoleDef* inRoleDef, Sample* inSample, RuleChecker* ruleCheckerPtr, QWidget *parent, Qt::WFlags flags):
+PreviewTab(7, inRoleDef,inSample, tr("Catch"), ruleCheckerPtr,parent, flags){
 
     setupUi(this);
 
@@ -72,15 +72,15 @@ void FrmCatch::setPreviewQuery()
 {
     if (m_sample==0) return;
 
-    QString strQuery=
-    "SELECT     dbo.Sampled_Catch.ID, dbo.Ref_Commercial_Categories.Name AS [Commercial Category], "
-    "                      dbo.Sampled_Catch.catch_weight_estimated AS [Total Catch], dbo.Ref_Units.Name AS Units"
-    " FROM         dbo.Sampled_Catch INNER JOIN"
-    "                      dbo.Ref_Commercial_Categories ON dbo.Sampled_Catch.id_commercial_category = dbo.Ref_Commercial_Categories.ID INNER JOIN"
-    "                      dbo.Ref_Units ON dbo.Sampled_Catch.id_catch_no_boxes_units = dbo.Ref_Units.ID AND "
-    "                      dbo.Sampled_Catch.id_catch_units_units = dbo.Ref_Units.ID AND dbo.Sampled_Catch.id_catch_weight_units = dbo.Ref_Units.ID AND "
-    "                      dbo.Sampled_Catch.id_sample_units = dbo.Ref_Units.ID"
-    "                      WHERE     (dbo.Sampled_Catch.id_fishing_operation = :id) ORDER BY ID DESC"
+    QString strQuery=            
+            "select     sampled_catch.id, ref_commercial_categories.name as \"commercial category\", "
+            "                      sampled_catch.catch_weight_estimated as \"total catch\", ref_units.name as units"
+            " from         sampled_catch inner join"
+            "                      ref_commercial_categories on sampled_catch.id_commercial_category = ref_commercial_categories.id inner join"
+            "                      ref_units on sampled_catch.id_catch_no_boxes_units = ref_units.id and "
+            "                      sampled_catch.id_catch_units_units = ref_units.id and sampled_catch.id_catch_weight_units = ref_units.id and "
+            "                      sampled_catch.id_sample_units = ref_units.id"
+            "                      where     (sampled_catch.id_fishing_operation = :id) order by id desc"
     ;
 
     QSqlQuery query;
@@ -279,15 +279,15 @@ void FrmCatch::initCatchModel()
     if (tCatch!=0) delete tCatch;
 
     tCatch=new QSqlRelationalTableModel();
-    tCatch->setTable(QSqlDatabase().driver()->escapeIdentifier("Sampled_Catch",
+    tCatch->setTable(QSqlDatabase().driver()->escapeIdentifier("sampled_catch",
         QSqlDriver::TableName));
 
-    tCatch->setRelation(2, QSqlRelation("Ref_Commercial_Categories", "ID", "Name"));
+    tCatch->setRelation(2, QSqlRelation("ref_commercial_categories", "id", "name"));
 
-    tCatch->setRelation(5, QSqlRelation("Ref_Units", "ID", "Name"));//catch_weight units
-    tCatch->setRelation(8, QSqlRelation("Ref_Units", "ID", "Name"));//no_boxes_units
-    tCatch->setRelation(11, QSqlRelation("Ref_Units", "ID", "Name"));//units units
-    tCatch->setRelation(14, QSqlRelation("Ref_Units", "ID", "Name"));//sample units
+    tCatch->setRelation(5, QSqlRelation("ref_units", "id", "name"));//catch_weight units
+    tCatch->setRelation(8, QSqlRelation("ref_units", "id", "name"));//no_boxes_units
+    tCatch->setRelation(11, QSqlRelation("ref_units", "id", "name"));//units units
+    tCatch->setRelation(14, QSqlRelation("ref_units", "id", "name"));//sample units
 
     tCatch->setEditStrategy(QSqlTableModel::OnManualSubmit);
     tCatch->sort(0,Qt::AscendingOrder);
@@ -310,7 +310,7 @@ void FrmCatch::filterModel4Combo()
 
     strQuery=
         "SELECT     id_commercial_category"
-        " FROM         dbo.Sampled_Fishing_Operations_Categories"
+        " FROM         sampled_fishing_operations_categories"
         " WHERE     (id_fishing_operation = " + QVariant(m_sample->operationId).toString() + ")";
 
     query.prepare(strQuery);

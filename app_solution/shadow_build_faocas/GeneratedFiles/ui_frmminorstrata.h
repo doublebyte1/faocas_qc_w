@@ -9,11 +9,13 @@
 #ifndef UI_FRMMINORSTRATA_H
 #define UI_FRMMINORSTRATA_H
 
+#include <QtCore/QDate>
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
 #include <QtGui/QComboBox>
+#include <QtGui/QDateEdit>
 #include <QtGui/QDialogButtonBox>
 #include <QtGui/QGridLayout>
 #include <QtGui/QGroupBox>
@@ -29,7 +31,6 @@
 #include <QtGui/QToolButton>
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QWidget>
-#include "customtimectrl.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -70,8 +71,8 @@ public:
     QLabel *label;
     QLabel *label_2;
     QHBoxLayout *horizontalLayout_8;
-    CustomTimeCtrl *customDtStart;
-    CustomTimeCtrl *customDtEnd;
+    QDateEdit *customDtStart;
+    QDateEdit *customDtEnd;
     QHBoxLayout *horizontalLayout_7;
     QSpacerItem *horizontalSpacer;
     QDialogButtonBox *buttonBox;
@@ -308,19 +309,27 @@ public:
 
         horizontalLayout_8 = new QHBoxLayout();
         horizontalLayout_8->setObjectName(QString::fromUtf8("horizontalLayout_8"));
-        customDtStart = new CustomTimeCtrl(groupDetails);
+        customDtStart = new QDateEdit(groupDetails);
         customDtStart->setObjectName(QString::fromUtf8("customDtStart"));
         sizePolicy3.setHeightForWidth(customDtStart->sizePolicy().hasHeightForWidth());
         customDtStart->setSizePolicy(sizePolicy3);
         customDtStart->setFocusPolicy(Qt::StrongFocus);
+        customDtStart->setMaximumDate(QDate(2070, 1, 1));
+        customDtStart->setMinimumDate(QDate(1969, 12, 28));
+        customDtStart->setCalendarPopup(true);
+        customDtStart->setTimeSpec(Qt::UTC);
 
         horizontalLayout_8->addWidget(customDtStart);
 
-        customDtEnd = new CustomTimeCtrl(groupDetails);
+        customDtEnd = new QDateEdit(groupDetails);
         customDtEnd->setObjectName(QString::fromUtf8("customDtEnd"));
         sizePolicy3.setHeightForWidth(customDtEnd->sizePolicy().hasHeightForWidth());
         customDtEnd->setSizePolicy(sizePolicy3);
         customDtEnd->setFocusPolicy(Qt::StrongFocus);
+        customDtEnd->setMaximumDate(QDate(2070, 1, 1));
+        customDtEnd->setMinimumDate(QDate(1968, 12, 28));
+        customDtEnd->setCalendarPopup(true);
+        customDtEnd->setTimeSpec(Qt::UTC);
 
         horizontalLayout_8->addWidget(customDtEnd);
 
@@ -492,6 +501,8 @@ public:
         radioInactive->setText(QApplication::translate("frmminorstrata", "Inactive", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("frmminorstrata", "Start Date", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("frmminorstrata", "End Date", 0, QApplication::UnicodeUTF8));
+        customDtStart->setDisplayFormat(QApplication::translate("frmminorstrata", "yyyy-MM-dd", 0, QApplication::UnicodeUTF8));
+        customDtEnd->setDisplayFormat(QApplication::translate("frmminorstrata", "yyyy-MM-dd", 0, QApplication::UnicodeUTF8));
         groupBackNext->setTitle(QString());
         pushPrevious->setText(QApplication::translate("frmminorstrata", "Previous", 0, QApplication::UnicodeUTF8));
         pushNext->setText(QApplication::translate("frmminorstrata", "Next", 0, QApplication::UnicodeUTF8));

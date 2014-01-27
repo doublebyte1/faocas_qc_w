@@ -184,8 +184,8 @@
      <property name="title">
       <string>Details</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_4">
-      <item row="0" column="0" colspan="2">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0" colspan="3">
        <widget class="QGroupBox" name="groupPhysical">
         <property name="focusPolicy">
          <enum>Qt::StrongFocus</enum>
@@ -202,15 +202,18 @@
         <property name="title">
          <string>Physical Frame</string>
         </property>
-        <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_4">
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QLabel" name="label_3">
            <property name="text">
-            <string>Choose frame</string>
+            <string>Choose Frame</string>
+           </property>
+           <property name="buddy">
+            <cstring>cmbPrexistent</cstring>
            </property>
           </widget>
          </item>
-         <item row="0" column="1">
+         <item>
           <widget class="QComboBox" name="cmbPrexistent">
            <property name="focusPolicy">
             <enum>Qt::StrongFocus</enum>
@@ -220,8 +223,8 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="2">
-          <widget class="QToolButton" name="toolView">
+         <item>
+          <widget class="QToolButton" name="toolEdit">
            <property name="focusPolicy">
             <enum>Qt::StrongFocus</enum>
            </property>
@@ -239,91 +242,36 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_3">
-           <property name="text">
-            <string>Create New</string>
+         <item>
+          <widget class="QLabel" name="lbSource">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
            </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           <property name="styleSheet">
+            <string notr="true">background-color: qconicalgradient(cx:0, cy:0, angle:135, stop:0 rgba(220, 220, 220, 69), stop:0.375 rgba(255, 255, 0, 69), stop:0.423533 rgba(251, 255, 0, 145), stop:0.45 rgba(247, 255, 0, 208), stop:0.477581 rgba(255, 244, 71, 130), stop:0.518717 rgba(255, 218, 71, 130), stop:0.55 rgba(255, 255, 0, 255), stop:0.57754 rgba(255, 203, 0, 130), stop:0.625 rgba(255, 255, 0, 69), stop:1 rgba(255, 255, 0, 69));
+font: 75 10pt &quot;Fixedsys&quot;;</string>
            </property>
-          </widget>
-         </item>
-         <item row="1" column="1" rowspan="2">
-          <widget class="QGroupBox" name="groupNew">
-           <property name="toolTip">
-            <string>Input new frame to be created;</string>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
            </property>
-           <property name="statusTip">
-            <string>Input new frame to be created;</string>
-           </property>
-           <property name="whatsThis">
-            <string>Input new frame to be created;</string>
-           </property>
-           <property name="title">
-            <string/>
-           </property>
-           <layout class="QGridLayout" name="gridLayout">
-            <item row="0" column="0">
-             <widget class="QRadioButton" name="radioCreate">
-              <property name="text">
-               <string>Create from Scratch</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <spacer name="horizontalSpacer_2">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>200</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="1" column="0">
-             <widget class="QRadioButton" name="radioCopy">
-              <property name="text">
-               <string>Copy from pre-existent</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QComboBox" name="cmbCopy">
-              <property name="focusPolicy">
-               <enum>Qt::StrongFocus</enum>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item row="2" column="2">
-          <widget class="QToolButton" name="toolEdit">
-           <property name="focusPolicy">
-            <enum>Qt::StrongFocus</enum>
-           </property>
-           <property name="toolTip">
-            <string>Edit Frame</string>
-           </property>
-           <property name="statusTip">
-            <string>Edit Frame</string>
-           </property>
-           <property name="whatsThis">
-            <string>Allows editing this frame</string>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
            </property>
            <property name="text">
-            <string>...</string>
+            <string>[SOURCE]</string>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
         </layout>
        </widget>
       </item>
-      <item row="1" column="0">
+      <item row="1" column="0" rowspan="2">
        <widget class="QGroupBox" name="groupTime">
         <property name="focusPolicy">
          <enum>Qt::StrongFocus</enum>
@@ -343,6 +291,75 @@
            <property name="text">
             <string>Start Date</string>
            </property>
+           <property name="buddy">
+            <cstring>customDtStart</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QDateEdit" name="customDtEnd">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumDate">
+            <date>
+             <year>2070</year>
+             <month>1</month>
+             <day>1</day>
+            </date>
+           </property>
+           <property name="minimumDate">
+            <date>
+             <year>1969</year>
+             <month>12</month>
+             <day>23</day>
+            </date>
+           </property>
+           <property name="displayFormat">
+            <string>yyyy-MM-dd</string>
+           </property>
+           <property name="calendarPopup">
+            <bool>true</bool>
+           </property>
+           <property name="timeSpec">
+            <enum>Qt::UTC</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QDateEdit" name="customDtStart">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumDate">
+            <date>
+             <year>2070</year>
+             <month>1</month>
+             <day>1</day>
+            </date>
+           </property>
+           <property name="minimumDate">
+            <date>
+             <year>1969</year>
+             <month>12</month>
+             <day>23</day>
+            </date>
+           </property>
+           <property name="displayFormat">
+            <string>yyyy-MM-dd</string>
+           </property>
+           <property name="calendarPopup">
+            <bool>true</bool>
+           </property>
+           <property name="timeSpec">
+            <enum>Qt::UTC</enum>
+           </property>
           </widget>
          </item>
          <item row="0" column="1">
@@ -356,49 +373,8 @@
            <property name="text">
             <string>End Date</string>
            </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="CustomTimeCtrl" name="customDtStart">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::StrongFocus</enum>
-           </property>
-           <property name="toolTip">
-            <string>Input start date for current frame;</string>
-           </property>
-           <property name="statusTip">
-            <string>Input start date for current frame;</string>
-           </property>
-           <property name="whatsThis">
-            <string>Input start date for current frame;</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="CustomTimeCtrl" name="customDtEnd">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::StrongFocus</enum>
-           </property>
-           <property name="toolTip">
-            <string>Input end date for current frame;</string>
-           </property>
-           <property name="statusTip">
-            <string>Input end date for current frame;</string>
-           </property>
-           <property name="whatsThis">
-            <string>Input end date for current frame;</string>
+           <property name="buddy">
+            <cstring>customDtEnd</cstring>
            </property>
           </widget>
          </item>
@@ -406,89 +382,78 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="QGroupBox" name="groupProcess">
-          <property name="focusPolicy">
-           <enum>Qt::StrongFocus</enum>
-          </property>
-          <property name="title">
-           <string/>
-          </property>
-          <property name="flat">
-           <bool>true</bool>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_4">
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_3">
-             <item>
-              <widget class="QLabel" name="label_5">
-               <property name="text">
-                <string>Sampling Technique</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QToolButton" name="toolProcess">
-               <property name="focusPolicy">
-                <enum>Qt::StrongFocus</enum>
-               </property>
-               <property name="toolTip">
-                <string>Characterise the sampling methodology(ies);</string>
-               </property>
-               <property name="statusTip">
-                <string>Characterise the sampling methodology(ies);</string>
-               </property>
-               <property name="whatsThis">
-                <string>Characterise the sampling methodology(ies);</string>
-               </property>
-               <property name="text">
-                <string>...</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="lbHeader">
-          <property name="text">
-           <string>LBHEADER</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QDialogButtonBox" name="buttonBox">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="focusPolicy">
-           <enum>Qt::StrongFocus</enum>
-          </property>
-          <property name="standardButtons">
-           <set>QDialogButtonBox::Apply|QDialogButtonBox::Close</set>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <widget class="QLabel" name="lbHeader">
+        <property name="text">
+         <string>LBHEADER</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QGroupBox" name="groupProcess">
+        <property name="focusPolicy">
+         <enum>Qt::StrongFocus</enum>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>Sampling Technique</string>
+           </property>
+           <property name="buddy">
+            <cstring>toolProcess</cstring>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolProcess">
+           <property name="focusPolicy">
+            <enum>Qt::StrongFocus</enum>
+           </property>
+           <property name="toolTip">
+            <string>Characterise the sampling methodology(ies);</string>
+           </property>
+           <property name="statusTip">
+            <string>Characterise the sampling methodology(ies);</string>
+           </property>
+           <property name="whatsThis">
+            <string>Characterise the sampling methodology(ies);</string>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QSplitter" name="splitter">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QDialogButtonBox" name="buttonBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="focusPolicy">
+         <enum>Qt::StrongFocus</enum>
+        </property>
+        <property name="standardButtons">
+         <set>QDialogButtonBox::Apply|QDialogButtonBox::Close</set>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -551,27 +516,11 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>CustomTimeCtrl</class>
-   <extends>QWidget</extends>
-   <header>customtimectrl.h</header>
-  </customwidget>
- </customwidgets>
  <tabstops>
   <tabstop>tableView</tabstop>
   <tabstop>pushNew</tabstop>
   <tabstop>pushEdit</tabstop>
   <tabstop>pushRemove</tabstop>
-  <tabstop>cmbPrexistent</tabstop>
-  <tabstop>toolView</tabstop>
-  <tabstop>radioCreate</tabstop>
-  <tabstop>radioCopy</tabstop>
-  <tabstop>cmbCopy</tabstop>
-  <tabstop>toolEdit</tabstop>
-  <tabstop>customDtStart</tabstop>
-  <tabstop>customDtEnd</tabstop>
-  <tabstop>toolProcess</tabstop>
   <tabstop>buttonBox</tabstop>
   <tabstop>pushPrevious</tabstop>
   <tabstop>pushNext</tabstop>
@@ -587,8 +536,8 @@
    <slot>next()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>693</x>
-     <y>486</y>
+     <x>820</x>
+     <y>524</y>
     </hint>
     <hint type="destinationlabel">
      <x>384</x>
@@ -603,24 +552,8 @@
    <slot>createRecord()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>787</x>
-     <y>23</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>406</x>
-     <y>249</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>clicked(QAbstractButton*)</signal>
-   <receiver>frmframe</receiver>
-   <slot>onButtonClick(QAbstractButton*)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>713</x>
-     <y>412</y>
+     <x>825</x>
+     <y>58</y>
     </hint>
     <hint type="destinationlabel">
      <x>406</x>
@@ -635,8 +568,8 @@
    <slot>editRecord(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>787</x>
-     <y>55</y>
+     <x>825</x>
+     <y>117</y>
     </hint>
     <hint type="destinationlabel">
      <x>406</x>
@@ -651,8 +584,8 @@
    <slot>removeRecord()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>787</x>
-     <y>87</y>
+     <x>825</x>
+     <y>175</y>
     </hint>
     <hint type="destinationlabel">
      <x>406</x>
@@ -667,8 +600,8 @@
    <slot>adjustFrmSamplingMode()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>427</x>
-     <y>181</y>
+     <x>775</x>
+     <y>328</y>
     </hint>
     <hint type="destinationlabel">
      <x>406</x>
@@ -692,6 +625,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>clicked(QAbstractButton*)</signal>
+   <receiver>frmframe</receiver>
+   <slot>onButtonClick(QAbstractButton*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>820</x>
+     <y>481</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cmbPrexistent</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>frmframe</receiver>
+   <slot>onFrameChange(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>529</x>
+     <y>379</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>415</x>
+     <y>267</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onChoosePreExistent()</slot>
@@ -705,5 +670,6 @@
   <slot>removeRecord()</slot>
   <slot>updateSample()</slot>
   <slot>adjustFrmSamplingMode()</slot>
+  <slot>onFrameChange(int)</slot>
  </slots>
 </ui>

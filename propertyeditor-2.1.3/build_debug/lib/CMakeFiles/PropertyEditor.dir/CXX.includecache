@@ -18,29 +18,9 @@ C:/Qt/4.8.5/include/QtCore/QAbstractItemModel
 qabstractitemmodel.h
 C:/Qt/4.8.5/include/QtCore/qabstractitemmodel.h
 
-C:/Qt/4.8.5/include/QtCore/QDebug
-qdebug.h
-C:/Qt/4.8.5/include/QtCore/qdebug.h
-
-C:/Qt/4.8.5/include/QtCore/QDir
-qdir.h
-C:/Qt/4.8.5/include/QtCore/qdir.h
-
 C:/Qt/4.8.5/include/QtCore/QList
 qlist.h
 C:/Qt/4.8.5/include/QtCore/qlist.h
-
-C:/Qt/4.8.5/include/QtCore/QMetaClassInfo
-qmetaobject.h
-C:/Qt/4.8.5/include/QtCore/qmetaobject.h
-
-C:/Qt/4.8.5/include/QtCore/QMetaEnum
-qmetaobject.h
-C:/Qt/4.8.5/include/QtCore/qmetaobject.h
-
-C:/Qt/4.8.5/include/QtCore/QMetaProperty
-qmetaobject.h
-C:/Qt/4.8.5/include/QtCore/qmetaobject.h
 
 C:/Qt/4.8.5/include/QtCore/QModelIndex
 qabstractitemmodel.h
@@ -49,10 +29,6 @@ C:/Qt/4.8.5/include/QtCore/qabstractitemmodel.h
 C:/Qt/4.8.5/include/QtCore/QObject
 qobject.h
 C:/Qt/4.8.5/include/QtCore/qobject.h
-
-C:/Qt/4.8.5/include/QtCore/QPluginLoader
-qpluginloader.h
-C:/Qt/4.8.5/include/QtCore/qpluginloader.h
 
 C:/Qt/4.8.5/include/QtCore/QPoint
 qpoint.h
@@ -65,10 +41,6 @@ C:/Qt/4.8.5/include/QtCore/qpoint.h
 C:/Qt/4.8.5/include/QtCore/QPointer
 qpointer.h
 C:/Qt/4.8.5/include/QtCore/qpointer.h
-
-C:/Qt/4.8.5/include/QtCore/QSize
-qsize.h
-C:/Qt/4.8.5/include/QtCore/qsize.h
 
 C:/Qt/4.8.5/include/QtCore/QVariant
 qvariant.h
@@ -194,10 +166,6 @@ C:/Qt/4.8.5/include/QtCore/qbasicatomic.h
 ../../src/corelib/thread/qbasicatomic.h
 C:/Qt/4.8.5/src/corelib/thread/qbasicatomic.h
 
-C:/Qt/4.8.5/include/QtCore/qbuffer.h
-../../src/corelib/io/qbuffer.h
-C:/Qt/4.8.5/src/corelib/io/qbuffer.h
-
 C:/Qt/4.8.5/include/QtCore/qbytearray.h
 ../../src/corelib/tools/qbytearray.h
 C:/Qt/4.8.5/src/corelib/tools/qbytearray.h
@@ -210,14 +178,6 @@ C:/Qt/4.8.5/include/QtCore/qconfig.h
 ../../src/corelib/global/qconfig.h
 C:/Qt/4.8.5/src/corelib/global/qconfig.h
 
-C:/Qt/4.8.5/include/QtCore/qcontiguouscache.h
-../../src/corelib/tools/qcontiguouscache.h
-C:/Qt/4.8.5/src/corelib/tools/qcontiguouscache.h
-
-C:/Qt/4.8.5/include/QtCore/qcoreapplication.h
-../../src/corelib/kernel/qcoreapplication.h
-C:/Qt/4.8.5/src/corelib/kernel/qcoreapplication.h
-
 C:/Qt/4.8.5/include/QtCore/qcoreevent.h
 ../../src/corelib/kernel/qcoreevent.h
 C:/Qt/4.8.5/src/corelib/kernel/qcoreevent.h
@@ -226,18 +186,6 @@ C:/Qt/4.8.5/include/QtCore/qdatastream.h
 ../../src/corelib/io/qdatastream.h
 C:/Qt/4.8.5/src/corelib/io/qdatastream.h
 
-C:/Qt/4.8.5/include/QtCore/qdebug.h
-../../src/corelib/io/qdebug.h
-C:/Qt/4.8.5/src/corelib/io/qdebug.h
-
-C:/Qt/4.8.5/include/QtCore/qdir.h
-../../src/corelib/io/qdir.h
-C:/Qt/4.8.5/src/corelib/io/qdir.h
-
-C:/Qt/4.8.5/include/QtCore/qeventloop.h
-../../src/corelib/kernel/qeventloop.h
-C:/Qt/4.8.5/src/corelib/kernel/qeventloop.h
-
 C:/Qt/4.8.5/include/QtCore/qfeatures.h
 ../../src/corelib/global/qfeatures.h
 C:/Qt/4.8.5/src/corelib/global/qfeatures.h
@@ -245,10 +193,6 @@ C:/Qt/4.8.5/src/corelib/global/qfeatures.h
 C:/Qt/4.8.5/include/QtCore/qfile.h
 ../../src/corelib/io/qfile.h
 C:/Qt/4.8.5/src/corelib/io/qfile.h
-
-C:/Qt/4.8.5/include/QtCore/qfileinfo.h
-../../src/corelib/io/qfileinfo.h
-C:/Qt/4.8.5/src/corelib/io/qfileinfo.h
 
 C:/Qt/4.8.5/include/QtCore/qglobal.h
 ../../src/corelib/global/qglobal.h
@@ -265,10 +209,6 @@ C:/Qt/4.8.5/src/corelib/io/qiodevice.h
 C:/Qt/4.8.5/include/QtCore/qiterator.h
 ../../src/corelib/tools/qiterator.h
 C:/Qt/4.8.5/src/corelib/tools/qiterator.h
-
-C:/Qt/4.8.5/include/QtCore/qlibrary.h
-../../src/corelib/plugin/qlibrary.h
-C:/Qt/4.8.5/src/corelib/plugin/qlibrary.h
 
 C:/Qt/4.8.5/include/QtCore/qline.h
 ../../src/corelib/tools/qline.h
@@ -294,10 +234,6 @@ C:/Qt/4.8.5/include/QtCore/qmargins.h
 ../../src/corelib/tools/qmargins.h
 C:/Qt/4.8.5/src/corelib/tools/qmargins.h
 
-C:/Qt/4.8.5/include/QtCore/qmetaobject.h
-../../src/corelib/kernel/qmetaobject.h
-C:/Qt/4.8.5/src/corelib/kernel/qmetaobject.h
-
 C:/Qt/4.8.5/include/QtCore/qmetatype.h
 ../../src/corelib/kernel/qmetatype.h
 C:/Qt/4.8.5/src/corelib/kernel/qmetatype.h
@@ -321,10 +257,6 @@ C:/Qt/4.8.5/src/corelib/kernel/qobjectdefs.h
 C:/Qt/4.8.5/include/QtCore/qpair.h
 ../../src/corelib/tools/qpair.h
 C:/Qt/4.8.5/src/corelib/tools/qpair.h
-
-C:/Qt/4.8.5/include/QtCore/qpluginloader.h
-../../src/corelib/plugin/qpluginloader.h
-C:/Qt/4.8.5/src/corelib/plugin/qpluginloader.h
 
 C:/Qt/4.8.5/include/QtCore/qpoint.h
 ../../src/corelib/tools/qpoint.h
@@ -382,14 +314,6 @@ C:/Qt/4.8.5/include/QtCore/qstringmatcher.h
 ../../src/corelib/tools/qstringmatcher.h
 C:/Qt/4.8.5/src/corelib/tools/qstringmatcher.h
 
-C:/Qt/4.8.5/include/QtCore/qtextcodec.h
-../../src/corelib/codecs/qtextcodec.h
-C:/Qt/4.8.5/src/corelib/codecs/qtextcodec.h
-
-C:/Qt/4.8.5/include/QtCore/qtextstream.h
-../../src/corelib/io/qtextstream.h
-C:/Qt/4.8.5/src/corelib/io/qtextstream.h
-
 C:/Qt/4.8.5/include/QtCore/qvariant.h
 ../../src/corelib/kernel/qvariant.h
 C:/Qt/4.8.5/src/corelib/kernel/qvariant.h
@@ -398,21 +322,9 @@ C:/Qt/4.8.5/include/QtCore/qvector.h
 ../../src/corelib/tools/qvector.h
 C:/Qt/4.8.5/src/corelib/tools/qvector.h
 
-C:/Qt/4.8.5/include/QtGui/QApplication
-qapplication.h
-C:/Qt/4.8.5/include/QtGui/qapplication.h
-
-C:/Qt/4.8.5/include/QtGui/QFontMetrics
-qfontmetrics.h
-C:/Qt/4.8.5/include/QtGui/qfontmetrics.h
-
 C:/Qt/4.8.5/include/QtGui/QItemDelegate
 qitemdelegate.h
 C:/Qt/4.8.5/include/QtGui/qitemdelegate.h
-
-C:/Qt/4.8.5/include/QtGui/QPainter
-qpainter.h
-C:/Qt/4.8.5/include/QtGui/qpainter.h
 
 C:/Qt/4.8.5/include/QtGui/QPlatformWindow
 qplatformwindow_qpa.h
@@ -446,10 +358,6 @@ C:/Qt/4.8.5/include/QtGui/qabstractspinbox.h
 ../../src/gui/widgets/qabstractspinbox.h
 C:/Qt/4.8.5/src/gui/widgets/qabstractspinbox.h
 
-C:/Qt/4.8.5/include/QtGui/qapplication.h
-../../src/gui/kernel/qapplication.h
-C:/Qt/4.8.5/src/gui/kernel/qapplication.h
-
 C:/Qt/4.8.5/include/QtGui/qbrush.h
 ../../src/gui/painting/qbrush.h
 C:/Qt/4.8.5/src/gui/painting/qbrush.h
@@ -462,17 +370,9 @@ C:/Qt/4.8.5/include/QtGui/qcursor.h
 ../../src/gui/kernel/qcursor.h
 C:/Qt/4.8.5/src/gui/kernel/qcursor.h
 
-C:/Qt/4.8.5/include/QtGui/qdesktopwidget.h
-../../src/gui/kernel/qdesktopwidget.h
-C:/Qt/4.8.5/src/gui/kernel/qdesktopwidget.h
-
 C:/Qt/4.8.5/include/QtGui/qdrag.h
 ../../src/gui/kernel/qdrag.h
 C:/Qt/4.8.5/src/gui/kernel/qdrag.h
-
-C:/Qt/4.8.5/include/QtGui/qdrawutil.h
-../../src/gui/painting/qdrawutil.h
-C:/Qt/4.8.5/src/gui/painting/qdrawutil.h
 
 C:/Qt/4.8.5/include/QtGui/qevent.h
 ../../src/gui/kernel/qevent.h
@@ -530,10 +430,6 @@ C:/Qt/4.8.5/include/QtGui/qpaintdevice.h
 ../../src/gui/painting/qpaintdevice.h
 C:/Qt/4.8.5/src/gui/painting/qpaintdevice.h
 
-C:/Qt/4.8.5/include/QtGui/qpainter.h
-../../src/gui/painting/qpainter.h
-C:/Qt/4.8.5/src/gui/painting/qpainter.h
-
 C:/Qt/4.8.5/include/QtGui/qpainterpath.h
 ../../src/gui/painting/qpainterpath.h
 C:/Qt/4.8.5/src/gui/painting/qpainterpath.h
@@ -541,10 +437,6 @@ C:/Qt/4.8.5/src/gui/painting/qpainterpath.h
 C:/Qt/4.8.5/include/QtGui/qpalette.h
 ../../src/gui/kernel/qpalette.h
 C:/Qt/4.8.5/src/gui/kernel/qpalette.h
-
-C:/Qt/4.8.5/include/QtGui/qpen.h
-../../src/gui/painting/qpen.h
-C:/Qt/4.8.5/src/gui/painting/qpen.h
 
 C:/Qt/4.8.5/include/QtGui/qpixmap.h
 ../../src/gui/image/qpixmap.h
@@ -598,17 +490,9 @@ C:/Qt/4.8.5/include/QtGui/qtabwidget.h
 ../../src/gui/widgets/qtabwidget.h
 C:/Qt/4.8.5/src/gui/widgets/qtabwidget.h
 
-C:/Qt/4.8.5/include/QtGui/qtextoption.h
-../../src/gui/text/qtextoption.h
-C:/Qt/4.8.5/src/gui/text/qtextoption.h
-
 C:/Qt/4.8.5/include/QtGui/qtransform.h
 ../../src/gui/painting/qtransform.h
 C:/Qt/4.8.5/src/gui/painting/qtransform.h
-
-C:/Qt/4.8.5/include/QtGui/qtransportauth_qws.h
-../../src/gui/embedded/qtransportauth_qws.h
-C:/Qt/4.8.5/src/gui/embedded/qtransportauth_qws.h
 
 C:/Qt/4.8.5/include/QtGui/qtreeview.h
 ../../src/gui/itemviews/qtreeview.h
@@ -776,12 +660,6 @@ C:/Qt/4.8.5/src/corelib/arch/QtCore/qatomic_windows.h
 
 C:/Qt/4.8.5/src/corelib/arch/qatomic_x86_64.h
 
-C:/Qt/4.8.5/src/corelib/codecs/qtextcodec.h
-QtCore/qstring.h
--
-QtCore/qlist.h
--
-
 C:/Qt/4.8.5/src/corelib/global/qconfig.h
 
 C:/Qt/4.8.5/src/corelib/global/qfeatures.h
@@ -806,50 +684,12 @@ C:/Qt/4.8.5/src/corelib/global/qnamespace.h
 QtCore/qglobal.h
 -
 
-C:/Qt/4.8.5/src/corelib/io/qbuffer.h
-QtCore/qiodevice.h
--
-QtCore/qbytearray.h
--
-
 C:/Qt/4.8.5/src/corelib/io/qdatastream.h
 QtCore/qscopedpointer.h
 -
 QtCore/qiodevice.h
 -
 QtCore/qglobal.h
--
-
-C:/Qt/4.8.5/src/corelib/io/qdebug.h
-QtCore/qalgorithms.h
--
-QtCore/qhash.h
--
-QtCore/qlist.h
--
-QtCore/qmap.h
--
-QtCore/qpair.h
--
-QtCore/qtextstream.h
--
-QtCore/qstring.h
--
-QtCore/qvector.h
--
-QtCore/qset.h
--
-QtCore/qcontiguouscache.h
--
-
-C:/Qt/4.8.5/src/corelib/io/qdir.h
-QtCore/qstring.h
--
-QtCore/qfileinfo.h
--
-QtCore/qstringlist.h
--
-QtCore/qshareddata.h
 -
 
 C:/Qt/4.8.5/src/corelib/io/qfile.h
@@ -862,14 +702,6 @@ stdio.h
 f32file.h
 -
 
-C:/Qt/4.8.5/src/corelib/io/qfileinfo.h
-QtCore/qfile.h
--
-QtCore/qlist.h
--
-QtCore/qshareddata.h
--
-
 C:/Qt/4.8.5/src/corelib/io/qiodevice.h
 QtCore/qobject.h
 -
@@ -880,22 +712,6 @@ QtCore/qscopedpointer.h
 QtCore/qstring.h
 -
 
-C:/Qt/4.8.5/src/corelib/io/qtextstream.h
-QtCore/qiodevice.h
--
-QtCore/qstring.h
--
-QtCore/qchar.h
--
-QtCore/qlocale.h
--
-QtCore/qscopedpointer.h
--
-QtCore/qtextcodec.h
--
-stdio.h
--
-
 C:/Qt/4.8.5/src/corelib/kernel/qabstractitemmodel.h
 QtCore/qvariant.h
 -
@@ -904,32 +720,12 @@ QtCore/qobject.h
 QtCore/qhash.h
 -
 
-C:/Qt/4.8.5/src/corelib/kernel/qcoreapplication.h
-QtCore/qobject.h
--
-QtCore/qcoreevent.h
--
-QtCore/qeventloop.h
--
-QtCore/qstringlist.h
--
-
 C:/Qt/4.8.5/src/corelib/kernel/qcoreevent.h
 QtCore/qnamespace.h
 -
 QtCore/qbytearray.h
 -
 QtCore/qobjectdefs.h
--
-
-C:/Qt/4.8.5/src/corelib/kernel/qeventloop.h
-QtCore/qobject.h
--
-
-C:/Qt/4.8.5/src/corelib/kernel/qmetaobject.h
-QtCore/qobjectdefs.h
--
-QtCore/qvariant.h
 -
 
 C:/Qt/4.8.5/src/corelib/kernel/qmetatype.h
@@ -984,14 +780,6 @@ QtCore/qhash.h
 QtCore/qstring.h
 -
 
-C:/Qt/4.8.5/src/corelib/plugin/qlibrary.h
-QtCore/qobject.h
--
-
-C:/Qt/4.8.5/src/corelib/plugin/qpluginloader.h
-QtCore/qlibrary.h
--
-
 C:/Qt/4.8.5/src/corelib/thread/qatomic.h
 QtCore/qglobal.h
 -
@@ -1024,14 +812,6 @@ QtCore/qstring.h
 
 C:/Qt/4.8.5/src/corelib/tools/qchar.h
 QtCore/qglobal.h
--
-
-C:/Qt/4.8.5/src/corelib/tools/qcontiguouscache.h
-QtCore/qatomic.h
--
-limits.h
--
-new
 -
 
 C:/Qt/4.8.5/src/corelib/tools/qhash.h
@@ -1240,22 +1020,6 @@ QtCore/QPointF
 QtCore/QPoint
 -
 
-C:/Qt/4.8.5/src/gui/embedded/qtransportauth_qws.h
-QtCore/qglobal.h
--
-QtCore/qobject.h
--
-QtCore/qhash.h
--
-QtCore/qstring.h
--
-QtCore/qbuffer.h
--
-QtCore/qpointer.h
--
-sys/types.h
--
-
 C:/Qt/4.8.5/src/gui/image/qicon.h
 QtCore/qglobal.h
 -
@@ -1336,36 +1100,10 @@ C:/Qt/4.8.5/src/gui/itemviews/qtreeview.h
 QtGui/qabstractitemview.h
 -
 
-C:/Qt/4.8.5/src/gui/kernel/qapplication.h
-QtCore/qcoreapplication.h
--
-QtGui/qwindowdefs.h
--
-QtCore/qpoint.h
--
-QtCore/qsize.h
--
-QtGui/qcursor.h
--
-QtGui/qdesktopwidget.h
--
-QtGui/qwidget.h
--
-QtGui/qpalette.h
--
-QtGui/qrgb.h
--
-QtGui/qtransportauth_qws.h
--
-
 C:/Qt/4.8.5/src/gui/kernel/qcursor.h
 QtCore/qpoint.h
 -
 QtGui/qwindowdefs.h
--
-
-C:/Qt/4.8.5/src/gui/kernel/qdesktopwidget.h
-QtGui/qwidget.h
 -
 
 C:/Qt/4.8.5/src/gui/kernel/qdrag.h
@@ -1520,16 +1258,6 @@ QtCore/qnamespace.h
 QtCore/qstringlist.h
 -
 
-C:/Qt/4.8.5/src/gui/painting/qdrawutil.h
-QtCore/qnamespace.h
--
-QtCore/qstring.h
--
-QtCore/qmargins.h
--
-QtGui/qpixmap.h
--
-
 C:/Qt/4.8.5/src/gui/painting/qmatrix.h
 QtGui/qpolygon.h
 -
@@ -1552,38 +1280,6 @@ QtGui/qwindowdefs.h
 QtCore/qrect.h
 -
 
-C:/Qt/4.8.5/src/gui/painting/qpainter.h
-QtCore/qnamespace.h
--
-QtCore/qrect.h
--
-QtCore/qpoint.h
--
-QtCore/qscopedpointer.h
--
-QtGui/qpixmap.h
--
-QtGui/qimage.h
--
-QtGui/qtextoption.h
--
-QtGui/qdrawutil.h
--
-QtGui/qpolygon.h
--
-QtGui/qpen.h
--
-QtGui/qbrush.h
--
-QtGui/qmatrix.h
--
-QtGui/qtransform.h
--
-QtGui/qfontinfo.h
--
-QtGui/qfontmetrics.h
--
-
 C:/Qt/4.8.5/src/gui/painting/qpainterpath.h
 QtGui/qmatrix.h
 -
@@ -1596,12 +1292,6 @@ QtCore/qline.h
 QtCore/qvector.h
 -
 QtCore/qscopedpointer.h
--
-
-C:/Qt/4.8.5/src/gui/painting/qpen.h
-QtGui/qcolor.h
--
-QtGui/qbrush.h
 -
 
 C:/Qt/4.8.5/src/gui/painting/qpolygon.h
@@ -1710,14 +1400,6 @@ QtCore/qsharedpointer.h
 QtCore/qrect.h
 -
 
-C:/Qt/4.8.5/src/gui/text/qtextoption.h
-QtCore/qnamespace.h
--
-QtCore/qchar.h
--
-QtCore/qmetatype.h
--
-
 C:/Qt/4.8.5/src/gui/widgets/qabstractscrollarea.h
 QtGui/qframe.h
 -
@@ -1802,43 +1484,9 @@ C:/projects/faocas_qc_w/propertyeditor-2.1.3/build_debug/lib/moc_propertyvalidat
 ../../lib/propertyvalidator.h
 C:/projects/faocas_qc_w/propertyeditor-2.1.3/lib/propertyvalidator.h
 
-C:/projects/faocas_qc_w/propertyeditor-2.1.3/lib/propertydelegate.cpp
-QPainter
--
-QModelIndex
--
-QApplication
--
-propertydelegate.h
-C:/projects/faocas_qc_w/propertyeditor-2.1.3/lib/propertydelegate.h
-propertyinterface.h
-C:/projects/faocas_qc_w/propertyeditor-2.1.3/lib/propertyinterface.h
-
 C:/projects/faocas_qc_w/propertyeditor-2.1.3/lib/propertydelegate.h
 QItemDelegate
 -
-
-C:/projects/faocas_qc_w/propertyeditor-2.1.3/lib/propertyeditor.cpp
-QDebug
--
-QMetaProperty
--
-QPluginLoader
--
-QDir
--
-QMetaClassInfo
--
-QApplication
--
-propertyeditor.h
-C:/projects/faocas_qc_w/propertyeditor-2.1.3/lib/propertyeditor.h
-propertyinterface.h
-C:/projects/faocas_qc_w/propertyeditor-2.1.3/lib/propertyinterface.h
-propertymodel.h
-C:/projects/faocas_qc_w/propertyeditor-2.1.3/lib/propertymodel.h
-propertydelegate.h
-C:/projects/faocas_qc_w/propertyeditor-2.1.3/lib/propertydelegate.h
 
 C:/projects/faocas_qc_w/propertyeditor-2.1.3/lib/propertyeditor.h
 QTreeView
@@ -1847,18 +1495,6 @@ QList
 -
 propertyvalidator.h
 C:/projects/faocas_qc_w/propertyeditor-2.1.3/lib/propertyvalidator.h
-
-C:/projects/faocas_qc_w/propertyeditor-2.1.3/lib/propertyinterface.cpp
-propertyinterface.h
-C:/projects/faocas_qc_w/propertyeditor-2.1.3/lib/propertyinterface.h
-propertymodel.h
-C:/projects/faocas_qc_w/propertyeditor-2.1.3/lib/propertymodel.h
-propertyeditor.h
-C:/projects/faocas_qc_w/propertyeditor-2.1.3/lib/propertyeditor.h
-QMetaProperty
--
-QMetaEnum
--
 
 C:/projects/faocas_qc_w/propertyeditor-2.1.3/lib/propertyinterface.h
 QObject
@@ -1871,20 +1507,6 @@ QList
 -
 propertyvalidator.h
 C:/projects/faocas_qc_w/propertyeditor-2.1.3/lib/propertyvalidator.h
-
-C:/projects/faocas_qc_w/propertyeditor-2.1.3/lib/propertymodel.cpp
-QMetaProperty
--
-QMetaEnum
--
-QSize
--
-QFontMetrics
--
-propertymodel.h
-C:/projects/faocas_qc_w/propertyeditor-2.1.3/lib/propertymodel.h
-propertyinterface.h
-C:/projects/faocas_qc_w/propertyeditor-2.1.3/lib/propertyinterface.h
 
 C:/projects/faocas_qc_w/propertyeditor-2.1.3/lib/propertymodel.h
 QAbstractItemModel

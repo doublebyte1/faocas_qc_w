@@ -23,7 +23,7 @@ class FrmVesselType : public PreviewTab, public Ui::FrmVesselType
     Q_OBJECT
 
     public:
-        FrmVesselType(RoleDef* inRoleDef, Sample* inSample, DateModel* inTDateTime, RuleChecker* ruleCheckerPtr=0, QWidget *parent = 0, Qt::WFlags flags = 0);
+        FrmVesselType(RoleDef* inRoleDef, Sample* inSample, RuleChecker* ruleCheckerPtr=0, QWidget *parent = 0, Qt::WFlags flags = 0);
         ~FrmVesselType();
 
     private slots:
@@ -95,7 +95,6 @@ class FrmVesselType : public PreviewTab, public Ui::FrmVesselType
         /*! Reimplemented from the PreviewTab base class
         */
         void                                   beforeShow();
-        void                                   initMapper1();
         void                                   initVesselTypeModel();
 
         //! Get the title label of the next form

@@ -9,13 +9,15 @@
 #ifndef UI_FRMTRIP_H
 #define UI_FRMTRIP_H
 
+#include <QtCore/QDate>
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
 #include <QtGui/QComboBox>
+#include <QtGui/QDateEdit>
 #include <QtGui/QDialogButtonBox>
-#include <QtGui/QGridLayout>
+#include <QtGui/QFormLayout>
 #include <QtGui/QGroupBox>
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
@@ -26,10 +28,10 @@
 #include <QtGui/QSpacerItem>
 #include <QtGui/QSpinBox>
 #include <QtGui/QTableView>
+#include <QtGui/QTimeEdit>
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QWidget>
 #include "catchinputctrl.h"
-#include "customtimectrl.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -48,7 +50,7 @@ public:
     QPushButton *pushEdit;
     QPushButton *pushRemove;
     QGroupBox *groupDetails;
-    QGridLayout *gridLayout;
+    QFormLayout *formLayout;
     QHBoxLayout *horizontalLayout_11;
     QLabel *label_6;
     QComboBox *cmbSampler;
@@ -60,9 +62,13 @@ public:
     QSpinBox *spinPart;
     QVBoxLayout *verticalLayout;
     QLabel *label_14;
-    CustomTimeCtrl *customDtStart;
+    QHBoxLayout *horizontalLayout_5;
+    QDateEdit *dtStart;
+    QTimeEdit *timeStart;
     QLabel *label_25;
-    CustomTimeCtrl *customDtEnd;
+    QHBoxLayout *horizontalLayout_6;
+    QDateEdit *dtEnd;
+    QTimeEdit *timeEnd;
     QLabel *label_13;
     QPlainTextEdit *textComments;
     QVBoxLayout *verticalLayout_9;
@@ -201,8 +207,8 @@ public:
         sizePolicy3.setHeightForWidth(groupDetails->sizePolicy().hasHeightForWidth());
         groupDetails->setSizePolicy(sizePolicy3);
         groupDetails->setFocusPolicy(Qt::StrongFocus);
-        gridLayout = new QGridLayout(groupDetails);
-        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        formLayout = new QFormLayout(groupDetails);
+        formLayout->setObjectName(QString::fromUtf8("formLayout"));
         horizontalLayout_11 = new QHBoxLayout();
         horizontalLayout_11->setObjectName(QString::fromUtf8("horizontalLayout_11"));
         label_6 = new QLabel(groupDetails);
@@ -266,7 +272,7 @@ public:
         horizontalLayout_11->addWidget(spinPart);
 
 
-        gridLayout->addLayout(horizontalLayout_11, 0, 0, 1, 2);
+        formLayout->setLayout(0, QFormLayout::SpanningRole, horizontalLayout_11);
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
@@ -277,15 +283,26 @@ public:
 
         verticalLayout->addWidget(label_14);
 
-        customDtStart = new CustomTimeCtrl(groupDetails);
-        customDtStart->setObjectName(QString::fromUtf8("customDtStart"));
-        QSizePolicy sizePolicy4(QSizePolicy::Preferred, QSizePolicy::Expanding);
-        sizePolicy4.setHorizontalStretch(0);
-        sizePolicy4.setVerticalStretch(0);
-        sizePolicy4.setHeightForWidth(customDtStart->sizePolicy().hasHeightForWidth());
-        customDtStart->setSizePolicy(sizePolicy4);
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
+        dtStart = new QDateEdit(groupDetails);
+        dtStart->setObjectName(QString::fromUtf8("dtStart"));
+        dtStart->setMaximumDate(QDate(2070, 1, 1));
+        dtStart->setMinimumDate(QDate(1969, 12, 27));
+        dtStart->setCalendarPopup(true);
+        dtStart->setTimeSpec(Qt::UTC);
 
-        verticalLayout->addWidget(customDtStart);
+        horizontalLayout_5->addWidget(dtStart);
+
+        timeStart = new QTimeEdit(groupDetails);
+        timeStart->setObjectName(QString::fromUtf8("timeStart"));
+        timeStart->setCurrentSection(QDateTimeEdit::HourSection);
+        timeStart->setTimeSpec(Qt::UTC);
+
+        horizontalLayout_5->addWidget(timeStart);
+
+
+        verticalLayout->addLayout(horizontalLayout_5);
 
         label_25 = new QLabel(groupDetails);
         label_25->setObjectName(QString::fromUtf8("label_25"));
@@ -294,12 +311,25 @@ public:
 
         verticalLayout->addWidget(label_25);
 
-        customDtEnd = new CustomTimeCtrl(groupDetails);
-        customDtEnd->setObjectName(QString::fromUtf8("customDtEnd"));
-        sizePolicy4.setHeightForWidth(customDtEnd->sizePolicy().hasHeightForWidth());
-        customDtEnd->setSizePolicy(sizePolicy4);
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
+        dtEnd = new QDateEdit(groupDetails);
+        dtEnd->setObjectName(QString::fromUtf8("dtEnd"));
+        dtEnd->setMaximumDate(QDate(2070, 1, 1));
+        dtEnd->setMinimumDate(QDate(1969, 12, 27));
+        dtEnd->setCalendarPopup(true);
+        dtEnd->setTimeSpec(Qt::UTC);
 
-        verticalLayout->addWidget(customDtEnd);
+        horizontalLayout_6->addWidget(dtEnd);
+
+        timeEnd = new QTimeEdit(groupDetails);
+        timeEnd->setObjectName(QString::fromUtf8("timeEnd"));
+        timeEnd->setTimeSpec(Qt::UTC);
+
+        horizontalLayout_6->addWidget(timeEnd);
+
+
+        verticalLayout->addLayout(horizontalLayout_6);
 
         label_13 = new QLabel(groupDetails);
         label_13->setObjectName(QString::fromUtf8("label_13"));
@@ -310,23 +340,26 @@ public:
 
         textComments = new QPlainTextEdit(groupDetails);
         textComments->setObjectName(QString::fromUtf8("textComments"));
-        QSizePolicy sizePolicy5(QSizePolicy::Expanding, QSizePolicy::Preferred);
-        sizePolicy5.setHorizontalStretch(0);
-        sizePolicy5.setVerticalStretch(0);
-        sizePolicy5.setHeightForWidth(textComments->sizePolicy().hasHeightForWidth());
-        textComments->setSizePolicy(sizePolicy5);
+        QSizePolicy sizePolicy4(QSizePolicy::Expanding, QSizePolicy::Preferred);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(textComments->sizePolicy().hasHeightForWidth());
+        textComments->setSizePolicy(sizePolicy4);
 
         verticalLayout->addWidget(textComments);
 
 
-        gridLayout->addLayout(verticalLayout, 1, 0, 1, 1);
+        formLayout->setLayout(1, QFormLayout::LabelRole, verticalLayout);
 
         verticalLayout_9 = new QVBoxLayout();
         verticalLayout_9->setObjectName(QString::fromUtf8("verticalLayout_9"));
         groupTotals = new QGroupBox(groupDetails);
         groupTotals->setObjectName(QString::fromUtf8("groupTotals"));
-        sizePolicy4.setHeightForWidth(groupTotals->sizePolicy().hasHeightForWidth());
-        groupTotals->setSizePolicy(sizePolicy4);
+        QSizePolicy sizePolicy5(QSizePolicy::Preferred, QSizePolicy::Expanding);
+        sizePolicy5.setHorizontalStretch(0);
+        sizePolicy5.setVerticalStretch(0);
+        sizePolicy5.setHeightForWidth(groupTotals->sizePolicy().hasHeightForWidth());
+        groupTotals->setSizePolicy(sizePolicy5);
         verticalLayout_8 = new QVBoxLayout(groupTotals);
         verticalLayout_8->setObjectName(QString::fromUtf8("verticalLayout_8"));
         horizontalLayout_3 = new QHBoxLayout();
@@ -436,8 +469,8 @@ public:
 
         listGears = new QListView(groupTotals);
         listGears->setObjectName(QString::fromUtf8("listGears"));
-        sizePolicy5.setHeightForWidth(listGears->sizePolicy().hasHeightForWidth());
-        listGears->setSizePolicy(sizePolicy5);
+        sizePolicy4.setHeightForWidth(listGears->sizePolicy().hasHeightForWidth());
+        listGears->setSizePolicy(sizePolicy4);
         listGears->setEditTriggers(QAbstractItemView::NoEditTriggers);
         listGears->setAlternatingRowColors(false);
         listGears->setSelectionMode(QAbstractItemView::MultiSelection);
@@ -473,8 +506,8 @@ public:
 
         listZones = new QListView(groupTotals);
         listZones->setObjectName(QString::fromUtf8("listZones"));
-        sizePolicy5.setHeightForWidth(listZones->sizePolicy().hasHeightForWidth());
-        listZones->setSizePolicy(sizePolicy5);
+        sizePolicy4.setHeightForWidth(listZones->sizePolicy().hasHeightForWidth());
+        listZones->setSizePolicy(sizePolicy4);
         listZones->setEditTriggers(QAbstractItemView::NoEditTriggers);
         listZones->setProperty("showDropIndicator", QVariant(false));
         listZones->setAlternatingRowColors(false);
@@ -504,7 +537,7 @@ public:
         verticalLayout_9->addLayout(horizontalLayout_12);
 
 
-        gridLayout->addLayout(verticalLayout_9, 1, 1, 1, 1);
+        formLayout->setLayout(1, QFormLayout::FieldRole, verticalLayout_9);
 
 
         verticalLayout_5->addWidget(groupDetails);
@@ -551,8 +584,8 @@ public:
         label_2->setBuddy(cmbSite);
         label_22->setBuddy(spinProf);
         label_24->setBuddy(spinPart);
-        label_14->setBuddy(customDtStart);
-        label_25->setBuddy(customDtEnd);
+        label_14->setBuddy(dtStart);
+        label_25->setBuddy(dtEnd);
         label_13->setBuddy(textComments);
         label_4->setBuddy(spinNOE);
         label_8->setBuddy(catchInputCtrl);
@@ -566,9 +599,7 @@ public:
         QWidget::setTabOrder(cmbSampler, cmbSite);
         QWidget::setTabOrder(cmbSite, spinProf);
         QWidget::setTabOrder(spinProf, spinPart);
-        QWidget::setTabOrder(spinPart, customDtStart);
-        QWidget::setTabOrder(customDtStart, customDtEnd);
-        QWidget::setTabOrder(customDtEnd, textComments);
+        QWidget::setTabOrder(spinPart, textComments);
         QWidget::setTabOrder(textComments, spinNOE);
         QWidget::setTabOrder(spinNOE, spinNOC);
         QWidget::setTabOrder(spinNOC, catchInputCtrl);
@@ -680,19 +711,11 @@ public:
         spinPart->setWhatsThis(QApplication::translate("FrmTrip", "Input the number of part-time fishermen", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_WHATSTHIS
         label_14->setText(QApplication::translate("FrmTrip", "Start", 0, QApplication::UnicodeUTF8));
-#ifndef QT_NO_TOOLTIP
-        customDtStart->setToolTip(QApplication::translate("FrmTrip", "Start datetime", 0, QApplication::UnicodeUTF8));
-#endif // QT_NO_TOOLTIP
-#ifndef QT_NO_WHATSTHIS
-        customDtStart->setWhatsThis(QApplication::translate("FrmTrip", "Input the starting datetime of the fishing trip", 0, QApplication::UnicodeUTF8));
-#endif // QT_NO_WHATSTHIS
+        dtStart->setDisplayFormat(QApplication::translate("FrmTrip", "yyyy-MM-dd", 0, QApplication::UnicodeUTF8));
+        timeStart->setDisplayFormat(QApplication::translate("FrmTrip", "HH:mm:ss", 0, QApplication::UnicodeUTF8));
         label_25->setText(QApplication::translate("FrmTrip", "End", 0, QApplication::UnicodeUTF8));
-#ifndef QT_NO_TOOLTIP
-        customDtEnd->setToolTip(QApplication::translate("FrmTrip", "End datetime", 0, QApplication::UnicodeUTF8));
-#endif // QT_NO_TOOLTIP
-#ifndef QT_NO_WHATSTHIS
-        customDtEnd->setWhatsThis(QApplication::translate("FrmTrip", "Input the finishing datetime of the fishing trip", 0, QApplication::UnicodeUTF8));
-#endif // QT_NO_WHATSTHIS
+        dtEnd->setDisplayFormat(QApplication::translate("FrmTrip", "yyyy-MM-dd", 0, QApplication::UnicodeUTF8));
+        timeEnd->setDisplayFormat(QApplication::translate("FrmTrip", "HH:mm:ss", 0, QApplication::UnicodeUTF8));
         label_13->setText(QApplication::translate("FrmTrip", "Comments:", 0, QApplication::UnicodeUTF8));
 #ifndef QT_NO_TOOLTIP
         textComments->setToolTip(QApplication::translate("FrmTrip", "Comments", 0, QApplication::UnicodeUTF8));

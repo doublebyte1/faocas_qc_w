@@ -143,7 +143,6 @@ class MainFrm : public QMainWindow, public Ui::MainWindow
         bool                    getPrevIndex(const int idx, const bool bLogbook, int& newIndex);
 
         void                    initSecondaryFrm(SecondaryFrm* frm);
-        bool                    initDateModel();
         void                    resetTabs();
         void                    initPreviewTab(PreviewTab* tab);
         void                    initUi();
@@ -157,7 +156,6 @@ class MainFrm : public QMainWindow, public Ui::MainWindow
         void                    applyReportAdminPermissions();
 
         RoleDef*                m_roleDef;
-        DateModel               *tDateTime;
         FrmFrame                *pFrmFrame;
         FrmMinorStrata          *pFrmMinorStrata;
         FrmFrameDetails         *pFrmFrameDetails;
@@ -180,7 +178,8 @@ class MainFrm : public QMainWindow, public Ui::MainWindow
         Sample*                 sSample;
         QToolBar*               toolbar;
         RuleChecker*            ruleCheckerPtr;//!< Pointer to a Rule Checker
-        InitRulesThread*        workerThread;//!< Thread that initializes the rule containers
+        //InitRulesThread*        workerThread;//!< Thread that initializes the rule containers
+        //QThread*               thread;
         SessionFileParser       *handler;
 
         enum { MaxRecentFiles = 5 };
@@ -204,7 +203,7 @@ class MainFrm : public QMainWindow, public Ui::MainWindow
         void                    navigateThroughTabs(const bool bNext, const int idx);
         void                    showFrameDetails(const FrmFrameDetails::Mode mode, 
                                         const FrmFrameDetails::Persistence persistence,Sample* sample, 
-                                        QList<int>& blackList, const int options);
+                                        QList<int> blackList, const int options);
         void                    hideFrameDetails();
         void                    showFrmSampling();
         void                    hideFrmSampling();

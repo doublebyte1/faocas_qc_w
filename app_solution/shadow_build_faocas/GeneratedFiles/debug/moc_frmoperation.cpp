@@ -22,7 +22,7 @@ static const uint qt_meta_data_FrmOperation[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -33,10 +33,8 @@ static const uint qt_meta_data_FrmOperation[] = {
       14,   13,   13,   13, 0x08,
       35,   29,   13,   13, 0x08,
       59,   13,   13,   13, 0x08,
-      77,   13,   13,   13, 0x08,
-     100,   13,   13,   13, 0x08,
-     146,  125,   13,   13, 0x08,
-     169,   13,   13,   13, 0x08,
+      98,   77,   13,   13, 0x08,
+     121,   13,   13,   13, 0x08,
 
        0        // eod
 };
@@ -44,7 +42,6 @@ static const uint qt_meta_data_FrmOperation[] = {
 static const char qt_meta_stringdata_FrmOperation[] = {
     "FrmOperation\0\0createRecord()\0index\0"
     "previewRow(QModelIndex)\0onItemSelection()\0"
-    "blockCustomDateCtrls()\0unblockCustomDateCtrls()\0"
     "bFinished,bDiscarded\0onEditLeave(bool,bool)\0"
     "editFinished()\0"
 };
@@ -58,10 +55,8 @@ void FrmOperation::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 0: _t->createRecord(); break;
         case 1: _t->previewRow((*reinterpret_cast< QModelIndex(*)>(_a[1]))); break;
         case 2: _t->onItemSelection(); break;
-        case 3: _t->blockCustomDateCtrls(); break;
-        case 4: _t->unblockCustomDateCtrls(); break;
-        case 5: _t->onEditLeave((*reinterpret_cast< const bool(*)>(_a[1])),(*reinterpret_cast< const bool(*)>(_a[2]))); break;
-        case 6: _t->editFinished(); break;
+        case 3: _t->onEditLeave((*reinterpret_cast< const bool(*)>(_a[1])),(*reinterpret_cast< const bool(*)>(_a[2]))); break;
+        case 4: _t->editFinished(); break;
         default: ;
         }
     }
@@ -101,9 +96,9 @@ int FrmOperation::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 5;
     }
     return _id;
 }

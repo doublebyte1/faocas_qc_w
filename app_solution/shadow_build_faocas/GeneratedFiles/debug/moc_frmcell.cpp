@@ -22,7 +22,7 @@ static const uint qt_meta_data_FrmCell[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -34,11 +34,9 @@ static const uint qt_meta_data_FrmCell[] = {
       30,   24,    8,    8, 0x08,
       54,    8,    8,    8, 0x08,
       72,    8,    8,    8, 0x08,
-      95,    8,    8,    8, 0x08,
-     120,    8,    8,    8, 0x08,
-     156,  135,    8,    8, 0x08,
-     179,    8,    8,    8, 0x08,
-     200,    8,    8,    8, 0x08,
+     108,   87,    8,    8, 0x08,
+     131,    8,    8,    8, 0x08,
+     152,    8,    8,    8, 0x08,
 
        0        // eod
 };
@@ -46,7 +44,6 @@ static const uint qt_meta_data_FrmCell[] = {
 static const char qt_meta_stringdata_FrmCell[] = {
     "FrmCell\0\0createRecord()\0index\0"
     "previewRow(QModelIndex)\0onItemSelection()\0"
-    "blockCustomDateCtrls()\0unblockCustomDateCtrls()\0"
     "editFinished()\0bFinished,bDiscarded\0"
     "onEditLeave(bool,bool)\0onShowFrameDetails()\0"
     "onHideFrameDetails()\0"
@@ -61,12 +58,10 @@ void FrmCell::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 0: _t->createRecord(); break;
         case 1: _t->previewRow((*reinterpret_cast< QModelIndex(*)>(_a[1]))); break;
         case 2: _t->onItemSelection(); break;
-        case 3: _t->blockCustomDateCtrls(); break;
-        case 4: _t->unblockCustomDateCtrls(); break;
-        case 5: _t->editFinished(); break;
-        case 6: _t->onEditLeave((*reinterpret_cast< const bool(*)>(_a[1])),(*reinterpret_cast< const bool(*)>(_a[2]))); break;
-        case 7: _t->onShowFrameDetails(); break;
-        case 8: _t->onHideFrameDetails(); break;
+        case 3: _t->editFinished(); break;
+        case 4: _t->onEditLeave((*reinterpret_cast< const bool(*)>(_a[1])),(*reinterpret_cast< const bool(*)>(_a[2]))); break;
+        case 5: _t->onShowFrameDetails(); break;
+        case 6: _t->onHideFrameDetails(); break;
         default: ;
         }
     }
@@ -106,9 +101,9 @@ int FrmCell::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 7;
     }
     return _id;
 }

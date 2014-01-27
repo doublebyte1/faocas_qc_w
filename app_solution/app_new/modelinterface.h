@@ -47,6 +47,7 @@ public:
     QSqlTableModel*                        tChangesTempVessel;
     QSqlTableModel*                        tChangesPermLS;
     QSqlTableModel*                        tChangesPermGLS;
+    QSqlTableModel*                        rRefTempFrame;
     TreeModel*                             treeModel;
 
     bool                                   writeModel();
@@ -59,6 +60,7 @@ public slots:
     void                                   removeFilters();
 
 private:
+    bool                                   Count(int& cnt);
     bool                                   mapData(const int inRow, const int outRow, const int cIn, const int cOut, const QModelIndex& parent, QSqlTableModel* tModel, QVariant& result);
     bool                                   createRootElements(QModelIndex& bin, QModelIndex& root);
     bool                                   readOneGLS(const int inRow, const int outRow, const QModelIndex& parent, const bool bBin, QModelIndex& cIndex);
@@ -72,15 +74,15 @@ private:
     bool                                   readGenericStructure(const int subFrameId, QModelIndex& root, const bool bBin, const QVector<int>& vVesselsBlackList);
     void                                   initModels();
     bool                                   initModel
-                                                (QSqlTableModel* model, const QString strTable);
+                                                (QSqlTableModel* model, const QString strTable, const bool bFilter=true);
     bool                                   writeTables();
 
-    bool                                   writeManyVessels(TreeItem* item, const int lsId, const int frameId);
-    bool                                   writeVessel(TreeItem* item, const int frameId, QVector<int>& vId);
-    bool                                   writeManyLS(TreeItem* item, const int glsId, const int frameId);
-    bool                                   writeLS(TreeItem* item, const int frameId, QVector<int>& vId);
+    bool                                   writeManyVessels(TreeItem* item, const int lsId, const int frameId, const bool bBin=false);
+    bool                                   writeVessel(TreeItem* item, const int frameId, QVector<int>& vId, const bool bBin=false);
+    bool                                   writeManyLS(TreeItem* item, const int glsId, const int frameId, const bool bBin=false);
+    bool                                   writeLS(TreeItem* item, const int frameId, QVector<int>& vId, const bool bBin=false);
     bool                                   writeManyGLS(TreeItem* item, const int id);
-    bool                                   writeGLS(TreeItem* item, const int id, QVector<int>& vId);
+    bool                                   writeGLS(TreeItem* item, const int id, QVector<int>& vId, const bool bBin=false);
     bool                                   writeBin(TreeItem* item, const int id);
     bool                                   writeFr2GLS(const int FrameId, const QVector<int>& vId);
     bool                                   writeGLS2LS(const int FrameId, const int GLSId, const QVector<int>& vId);
@@ -103,7 +105,8 @@ private:
     bool                                   search4VesselParent(const int vesselId, const int from, const int to);
     bool                                   search4Vessel(TreeItem* item,const int vesselId, const int to);
     bool                                   moveVessel(const int to, TreeItem* item);
-    bool                                   writeTempChangesVessel(TreeItem* vs, Sample* sample);
+    bool                                   initTempFrame(Sample* sample, int& tempFrameId);
+    bool                                   writeTempChangesVessel(TreeItem* vs, Sample* sample, const int tempFrameId, bool &bOk, const bool bBin=false);
     bool                                   findOrigin(TreeItem* vs, int& lsId);
     bool                                   getOutsideALS(int& id);
     bool                                   getVesselsBlackList(const Sample* sample, QVector<int>& vVesselsBlackList);

@@ -42,6 +42,7 @@ FrmFrameDetails::~FrmFrameDetails()
     if (pFrmLegend!=0) delete pFrmLegend;
 }
 
+
 void FrmFrameDetails::showLegend()
 {
     if (!pFrmLegend->isVisible())
@@ -66,7 +67,7 @@ void FrmFrameDetails::verify()
 {
     treeView->verifyChanges();
 
-    QMessageBox::warning(this, tr("MedFisis"),
+    QMessageBox::warning(this, tr("FaoCAS"),
                                 tr("Please verify reasons!"),
                                 QMessageBox::Ok);
 
@@ -148,7 +149,6 @@ bool FrmFrameDetails::apply()
     }
 
     pushApply->setEnabled(bError);
-    //pushUndo->setEnabled(!bError);
     m_submitted=!bError;
 
     if (m_submitted){
@@ -156,8 +156,9 @@ bool FrmFrameDetails::apply()
         msgBox.setIcon(QMessageBox::Information);
         msgBox.setText("The changes have been saved.");
         msgBox.exec();
-    }
+
     emit hideFrameDetails(m_submitted);
+    }
 
     return !bError;
 }
@@ -188,7 +189,7 @@ void FrmFrameDetails::back()
 {
     //emit hideFrameDetails(!m_submitted);
 
-    if (m_dirty){
+    if (m_dirty && pushApply->isVisible()){
 
         QMessageBox msgBox;
         msgBox.setIcon(QMessageBox::Warning);
@@ -234,6 +235,20 @@ bool FrmFrameDetails::setTreeReadOnly(const bool bRO)
     return true;
 }
 
+void FrmFrameDetails::editFrame()
+{
+    QList<int> emptyList=QList<int>();
+    setFrameDetails(FrmFrameDetails::EDIT,FrmFrameDetails::PERMANENT,
+                    m_sample,emptyList,FrmFrameDetails::ALLOW_NEW);
+}
+
+void FrmFrameDetails::createFrame()
+{
+    QList<int> emptyList=QList<int>();
+    setFrameDetails(FrmFrameDetails::CREATE,FrmFrameDetails::PERMANENT,
+                    m_sample,emptyList,FrmFrameDetails::ALLOW_NEW);
+}
+
 bool FrmFrameDetails::setFrameDetails(const Mode mode, const Persistence persistence, Sample* sample, 
                                       QList<int>& blackList, const int options)
 {
@@ -259,19 +274,15 @@ bool FrmFrameDetails::setFrameDetails(const Mode mode, const Persistence persist
 
     pushVerify->setEnabled(true);
     pushApply->setEnabled(!pushVerify->isEnabled());
-    //pushUndo->setEnabled(!pushVerify->isEnabled());
-
     pushVerify->setVisible(mode!=FrmFrameDetails::VIEW || persistence==FrmFrameDetails::TEMPORARY);
-    pushBack->setVisible(true);
+    pushEdit->setVisible(persistence!=FrmFrameDetails::TEMPORARY);
+    pushReset->setVisible(persistence!=FrmFrameDetails::TEMPORARY);
+
+    pushBack->setVisible(true);//we put it visible and add to the layout later... pls review this
 
     bool invis=options & FrmFrameDetails::CACHE_CHANGES;
-
     pushApply->setVisible(mode!=FrmFrameDetails::VIEW || (persistence==FrmFrameDetails::TEMPORARY && !invis));
-    //pushUndo->setVisible(mode!=FrmFrameDetails::VIEW || persistence==FrmFrameDetails::TEMPORARY && !invis);
-
-    lineName->clear();
-    textComments->clear();
-    textDesc->clear();
+    (persistence==FrmFrameDetails::TEMPORARY && invis)?pushBack->setText(tr("Back")):pushBack->setText(tr("Cancel"));
 
     if (!initModel(mode,sample,options)){
         qApp->setOverrideCursor( QCursor(Qt::ArrowCursor ) );
@@ -280,17 +291,22 @@ bool FrmFrameDetails::setFrameDetails(const Mode mode, const Persistence persist
     }
 
     if (mode==FrmFrameDetails::VIEW){// read-only on Permanent mode
+        pushEdit->setEnabled(true);
+        pushReset->setEnabled(true);
+
         groupBox->setEnabled(false);
         setTreeReadOnly(true);
         horizontalLayout->addWidget(pushBack);
         persistence==FrmFrameDetails::PERMANENT? horizontalLayout->removeWidget(pushVerify):horizontalLayout->addWidget(pushVerify);
         persistence==FrmFrameDetails::PERMANENT? horizontalLayout->removeWidget(pushApply): horizontalLayout->addWidget(pushApply);
-        //persistence==FrmFrameDetails::PERMANENT? horizontalLayout->removeWidget(pushUndo): horizontalLayout->addWidget(pushUndo);
 
         persistence==FrmFrameDetails::PERMANENT?setTreeReadOnly(true):setTreeReadOnly(false);
 
         initMapper();//TODO: maybe throw an error here later?
-        modelInterface->tRefFrame->setFilter(tr("Fr_Frame.ID=") + QVariant(sample->frameId).toString());
+
+        modelInterface->tRefFrame->setFilter("fr_frame.id=" + QVariant(sample->frameId).toString());
+        modelInterface->tRefFrame->select();
+
         mapper->toLast();
 
     }else{
@@ -306,12 +322,15 @@ bool FrmFrameDetails::setFrameDetails(const Mode mode, const Persistence persist
             mapper->toLast();
 
             if (mode==FrmFrameDetails::EDIT){
+                pushEdit->setEnabled(false);
+
                 //set Frame Name
                 QSqlQuery query;
-                query.prepare(tr("SELECT dbo.FR_Frame.Name FROM dbo.FR_Frame ") + 
-                              tr("WHERE     (dbo.FR_Frame.ID = ?)"));
+                query.prepare("SELECT fr_frame.name from fr_frame "
+                              "where     (fr_frame.id = ?)");
                 query.addBindValue(sample->frameId);
-                if (!query.exec() || query.numRowsAffected()<1){
+
+                if (!query.exec() || query.size()<1){
                     qApp->setOverrideCursor( QCursor(Qt::ArrowCursor ) );
                     if (query.lastError().type()!=QSqlError::NoError)
                         emit showError(query.lastError().text());
@@ -319,16 +338,18 @@ bool FrmFrameDetails::setFrameDetails(const Mode mode, const Persistence persist
                         emit showError(tr("Could not retrieve the type of the cloned frame!"));
                     return false;
                 }
-                query.first();
-                this->cmbCloned->setCurrentIndex(this->cmbCloned->findText(
-                    query.value(0).toString()));
+
+                while (query.isActive() && query.next()){
+                    this->cmbCloned->setCurrentIndex(this->cmbCloned->findText(
+                        query.value(0).toString()));
+                }
 
                 //Set src ID
-                query.prepare(tr("SELECT dbo.Ref_Source.Name FROM dbo.FR_Frame INNER JOIN ") + 
-                              tr("dbo.Ref_Source ON dbo.FR_Frame.id_source = dbo.Ref_Source.ID ") +
-                              tr("WHERE     (dbo.FR_Frame.ID = ?)"));
+                query.prepare("SELECT ref_source.name FROM fr_frame INNER JOIN "
+                              "ref_source ON fr_frame.id_source = ref_source.id "
+                              "WHERE     (fr_frame.id = ?)");
                 query.addBindValue(sample->frameId);
-                if (!query.exec() || query.numRowsAffected()<1){
+                if (!query.exec() || query.size()<1){
                     qApp->setOverrideCursor( QCursor(Qt::ArrowCursor ) );
                     if (query.lastError().type()!=QSqlError::NoError)
                         emit showError(query.lastError().text());
@@ -340,12 +361,14 @@ bool FrmFrameDetails::setFrameDetails(const Mode mode, const Persistence persist
 
                 this->cmbType->setCurrentIndex(this->cmbType->findText(query.value(0).toString()));
 
-            }else if (mode==FrmFrameDetails::CREATE)
+            }else if (mode==FrmFrameDetails::CREATE){
+                pushEdit->setEnabled(false);
 
                 this->cmbCloned->setCurrentIndex(this->cmbCloned->findText(
                     qApp->translate("null_replacements", strNa)));
 
             emit showStatus(tr("Record successfully initialized!"));
+            }
         }
 
         groupBox->setEnabled(true);
@@ -353,7 +376,6 @@ bool FrmFrameDetails::setFrameDetails(const Mode mode, const Persistence persist
 
         horizontalLayout->addWidget(pushVerify);
         horizontalLayout->addWidget(pushApply);
-        //horizontalLayout->addWidget(pushUndo);
         horizontalLayout->addWidget(pushBack);
 
     }
@@ -389,7 +411,7 @@ void FrmFrameDetails::initTree()
     treeView->setSortingEnabled(true);
 }
 
-bool FrmFrameDetails::initModel(const Mode mode, /*const int frameId*/const Sample* sample, const int options)
+bool FrmFrameDetails::initModel(const Mode mode, const Sample* sample, const int options)
 {
     if (model!=0) delete model;
     model = new DragDropModel(this);
@@ -405,7 +427,7 @@ bool FrmFrameDetails::initModel(const Mode mode, /*const int frameId*/const Samp
                      modelInterface, SLOT(removeFilters()));
 
     //fills the actual model
-    if (!setupItems(mode,sample,/*frameId,*/options)) return false;
+    if (!setupItems(mode,sample,options)) return false;
 
     //Using a proxy model for filtering purposes!
     QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(this);
@@ -431,13 +453,13 @@ bool FrmFrameDetails::initModel(const Mode mode, /*const int frameId*/const Samp
     return true;
 }
 
-bool FrmFrameDetails::setupItems(const Mode mode, /*const int frameId*/const Sample* sample, const int options)
+bool FrmFrameDetails::setupItems(const Mode mode, const Sample* sample, const int options)
 {
     switch (mode) {
     case FrmFrameDetails::VIEW:
-        return modelInterface->readModel(/*frameId,*/sample,options);
+        return modelInterface->readModel(sample,options);
     case FrmFrameDetails::EDIT:
-        return modelInterface->readModel(/*frameId,*/sample,options);
+        return modelInterface->readModel(sample,options);
     case FrmFrameDetails::CREATE:
         return modelInterface->createModel();
     default:
@@ -559,6 +581,7 @@ void FrmFrameDetails::initMapper()
     if (!modelInterface) return;
     mapper= new QDataWidgetMapper(this);
     mapper->setModel(modelInterface->tRefFrame);
+
     mapper->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);
 
     if (nullDellegate!=0) delete nullDellegate;
@@ -576,13 +599,13 @@ void FrmFrameDetails::initMapper()
 
     cmbType->setModel(modelInterface->tRefFrame->relationModel(5));
     cmbType->setModelColumn(
-        modelInterface->tRefFrame->relationModel(5)->fieldIndex(tr("Name")));
+        modelInterface->tRefFrame->relationModel(5)->fieldIndex("name"));
 
     mapper->addMapping(cmbType, 5);
 
     cmbCloned->setModel(modelInterface->tRefFrame->relationModel(4));
     cmbCloned->setModelColumn(
-        modelInterface->tRefFrame->relationModel(4)->fieldIndex(tr("Name")));
+        modelInterface->tRefFrame->relationModel(4)->fieldIndex("name"));
 
     mapper->addMapping(cmbCloned, 4);
 }
