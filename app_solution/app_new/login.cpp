@@ -55,7 +55,7 @@ void Login::initCmbUsers()
     cmbUser->setModel(userModel);
     cmbUser->setModelColumn(0);
 
-    QSettings settings(tr("Medstat"), tr("App"));
+    QSettings settings("FaoCAS", "App");
     if (settings.contains("AppUser")){
         int cur=cmbUser->findText(settings.value("AppUser").toString(),Qt::MatchExactly);
         if (cur==-1){
@@ -97,7 +97,7 @@ void Login::validate()
                 update();
 
                 //Store session data, username and passwd
-                QSettings settings(tr("Medstat"), tr("App"));
+                QSettings settings("FaoCAS", "App");
                 settings.setValue("AppUser", cmbUser->currentText());
 
                 if (!setRoleDef(&query)){
@@ -165,7 +165,8 @@ bool Login::setRoleDef(QSqlQuery* query)
 void Login::showEvent ( QShowEvent * event )
 {
     QString strHost, strDatabase, strUsername, strPassword, strDriver;
-    if (!readSettings(strHost,strDatabase,strUsername,strPassword,strDriver))
+    int port;
+    if (!readSettings(strHost,strDatabase,strUsername,strPassword,strDriver,port))
     {
             QMessageBox msgBox(QMessageBox::Critical,tr("Connection Error"),
                 tr("You must run the configurator prior to run this application!") +
@@ -173,7 +174,7 @@ void Login::showEvent ( QShowEvent * event )
             msgBox.exec();
             exit(0);
     }else{
-        if (!connectDB(strHost,strDatabase,strUsername,strPassword,strDriver)){
+        if (!connectDB(strHost,strDatabase,strUsername,strPassword,strDriver,port)){
             QMessageBox msgBox(QMessageBox::Critical,tr("Connection Error"),
                 tr("Please run the configurator again and fix the connection values!"),QMessageBox::Ok,0);
             msgBox.exec();
@@ -199,9 +200,9 @@ void Login::showEvent ( QShowEvent * event )
 }
 
  bool Login::readSettings(QString& strHost, QString& strDatabase, QString& strUsername, 
-     QString& strPassword, QString& strDriver)
+     QString& strPassword, QString& strDriver, int& port)
  {
-    QSettings settings(tr("Medstat"), tr("App"));
+    QSettings settings("FaoCAS", "App");
 
     /*!
     //Settings for the App credentials
@@ -213,7 +214,7 @@ void Login::showEvent ( QShowEvent * event )
 
     if ( !settings.contains("host") || !settings.contains("database") ||
         !settings.contains("username") || !settings.contains("password") ||
-        !settings.contains("driver") || !settings.contains("city")){
+        !settings.contains("driver") || !settings.contains("city") || !settings.contains("port")){
             return false;
 
     } else{
@@ -223,15 +224,16 @@ void Login::showEvent ( QShowEvent * event )
         strUsername=settings.value("username").toString();
         strPassword=settings.value("password").toString();
         strDriver=settings.value("driver").toString();
+        port=settings.value("port").toInt();
     }
 
     return true;
  }
 
  bool Login::connectDB(const QString strHost,const QString strDatabase,
-        const QString strUsername,const QString strPassword, const QString strDriver)
+        const QString strUsername,const QString strPassword, const QString strDriver, const int port)
 {
-        if (!createConnection(strHost,strDatabase, strUsername,strPassword,strDriver)){
+        if (!createConnection(strHost,strDatabase, strUsername,strPassword,strDriver,port)){
             QSqlDatabase db=QSqlDatabase::database();
             QMessageBox::critical( this, tr("User Error"),
                 db.lastError().text());
