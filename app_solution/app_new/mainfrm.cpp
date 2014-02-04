@@ -22,10 +22,6 @@ m_roleDef(roleDef),QMainWindow(parent, flags){
     toolbar=0;
     ruleCheckerPtr=0;
     pFrmReports=0;
-    pFrmImport=0;
-    pFrmExport=0;
-    pFrmRegions=0;
-    pFrmImportRegions=0;
     process=0;
     curHelpId="";
     handler=0;
@@ -42,10 +38,6 @@ MainFrm::~MainFrm()
     vTabs.clear();
 
     if (pFrmReports!=0) delete pFrmReports;
-    if (pFrmRegions!=0) delete pFrmRegions;
-    if (pFrmImportRegions!=0) delete pFrmImportRegions;
-    if (pFrmImport!=0) delete pFrmImport;
-    if (pFrmExport!=0) delete pFrmExport;
     if (pFrmFrame!=0) delete pFrmFrame;
     if (pFrmMinorStrata!=0) delete pFrmMinorStrata;
     if (pFrmFrameDetails!=0) delete pFrmFrameDetails;
@@ -170,14 +162,14 @@ void MainFrm::initUi()
 
     pFrmReports=new FrmReports();
     initSecondaryFrm(pFrmReports);
-    pFrmImport=new FrmImport();
+    /*pFrmImport=new FrmImport();
     initSecondaryFrm(pFrmImport);
     pFrmExport=new FrmExport();
     initSecondaryFrm(pFrmExport);
     pFrmRegions=new FrmRegions();
     initSecondaryFrm(pFrmRegions);
     pFrmImportRegions=new FrmImportRegions();
-    initSecondaryFrm(pFrmImportRegions);
+    initSecondaryFrm(pFrmImportRegions);*/
 
     applyReportAdminPermissions();
 }
@@ -338,10 +330,6 @@ void MainFrm::loadSecondaryFrm()
     if (frm==0) return;
 
     if (frm==actionReports)loadSecondaryFrm(pFrmReports);
-    else if (frm==actionImport)loadSecondaryFrm(pFrmImport);
-    else if (frm==actionExport)loadSecondaryFrm(pFrmExport);
-    else if (frm==actionRegions)loadSecondaryFrm(pFrmRegions);
-    else if (frm==actionGeneralize_Regions)loadSecondaryFrm(pFrmImportRegions);
 }
 
 void MainFrm::loadSecondaryFrm(SecondaryFrm* frm)
@@ -390,7 +378,7 @@ void MainFrm::closeFile()
         closeSecondaryFrm(pFrmReports);
 
     if ( tabWidget->count() <1 ){
-        QMessageBox::information(this, tr("Medfisis"),
+        QMessageBox::information(this, tr("FaoCAS"),
                                         tr("There is nothing to close."),
                                         QMessageBox::Ok);
          return;
@@ -473,7 +461,7 @@ void MainFrm::loadFile()
 void MainFrm::writeFile()
 {
     if ( tabWidget->count() <1 || sSample->frameId==-1 || sSample->frameTimeId==-1){
-        QMessageBox::information(this, tr("Medfisis"),
+        QMessageBox::information(this, tr("FaoCAS"),
                                         tr("There is nothing to save."),
                                         QMessageBox::Ok);
          return;
@@ -548,20 +536,28 @@ void MainFrm::callAssistant()
         delete process; process=0;
     }
      process = new QProcess(this);
-     QString app = QDir::currentPath()
-         + QLatin1String("/assistant");
+
+     //Builds filename from search path; app *SHOULD BE* on the path!
+
+     QFile helpFile("help:mycollection.qhc");
+     if (!helpFile.exists()){
+             QMessageBox::critical(this, tr("Help"),
+                                   tr("Missing Help File!"));
+             return;
+    }
+
+    QString strHelpFilePath(QFileInfo(helpFile).absoluteFilePath());
+    qDebug() << "help is located here: " << strHelpFilePath << endl;
 
     QStringList args;
     args << QLatin1String("-collectionFile")
-
-        << QDir::toNativeSeparators(QDir::currentPath()) + QDir::separator() + tr("Help") + QDir::separator()
-    + QLatin1String("mycollection.qhc")
+         << strHelpFilePath
     << QLatin1String("-enableRemoteControl");
 
-     process->start(app, args);
+     process->start(QLatin1String("assistant"), args);
      if (!process->waitForStarted()) {
          QMessageBox::critical(this, tr("Remote Control"),
-             tr("Could not start Qt Assistant from %1.").arg(app));
+                               tr("Could not start Qt Assistant from %1.").arg("assistant"));
          return;
      }
 

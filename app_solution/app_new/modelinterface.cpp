@@ -154,35 +154,47 @@ bool ModelInterface::writeModel()
 
 bool ModelInterface::initTempFrame(Sample* sample, int& tempFrameId)
 {
-    bool bOk=true;
+    int id_source,id_cell,id_minor_strata;
+    if (!getNonAbstractProperties(sample,id_source,id_cell,id_minor_strata))
+        return false;
+
+    //First it checks if a record exists (edit); if it does, it deletes it;
+    QString strQuery="delete from ref_temp_frame where id_minor_strata=:ms and id_cell=:cell";
+    QSqlQuery query;
+    query.prepare( strQuery);
+    query.bindValue(0,id_minor_strata);
+    query.bindValue(1,id_cell);
+
+    query.setForwardOnly(true);
+    if (!query.exec()){
+        return false;
+    }
+    //qDebug() << query.numRowsAffected() << endl;
+
     if (!insertNewRecord(rRefTempFrame)){
-        bOk=false;
         return false;
       }
 
     while (rRefTempFrame->canFetchMore())
          rRefTempFrame->fetchMore();
 
-    int id_source,id_cell,id_minor_strata;
-    if (!getNonAbstractProperties(sample,id_source,id_cell,id_minor_strata))
-        {bOk=false; return false;}
-
     QModelIndex idx=rRefTempFrame->index(rRefTempFrame->rowCount()-1,1);//MS
     if (!idx.isValid())
-        {bOk=false; return false;}
+        return false;
     rRefTempFrame->setData(idx,id_minor_strata);
 
     idx=rRefTempFrame->index(rRefTempFrame->rowCount()-1,2);//source
     if (!idx.isValid())
-        {bOk=false; return false;}
+        return false;
     rRefTempFrame->setData(idx,id_source);
 
     idx=rRefTempFrame->index(rRefTempFrame->rowCount()-1,3);//cell
     if (!idx.isValid())
-        {bOk=false; return false;}
+        return false;
     rRefTempFrame->setData(idx,id_cell);
 
-    bOk=rRefTempFrame->submitAll();
+    if (!rRefTempFrame->submitAll())
+        return false;
 
     while (rRefTempFrame->canFetchMore())
          rRefTempFrame->fetchMore();
@@ -194,7 +206,7 @@ bool ModelInterface::initTempFrame(Sample* sample, int& tempFrameId)
     if (!idx.isValid()) return false;
     tempFrameId=idx.data().toInt();
 
-    return bOk;
+    return true;
 
 }
 
@@ -205,8 +217,6 @@ bool ModelInterface::writeTempChanges(Sample* sample, int& ct)
     bool bOk=initTempFrame(sample,tempFrameId);
     if (bOk==false)
         return false;
-
-    //TODO: INSERT A record on table tChangesTempVessel, and link to that on changes_temp_vessel; redo the queries for reading temporary frame, and filtering vessels
 
     TreeItem* root=treeModel->root();
 
@@ -346,7 +356,7 @@ bool ModelInterface::writeTempChangesVessel(TreeItem* vs, Sample* sample,  const
         if (!idx.isValid())
             {bOk=false; return false;}
         int from;
-        if (!findOrigin(vs,from))
+        if (!findOrigin(vs,sample,from))
             {bOk=false; return false;}
 
         if (!tChangesTempVessel->setData(idx,from)) {bOk=false; return false;}//origin
@@ -373,86 +383,24 @@ bool ModelInterface::writeTempChangesVessel(TreeItem* vs, Sample* sample,  const
     return false;
 }
 
-bool ModelInterface::findOrigin(TreeItem* vs, int& lsId)
-{
-    int internalId=vs->data(6).toInt();
+bool ModelInterface::findOrigin(TreeItem* vs,  Sample* sample, int& lsId)
+{    
+        QSqlQuery query;
+        QString strQuery="select id_abstract_landingsite from fr_als2vessel where vesselid=:vesselid "
+                "and id_sub_frame IN (select id from fr_sub_frame where id_frame=:frame)";
+        query.prepare(strQuery
+        );
 
-    QModelIndex root=treeModel->index(0,0,QModelIndex());
-    if (!root.isValid()) return false;
+        query.bindValue(0, vs->data(4).toInt());
+        query.bindValue(1, sample->frameId);
 
-    //Search inside the bin first
-    QModelIndex bin=treeModel->index(1,0,QModelIndex());
-    if (!bin.isValid()) return false;
-    TreeItem *pBin = static_cast<TreeItem*>
-        (bin.internalPointer());
+        query.setForwardOnly(true);
+        if (!query.exec() || query.size() !=1) return false;
 
-    //n.b.: IMPORTANT - check on the root bin too!
-    if (bin.internalId()==internalId)
-    {
-        //lsId=outsideId;
-        lsId=pBin->data(4).toInt();
+        query.first();
+        lsId=query.value(0).toInt();
+
         return true;
-    }
-
-    for (int i=0; i < pBin->childCount(); ++i)
-    {
-            QModelIndex gls=treeModel->index(i,0,bin);
-            if (!gls.isValid()) return false;
-            TreeItem *pGls = static_cast<TreeItem*>
-                (gls.internalPointer());
-
-                //n.b.: search in the root first!
-                if (gls.internalId()==internalId)
-                {
-                    //lsId=outsideId;
-                    lsId=pGls->data(4).toInt();
-                    return true;
-                }
-                //than dive into the ls level
-                for (int j=0; j < pGls->childCount(); ++j)
-                {
-                    QModelIndex ls=treeModel->index(j,0,gls);
-                    if (!ls.isValid()) return false;
-                    TreeItem *pLs = static_cast<TreeItem*>
-                        (ls.internalPointer());
-
-                    if (ls.internalId()==internalId)
-                    {
-                        //lsId=outsideId;
-                        lsId=pLs->data(4).toInt();
-                        return true;
-                    }
-                }
-    }
-
-    //Now search the root
-    TreeItem *pRoot = static_cast<TreeItem*>
-        (root.internalPointer());
-
-    for (int i=0; i < pRoot->childCount(); ++i)
-    {
-            QModelIndex gls=treeModel->index(i,0,root);
-            if (!gls.isValid()) return false;
-            TreeItem *pGls = static_cast<TreeItem*>
-                (gls.internalPointer());
-            for (int j=0; j < pGls->childCount(); ++j)
-            {
-                QModelIndex ls=treeModel->index(j,0,gls);
-                if (!ls.isValid()) return false;
-                TreeItem *pLs = static_cast<TreeItem*>
-                    (ls.internalPointer());
-
-                if (ls.internalId()==internalId)
-                {
-                    lsId=pLs->data(4).toInt();
-                    return true;
-                }
-
-            }
-
-    }
-
-    return true;
 }
 
 bool ModelInterface::insertNewRecord(QSqlTableModel* model)
@@ -681,9 +629,9 @@ bool ModelInterface::getIdofBin(const QString strTable, int& id)
 {
     QSqlQuery query;
     QString queryStr=
-    tr("SELECT     id")+
-    tr(" FROM         [table]")+
-    tr(" WHERE     (name = :bin)")
+    "SELECT     id"
+    " FROM         [table]"
+    " WHERE     (name = :bin)"
     ;
 
     queryStr.replace(tr("[table]"),strTable);
@@ -1166,12 +1114,12 @@ bool ModelInterface::readModel(const Sample* sample, const int options)
     //TODO: if tmp, initialize query to have the vessel list: pass the list to the vessels -> if they re in, they re unmovable
     //TODO: reactivate black list
 
-    QVector<int> vVesselsBlackList;/*
+    QVector<int> vVesselsBlackList;
     if (options & FrmFrameDetails::READ_TMP)
     {
         if (!getVesselsBlackList(sample,vVesselsBlackList))
             return false;
-    }*/
+    }
     //TODO: pass this to the vessels
 
     //Read all the reference tables and put them on the bin
@@ -1213,47 +1161,17 @@ bool ModelInterface::getVesselsBlackList(const Sample* sample, QVector<int>& vVe
 
     if (!sample->bLogBook){
         strQuery=
-                "select    abstract_sampled_vessels.vesselid, sampled_cell_vessel_types.id_cell"
-        "	  from         sampled_cell_vessel_types inner join"
-        "			      sampled_cell_vessels on sampled_cell_vessel_types.id = sampled_cell_vessels.id_cell_vessel_types inner join"
-        "			      abstract_sampled_vessels on sampled_cell_vessels.id = abstract_sampled_vessels.id_sampled_cell_vessels"
-
-                " where sampled_cell_vessel_types.id_cell in "
-                "("
-                "	select     "
-                "	  sampled_cell.id from       "
-                "	  sampled_cell inner join     "
-                "	  ref_minor_strata on sampled_cell.id_minor_strata = ref_minor_strata.id where"
-                "	  ("
-                "		  sampled_cell.start_dt <= (select sampled_cell.end_dt from sampled_cell where sampled_cell.id=" + QVariant(sample->cellId).toString() + ")"
-                "		  and"
-                "		sampled_cell.end_dt >=(select sampled_cell.start_dt from sampled_cell where sampled_cell.id=" + QVariant(sample->cellId).toString() + ")"
-                "	)"
-                "	and (ref_minor_strata.id_frame_time ="  + QVariant(sample->frameTimeId).toString() + " and (sampled_cell.id<>" + QVariant(sample->cellId).toString() + ") )	"
-                ") "
+                "select    abstract_sampled_vessels.vesselid"
+        "	  from         abstract_sampled_vessels inner join sampled_cell_vessels on abstract_sampled_vessels.id_sampled_cell_vessels=sampled_cell_vessels.id "
+        "			       inner join sampled_cell_vessel_types on sampled_cell_vessels.id_cell_vessel_types=sampled_cell_vessel_types.id "
+                " where sampled_cell_vessel_types.id_cell=" + QVariant(sample->cellId).toString()
                 ;
     }else{
         strQuery=
-                "select     abstract_sampled_vessels.vesselid, sampled_strata_vessels.id_minor_strata "
+                "select     abstract_sampled_vessels.vesselid"
                  " from         abstract_sampled_vessels inner join "
                  "                     sampled_strata_vessels on abstract_sampled_vessels.id_sampled_strata_vessels = sampled_strata_vessels.id"
-                 "           where sampled_strata_vessels.id_minor_strata in "
-                 "("
-                 " select     ref_minor_strata.id"
-                 " from         ref_minor_strata"
-                 " where  "
-
-                        "  ("
-                        "	  ref_minor_strata.start_dt <= (select ref_minor_strata.end_dt from ref_minor_strata where ref_minor_strata.id=" + QVariant(sample->minorStrataId).toString() + ")"
-                        "	  and"
-                        "	  ref_minor_strata.end_dt >=(select ref_minor_strata.end_dt from ref_minor_strata where ref_minor_strata.id=" + QVariant(sample->minorStrataId).toString() + ")"
-
-                "   )"
-              " and "
-
-                 " (ref_minor_strata.id_frame_time ="  + QVariant(sample->frameTimeId).toString() + " and (ref_minor_strata.id <> " + QVariant(sample->minorStrataId).toString() + "))"
-
-            ")"
+                 "           where sampled_strata_vessels.id_minor_strata=" + QVariant(sample->minorStrataId).toString()
              ;
 
     }
@@ -1411,8 +1329,8 @@ bool ModelInterface::search4Vessel(TreeItem* item,const int vesselId, const int 
             {
                 if (j==7 && item->child(i)->data(8)==false){
                     lData << tr(":/app_new/unmovable.png");
-                /*}else if (j==6){
-                    lData << 111;*/
+                }else if (j==6){
+                    lData << 44444;
                 }else{
                     lData << item->child(i)->data(j);
                 }
