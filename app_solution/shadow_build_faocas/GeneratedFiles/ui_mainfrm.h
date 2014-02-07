@@ -289,7 +289,7 @@ public:
         actionGeneralize_Regions->setWhatsThis(QApplication::translate("MainWindow", "Converts regions on an adjacency list, to a nested set representation", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_WHATSTHIS
         actionGeneralize_Regions->setShortcut(QApplication::translate("MainWindow", "Ctrl+G", 0, QApplication::UnicodeUTF8));
-        actionMedfisis_Help->setText(QApplication::translate("MainWindow", "Medfisis Help", 0, QApplication::UnicodeUTF8));
+        actionMedfisis_Help->setText(QApplication::translate("MainWindow", "FaoCAS Help", 0, QApplication::UnicodeUTF8));
 #ifndef QT_NO_STATUSTIP
         actionMedfisis_Help->setStatusTip(QApplication::translate("MainWindow", "Help Browser", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_STATUSTIP

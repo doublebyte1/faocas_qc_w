@@ -44,7 +44,7 @@ public:
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         webView = new QWebView(frmprjpage);
         webView->setObjectName(QString::fromUtf8("webView"));
-        webView->setUrl(QUrl(QString::fromUtf8("http://www.faomedfisis.org/")));
+        webView->setUrl(QUrl(QString::fromUtf8("about:blank")));
         webView->setZoomFactor(1);
 
         verticalLayout->addWidget(webView);

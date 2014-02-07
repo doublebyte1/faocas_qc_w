@@ -29,6 +29,7 @@
 #include <QtGui/QPlainTextEdit>
 #include <QtGui/QPushButton>
 #include <QtGui/QSpacerItem>
+#include <QtGui/QSpinBox>
 #include <QtGui/QStatusBar>
 #include <QtGui/QTableView>
 #include <QtGui/QToolBar>
@@ -51,15 +52,22 @@ public:
     QVBoxLayout *verticalLayout_7;
     QToolBox *toolBox;
     QWidget *page_3;
-    QGridLayout *gridLayout;
+    QVBoxLayout *verticalLayout_13;
+    QHBoxLayout *horizontalLayout_11;
     QLabel *lbHost;
     QLineEdit *lineHost;
+    QLabel *label_12;
+    QSpinBox *spinPort;
+    QHBoxLayout *horizontalLayout_12;
     QLabel *lbDataSource;
     QLineEdit *lineDatabase;
+    QHBoxLayout *horizontalLayout_13;
     QLabel *lbUsername;
     QLineEdit *lineUsername;
+    QHBoxLayout *horizontalLayout_14;
     QLabel *lbPassword;
     QLineEdit *linePassword;
+    QHBoxLayout *horizontalLayout_15;
     QLabel *lbDriver;
     QComboBox *cmbDriver;
     QHBoxLayout *horizontalLayout;
@@ -151,9 +159,8 @@ public:
     QPlainTextEdit *textUserDesc;
     QMenuBar *menuBar;
     QMenu *menuTools;
-    QMenu *menuOptions;
     QMenu *menuBackups;
-    QMenu *menuPatches;
+    QMenu *menuOptions;
     QToolBar *toolbar;
     QStatusBar *m_statusBar;
 
@@ -203,64 +210,110 @@ public:
         toolBox->setObjectName(QString::fromUtf8("toolBox"));
         page_3 = new QWidget();
         page_3->setObjectName(QString::fromUtf8("page_3"));
-        page_3->setGeometry(QRect(0, 0, 595, 331));
-        gridLayout = new QGridLayout(page_3);
-        gridLayout->setSpacing(6);
-        gridLayout->setContentsMargins(11, 11, 11, 11);
-        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        page_3->setGeometry(QRect(0, 0, 595, 336));
+        verticalLayout_13 = new QVBoxLayout(page_3);
+        verticalLayout_13->setSpacing(6);
+        verticalLayout_13->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_13->setObjectName(QString::fromUtf8("verticalLayout_13"));
+        horizontalLayout_11 = new QHBoxLayout();
+        horizontalLayout_11->setSpacing(6);
+        horizontalLayout_11->setObjectName(QString::fromUtf8("horizontalLayout_11"));
         lbHost = new QLabel(page_3);
         lbHost->setObjectName(QString::fromUtf8("lbHost"));
         lbHost->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
-        gridLayout->addWidget(lbHost, 0, 0, 1, 1);
+        horizontalLayout_11->addWidget(lbHost);
 
         lineHost = new QLineEdit(page_3);
         lineHost->setObjectName(QString::fromUtf8("lineHost"));
 
-        gridLayout->addWidget(lineHost, 0, 1, 1, 1);
+        horizontalLayout_11->addWidget(lineHost);
 
+        label_12 = new QLabel(page_3);
+        label_12->setObjectName(QString::fromUtf8("label_12"));
+
+        horizontalLayout_11->addWidget(label_12);
+
+        spinPort = new QSpinBox(page_3);
+        spinPort->setObjectName(QString::fromUtf8("spinPort"));
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(spinPort->sizePolicy().hasHeightForWidth());
+        spinPort->setSizePolicy(sizePolicy);
+        spinPort->setMaximum(65535);
+
+        horizontalLayout_11->addWidget(spinPort);
+
+
+        verticalLayout_13->addLayout(horizontalLayout_11);
+
+        horizontalLayout_12 = new QHBoxLayout();
+        horizontalLayout_12->setSpacing(6);
+        horizontalLayout_12->setObjectName(QString::fromUtf8("horizontalLayout_12"));
         lbDataSource = new QLabel(page_3);
         lbDataSource->setObjectName(QString::fromUtf8("lbDataSource"));
         lbDataSource->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
-        gridLayout->addWidget(lbDataSource, 1, 0, 1, 1);
+        horizontalLayout_12->addWidget(lbDataSource);
 
         lineDatabase = new QLineEdit(page_3);
         lineDatabase->setObjectName(QString::fromUtf8("lineDatabase"));
 
-        gridLayout->addWidget(lineDatabase, 1, 1, 1, 1);
+        horizontalLayout_12->addWidget(lineDatabase);
 
+
+        verticalLayout_13->addLayout(horizontalLayout_12);
+
+        horizontalLayout_13 = new QHBoxLayout();
+        horizontalLayout_13->setSpacing(6);
+        horizontalLayout_13->setObjectName(QString::fromUtf8("horizontalLayout_13"));
         lbUsername = new QLabel(page_3);
         lbUsername->setObjectName(QString::fromUtf8("lbUsername"));
         lbUsername->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
-        gridLayout->addWidget(lbUsername, 2, 0, 1, 1);
+        horizontalLayout_13->addWidget(lbUsername);
 
         lineUsername = new QLineEdit(page_3);
         lineUsername->setObjectName(QString::fromUtf8("lineUsername"));
 
-        gridLayout->addWidget(lineUsername, 2, 1, 1, 1);
+        horizontalLayout_13->addWidget(lineUsername);
 
+
+        verticalLayout_13->addLayout(horizontalLayout_13);
+
+        horizontalLayout_14 = new QHBoxLayout();
+        horizontalLayout_14->setSpacing(6);
+        horizontalLayout_14->setObjectName(QString::fromUtf8("horizontalLayout_14"));
         lbPassword = new QLabel(page_3);
         lbPassword->setObjectName(QString::fromUtf8("lbPassword"));
 
-        gridLayout->addWidget(lbPassword, 3, 0, 1, 1);
+        horizontalLayout_14->addWidget(lbPassword);
 
         linePassword = new QLineEdit(page_3);
         linePassword->setObjectName(QString::fromUtf8("linePassword"));
         linePassword->setEchoMode(QLineEdit::Password);
 
-        gridLayout->addWidget(linePassword, 3, 1, 1, 1);
+        horizontalLayout_14->addWidget(linePassword);
 
+
+        verticalLayout_13->addLayout(horizontalLayout_14);
+
+        horizontalLayout_15 = new QHBoxLayout();
+        horizontalLayout_15->setSpacing(6);
+        horizontalLayout_15->setObjectName(QString::fromUtf8("horizontalLayout_15"));
         lbDriver = new QLabel(page_3);
         lbDriver->setObjectName(QString::fromUtf8("lbDriver"));
 
-        gridLayout->addWidget(lbDriver, 4, 0, 1, 1);
+        horizontalLayout_15->addWidget(lbDriver);
 
         cmbDriver = new QComboBox(page_3);
         cmbDriver->setObjectName(QString::fromUtf8("cmbDriver"));
 
-        gridLayout->addWidget(cmbDriver, 4, 1, 1, 1);
+        horizontalLayout_15->addWidget(cmbDriver);
+
+
+        verticalLayout_13->addLayout(horizontalLayout_15);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
@@ -283,12 +336,12 @@ public:
         horizontalLayout->addWidget(pushDisconnect);
 
 
-        gridLayout->addLayout(horizontalLayout, 5, 1, 1, 1);
+        verticalLayout_13->addLayout(horizontalLayout);
 
         toolBox->addItem(page_3, QString::fromUtf8("Connection Properties"));
         page_4 = new QWidget();
         page_4->setObjectName(QString::fromUtf8("page_4"));
-        page_4->setGeometry(QRect(0, 0, 595, 331));
+        page_4->setGeometry(QRect(0, 0, 153, 108));
         gridLayout_2 = new QGridLayout(page_4);
         gridLayout_2->setSpacing(6);
         gridLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -352,7 +405,7 @@ public:
         toolBox->addItem(page_4, QString::fromUtf8("Global Settings"));
         page = new QWidget();
         page->setObjectName(QString::fromUtf8("page"));
-        page->setGeometry(QRect(0, 0, 595, 331));
+        page->setGeometry(QRect(0, 0, 186, 159));
         gridLayout_4 = new QGridLayout(page);
         gridLayout_4->setSpacing(6);
         gridLayout_4->setContentsMargins(11, 11, 11, 11);
@@ -437,7 +490,7 @@ public:
         toolBox->addItem(page, QString::fromUtf8("Edit Tables"));
         RolePage = new QWidget();
         RolePage->setObjectName(QString::fromUtf8("RolePage"));
-        RolePage->setGeometry(QRect(0, 0, 595, 331));
+        RolePage->setGeometry(QRect(0, 0, 366, 280));
         verticalLayout_12 = new QVBoxLayout(RolePage);
         verticalLayout_12->setSpacing(6);
         verticalLayout_12->setContentsMargins(11, 11, 11, 11);
@@ -469,11 +522,11 @@ public:
 
         pushEditRole = new QPushButton(groupRole);
         pushEditRole->setObjectName(QString::fromUtf8("pushEditRole"));
-        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(pushEditRole->sizePolicy().hasHeightForWidth());
-        pushEditRole->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(pushEditRole->sizePolicy().hasHeightForWidth());
+        pushEditRole->setSizePolicy(sizePolicy1);
         QIcon icon10;
         icon10.addFile(QString::fromUtf8(":/conf_app/pencil.png"), QSize(), QIcon::Normal, QIcon::Off);
         pushEditRole->setIcon(icon10);
@@ -483,8 +536,8 @@ public:
 
         pushRemoveRole = new QPushButton(groupRole);
         pushRemoveRole->setObjectName(QString::fromUtf8("pushRemoveRole"));
-        sizePolicy.setHeightForWidth(pushRemoveRole->sizePolicy().hasHeightForWidth());
-        pushRemoveRole->setSizePolicy(sizePolicy);
+        sizePolicy1.setHeightForWidth(pushRemoveRole->sizePolicy().hasHeightForWidth());
+        pushRemoveRole->setSizePolicy(sizePolicy1);
         pushRemoveRole->setIcon(icon8);
 
         verticalLayout_10->addWidget(pushRemoveRole);
@@ -523,11 +576,11 @@ public:
 
         textRoleDesc = new QPlainTextEdit(groupRoleDetail);
         textRoleDesc->setObjectName(QString::fromUtf8("textRoleDesc"));
-        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Expanding);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(textRoleDesc->sizePolicy().hasHeightForWidth());
-        textRoleDesc->setSizePolicy(sizePolicy1);
+        QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Expanding);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(textRoleDesc->sizePolicy().hasHeightForWidth());
+        textRoleDesc->setSizePolicy(sizePolicy2);
 
         gridLayout_7->addWidget(textRoleDesc, 2, 2, 1, 1);
 
@@ -597,7 +650,7 @@ public:
         toolBox->addItem(RolePage, QString::fromUtf8("Role Management"));
         page_2 = new QWidget();
         page_2->setObjectName(QString::fromUtf8("page_2"));
-        page_2->setGeometry(QRect(0, 0, 595, 331));
+        page_2->setGeometry(QRect(0, 0, 365, 290));
         verticalLayout_6 = new QVBoxLayout(page_2);
         verticalLayout_6->setSpacing(6);
         verticalLayout_6->setContentsMargins(11, 11, 11, 11);
@@ -613,11 +666,11 @@ public:
         horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
         tableUsers = new QTableView(groupUsers);
         tableUsers->setObjectName(QString::fromUtf8("tableUsers"));
-        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(tableUsers->sizePolicy().hasHeightForWidth());
-        tableUsers->setSizePolicy(sizePolicy2);
+        QSizePolicy sizePolicy3(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(tableUsers->sizePolicy().hasHeightForWidth());
+        tableUsers->setSizePolicy(sizePolicy3);
 
         horizontalLayout_10->addWidget(tableUsers);
 
@@ -632,8 +685,8 @@ public:
 
         pushEditUser = new QPushButton(groupUsers);
         pushEditUser->setObjectName(QString::fromUtf8("pushEditUser"));
-        sizePolicy.setHeightForWidth(pushEditUser->sizePolicy().hasHeightForWidth());
-        pushEditUser->setSizePolicy(sizePolicy);
+        sizePolicy1.setHeightForWidth(pushEditUser->sizePolicy().hasHeightForWidth());
+        pushEditUser->setSizePolicy(sizePolicy1);
         pushEditUser->setIcon(icon10);
         pushEditUser->setCheckable(true);
 
@@ -641,8 +694,8 @@ public:
 
         pushRemoveUser = new QPushButton(groupUsers);
         pushRemoveUser->setObjectName(QString::fromUtf8("pushRemoveUser"));
-        sizePolicy.setHeightForWidth(pushRemoveUser->sizePolicy().hasHeightForWidth());
-        pushRemoveUser->setSizePolicy(sizePolicy);
+        sizePolicy1.setHeightForWidth(pushRemoveUser->sizePolicy().hasHeightForWidth());
+        pushRemoveUser->setSizePolicy(sizePolicy1);
         pushRemoveUser->setIcon(icon8);
 
         verticalLayout_4->addWidget(pushRemoveUser);
@@ -758,15 +811,13 @@ public:
         conf_appClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(conf_appClass);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 613, 18));
+        menuBar->setGeometry(QRect(0, 0, 613, 21));
         menuTools = new QMenu(menuBar);
         menuTools->setObjectName(QString::fromUtf8("menuTools"));
-        menuOptions = new QMenu(menuTools);
-        menuOptions->setObjectName(QString::fromUtf8("menuOptions"));
         menuBackups = new QMenu(menuTools);
         menuBackups->setObjectName(QString::fromUtf8("menuBackups"));
-        menuPatches = new QMenu(menuTools);
-        menuPatches->setObjectName(QString::fromUtf8("menuPatches"));
+        menuOptions = new QMenu(menuTools);
+        menuOptions->setObjectName(QString::fromUtf8("menuOptions"));
         conf_appClass->setMenuBar(menuBar);
         toolbar = new QToolBar(conf_appClass);
         toolbar->setObjectName(QString::fromUtf8("toolbar"));
@@ -777,6 +828,7 @@ public:
         conf_appClass->setStatusBar(m_statusBar);
 #ifndef QT_NO_SHORTCUT
         lbHost->setBuddy(lineHost);
+        label_12->setBuddy(spinPort);
         lbDataSource->setBuddy(lineDatabase);
         lbUsername->setBuddy(lineUsername);
         lbPassword->setBuddy(linePassword);
@@ -832,16 +884,12 @@ public:
         menuBar->addAction(menuTools->menuAction());
         menuTools->addAction(menuOptions->menuAction());
         menuTools->addAction(menuBackups->menuAction());
-        menuTools->addAction(menuPatches->menuAction());
-        menuOptions->addAction(actionShow_startup_message);
-        menuOptions->addAction(actionShow_SQL_message);
         menuBackups->addAction(actionCreate_backup);
         menuBackups->addAction(actionRestore_backup);
-        menuPatches->addAction(actionPatch);
+        menuOptions->addAction(actionShow_startup_message);
 
         retranslateUi(conf_appClass);
         QObject::connect(actionExit, SIGNAL(triggered()), conf_appClass, SLOT(close()));
-        QObject::connect(actionShow_SQL_message, SIGNAL(triggered(bool)), conf_appClass, SLOT(showSqlMessages(bool)));
         QObject::connect(pushConnect, SIGNAL(clicked()), conf_appClass, SLOT(connectDB()));
         QObject::connect(pushDisconnect, SIGNAL(clicked()), conf_appClass, SLOT(disconnectDB()));
         QObject::connect(cmbCountry, SIGNAL(currentIndexChanged(QString)), conf_appClass, SLOT(filterModel(QString)));
@@ -904,6 +952,7 @@ public:
         toolBox->setWhatsThis(QString());
 #endif // QT_NO_WHATSTHIS
         lbHost->setText(QApplication::translate("conf_appClass", "Host", 0, QApplication::UnicodeUTF8));
+        label_12->setText(QApplication::translate("conf_appClass", "Port", 0, QApplication::UnicodeUTF8));
         lbDataSource->setText(QApplication::translate("conf_appClass", "Database", 0, QApplication::UnicodeUTF8));
         lbUsername->setText(QApplication::translate("conf_appClass", "Username", 0, QApplication::UnicodeUTF8));
         lbPassword->setText(QApplication::translate("conf_appClass", "Password", 0, QApplication::UnicodeUTF8));
@@ -1110,9 +1159,8 @@ public:
         label_7->setText(QApplication::translate("conf_appClass", "Description", 0, QApplication::UnicodeUTF8));
         toolBox->setItemText(toolBox->indexOf(page_2), QApplication::translate("conf_appClass", "User Management", 0, QApplication::UnicodeUTF8));
         menuTools->setTitle(QApplication::translate("conf_appClass", "Tools", 0, QApplication::UnicodeUTF8));
-        menuOptions->setTitle(QApplication::translate("conf_appClass", "Options", 0, QApplication::UnicodeUTF8));
         menuBackups->setTitle(QApplication::translate("conf_appClass", "Backups", 0, QApplication::UnicodeUTF8));
-        menuPatches->setTitle(QApplication::translate("conf_appClass", "Patches", 0, QApplication::UnicodeUTF8));
+        menuOptions->setTitle(QApplication::translate("conf_appClass", "Options", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

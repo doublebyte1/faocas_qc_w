@@ -129,9 +129,9 @@ static const uint qt_meta_data_Login[] = {
 
  // slots: signature, parameters, type, tag, flags
       90,    6,    6,    6, 0x0a,
-     160,  106,  101,    6, 0x0a,
-     211,    6,    6,    6, 0x08,
-     231,  226,    6,    6, 0x08,
+     165,  106,  101,    6, 0x0a,
+     220,    6,    6,    6, 0x08,
+     240,  235,    6,    6, 0x08,
 
        0        // eod
 };
@@ -140,8 +140,8 @@ static const char qt_meta_stringdata_Login[] = {
     "Login\0\0str,bShowMsgBox\0showError(QString,bool)\0"
     "str\0showError(QString)\0showStatus(QString)\0"
     "validate()\0bool\0"
-    "strHost,strDatabase,strUsername,strPassword,strDriver\0"
-    "connectDB(QString,QString,QString,QString,QString)\0"
+    "strHost,strDatabase,strUsername,strPassword,strDriver,port\0"
+    "connectDB(QString,QString,QString,QString,QString,int)\0"
     "finalTouches()\0user\0updateTooltip(QString)\0"
 };
 
@@ -155,7 +155,7 @@ void Login::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
         case 1: _t->showError((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 2: _t->showStatus((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 3: _t->validate(); break;
-        case 4: { bool _r = _t->connectDB((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3])),(*reinterpret_cast< const QString(*)>(_a[4])),(*reinterpret_cast< const QString(*)>(_a[5])));
+        case 4: { bool _r = _t->connectDB((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3])),(*reinterpret_cast< const QString(*)>(_a[4])),(*reinterpret_cast< const QString(*)>(_a[5])),(*reinterpret_cast< const int(*)>(_a[6])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
         case 5: _t->finalTouches(); break;
         case 6: _t->updateTooltip((*reinterpret_cast< QString(*)>(_a[1]))); break;
