@@ -42,7 +42,16 @@ int main(int argc, char *argv[])
     path.cd("app_solution/app_new/help");
     //qDebug() << path.absolutePath() << endl;
     QDir::addSearchPath("help",  path.absolutePath());
+
+    path=projdir;
+    path.cd("app_solution/app_new/reports");
+    //qDebug() << path.absolutePath() << endl;
+    QDir::addSearchPath("reports",  path.absolutePath());
 #endif
+
+    path=QDir::currentPath();
+    path.cd("reports");
+    QDir::addSearchPath("reports", path.absolutePath());
 
 //TODO: report path,plugin path
 
