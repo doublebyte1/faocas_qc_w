@@ -57,6 +57,10 @@ int main(int argc, char *argv[])
     path=QDir::currentPath();
     path.cd("report");
     QApplication::addLibraryPath(path.absolutePath());
+
+    path=QDir::currentPath();
+    path.cd("PropertyEditor");
+    QApplication::addLibraryPath(path.absolutePath());
 #endif
 
     //qDebug() << QStyleFactory::keys() << endl;
