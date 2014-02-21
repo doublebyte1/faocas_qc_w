@@ -45,11 +45,11 @@ int main(int argc, char *argv[])
     path.cd("app_solution/app_new/reports");
     //qDebug() << path.absolutePath() << endl;
     QDir::addSearchPath("reports",  path.absolutePath());
-
+/*
     QString qtdir = QDir(env.value("QTDIR")).absolutePath(); // returns empty string for unset
     path=qtdir;
     path.cd("plugins/designer");
-    QApplication::addLibraryPath(path.absolutePath());
+    QApplication::addLibraryPath(path.absolutePath());*/
 #else
     path=QDir::currentPath();
     path.cd("reports");
@@ -63,8 +63,8 @@ int main(int argc, char *argv[])
     path.cd("report");
     QApplication::addLibraryPath(path.absolutePath());
 
-    path=QDir::currentPath();
-    QApplication::addLibraryPath(path.absolutePath());
+    /*path=QDir::currentPath();
+    QApplication::addLibraryPath(path.absolutePath());*/
 #endif
 
     qDebug() << QApplication::libraryPaths() << endl;
