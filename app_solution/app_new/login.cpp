@@ -1,12 +1,13 @@
 #include "connection.h"
 #include "login.h"
+#include "globaldefs.h"
 
 #define MaxRecentFiles 5
 
 // static const char *strLoadDatabase = 
 //     QT_TRANSLATE_NOOP("Login", "Create new connection...");
 
-Login::Login(QWidget *parent, Qt::WFlags flags):
+Login::Login(const QString lbText, QWidget *parent, Qt::WFlags flags):
 QWidget(parent, flags){
 
     mainFrmPtr=0;
@@ -14,6 +15,8 @@ QWidget(parent, flags){
     m_roleDef=0;
 
     setupUi(this);
+
+    lbLocale->setText(lbText);
 /*
     connect(qApp,
                    SIGNAL(aboutToQuit()),
@@ -254,6 +257,7 @@ bool Login::checkUsers()
         strPassword=settings.value("password").toString();
         strDriver=settings.value("driver").toString();
         port=settings.value("port").toInt();
+
     }
 
     return true;
