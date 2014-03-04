@@ -10,26 +10,25 @@ message("You are running qmake on a generated .pro file. This may not work!")
 HEADERS += ./booleantable.h \
     ./conf_app.h \
     ../app_new/connection.h \
-    ./frmlu.h \
     ./frmtip.h \
     ./genericsortproxymodel.h \
-    ./json.h \
     ./login.h \
     ../app_new/nullrelationaldelegate.h \
     ../app_new/reportinghook.h \
-    ../app_new/sql.h
+    ../app_new/sql.h \
+    ../app_new/simplecrypt.h \
+    passwddelegate.h
 SOURCES += ./booleantable.cpp \
     ./conf_app.cpp \
-    ./frmlu.cpp \
     ./frmtip.cpp \
     ./genericsortproxymodel.cpp \
-    ./json.cpp \
     ./login.cpp \
     ./main.cpp \
     ../app_new/nullrelationaldelegate.cpp \
-    ../app_new/reportinghook.cpp
+    ../app_new/reportinghook.cpp \
+    passwddelegate.cpp \
+    ../app_new/simplecrypt.cpp
 FORMS += ./conf_app.ui \
-    ./frmLU.ui \
     ./frmTip.ui \
     ./login.ui
 RESOURCES += ./conf_app.qrc
